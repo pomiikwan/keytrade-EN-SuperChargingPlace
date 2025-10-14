@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="库里蓝暗夜主题.css">
+    <script src="implementation_content.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thousand-Station Charging Project - Implementation Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #0A0E27;
+            min-height: 100vh;
+            color: #FFFFFF;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+        }
+
+        .hero-content {
+            background: rgba(26, 35, 71, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #B8C5E0;
+            margin-bottom: 40px;
+            line-height: 1.4;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #FFC72C;
+            box-shadow: 0 10px 25px rgba(255, 199, 44, 0.2);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: #FFC72C;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #B8C5E0;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1D428A 0%, #0077C0 100%);
+            color: white;
+            box-shadow: 0 10px 25px rgba(29, 66, 138, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(29, 66, 138, 0.4);
+            background: linear-gradient(135deg, #0077C0 0%, #1D428A 100%);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #FFC72C;
+            border: 2px solid #FFC72C;
+        }
+
+        .btn-secondary:hover {
+            background: #FFC72C;
+            color: #1D428A;
+            transform: translateY(-3px);
+        }
+
+        /* Implementation plan content area styles */
+        .implementation-plan-section {
+            margin-top: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin: 0;
+        }
+
+        .refresh-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #FFC72C;
+            color: #FFC72C;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .refresh-btn:hover {
+            background: #FFC72C;
+            color: #1D428A;
+        }
+
+        .loading-indicator {
+            text-align: center;
+            color: #B8C5E0;
+            padding: 40px;
+            font-size: 16px;
+        }
+
+        .loading-spinner {
+            border: 3px solid rgba(255, 199, 44, 0.3);
+            border-top: 3px solid #FFC72C;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .content-area {
+            color: #FFFFFF;
+            line-height: 1.8;
+        }
+
+        .content-area h1 {
+            color: #FFFFFF;
+            font-size: 28px;
+            margin: 30px 0 20px 0;
+            border-bottom: 2px solid #FFC72C;
+            padding-bottom: 10px;
+        }
+
+        .content-area h2 {
+            color: #FFFFFF;
+            font-size: 24px;
+            margin: 25px 0 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 8px;
+        }
+
+        .content-area h3 {
+            color: #FFFFFF;
+            font-size: 20px;
+            margin: 20px 0 10px 0;
+        }
+
+        .content-area h4 {
+            color: #FFFFFF;
+            font-size: 18px;
+            margin: 15px 0 8px 0;
+        }
+
+        .content-area h5 {
+            color: #FFFFFF;
+            font-size: 16px;
+            margin: 12px 0 6px 0;
+        }
+
+        .content-area h6 {
+            color: #FFFFFF;
+            font-size: 14px;
+            margin: 10px 0 5px 0;
+        }
+
+        .content-area p {
+            margin-bottom: 15px;
+            color: #B8C5E0;
+            text-align: left;
+            text-indent: 2em;
+            line-height: 1.8;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* Special paragraph styles - no first-line indentation */
+        .content-area p.no-indent {
+            text-indent: 0;
+        }
+
+        /* Fix potential content area overflow issues */
+        .content-area {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Fix list item alignment issues */
+        .content-area ul, .content-area ol {
+            margin: 15px 0;
+            padding-left: 2em;
+            text-align: left;
+        }
+
+        .content-area li {
+            margin-bottom: 8px;
+            color: #B8C5E0;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        /* Fix table responsive issues */
+        .content-area table {
+            width: 100%;
+            max-width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            table-layout: fixed;
+        }
+
+        @media (max-width: 768px) {
+            .content-area table {
+                font-size: 12px;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+
+        .content-area th, .content-area td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .content-area th {
+            background: rgba(255, 199, 44, 0.2);
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+
+        .content-area td {
+            color: #B8C5E0;
+        }
+
+        .content-area blockquote {
+            border-left: 4px solid #FFC72C;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #B8C5E0;
+            font-style: italic;
+        }
+
+        .content-area code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #FFC72C;
+            font-family: 'Courier New', monospace;
+        }
+
+        .content-area pre {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .content-area pre code {
+            background: none;
+            padding: 0;
+            color: #FFFFFF;
+        }
+
+        .content-area a {
+            color: #FFC72C;
+            text-decoration: none;
+        }
+
+        .content-area a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            text-align: center;
+            color: #ff6b6b;
+            padding: 40px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .floating-action {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(16,185,129,0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(16,185,129,0.4);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 40px 20px;
+            }
+
+            .title {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 20px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            /* Implementation plan area mobile adaptation */
+            .implementation-plan-section {
+                padding: 20px;
+                margin-top: 40px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .refresh-btn {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+
+            .content-area h1 {
+                font-size: 22px;
+                margin: 20px 0 15px 0;
+            }
+
+            .content-area h2 {
+                font-size: 20px;
+                margin: 18px 0 12px 0;
+            }
+
+            .content-area h3 {
+                font-size: 18px;
+                margin: 15px 0 8px 0;
+            }
+
+            .content-area h4 {
+                font-size: 16px;
+                margin: 12px 0 6px 0;
+            }
+
+            .content-area h5 {
+                font-size: 14px;
+                margin: 10px 0 5px 0;
+            }
+
+            .content-area h6 {
+                font-size: 13px;
+                margin: 8px 0 4px 0;
+            }
+
+            .content-area table {
+                font-size: 12px;
+            }
+
+            .content-area th, .content-area td {
+                padding: 8px 10px;
+            }
+
+            .content-area pre {
+                padding: 15px;
+                font-size: 12px;
+                overflow-x: auto;
+            }
+
+            .content-area p {
+                text-indent: 1.5em; /* Slightly reduce indentation on mobile */
+                font-size: 14px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+
+        /* Image display area styles */
+        .image-showcase-section {
+            margin-top: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .image-categories {
+            margin-bottom: 30px;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #B8C5E0;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #FFFFFF;
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            background: #FFC72C;
+            color: #1D428A;
+            border-color: #FFC72C;
+            font-weight: bold;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .image-item {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .image-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: #FFC72C;
+        }
+
+        .image-item.hidden {
+            display: none;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-item:hover .image-placeholder img {
+            transform: scale(1.05);
+        }
+
+        .image-info {
+            padding: 20px;
+        }
+
+        .image-info h3 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+        }
+
+        .image-info p {
+            color: #B8C5E0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Extra small screen adaptation */
+        @media (max-width: 480px) {
+            .hero-content {
+                padding: 30px 15px;
+            }
+
+            .title {
+                font-size: 28px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .stat-value {
+                font-size: 24px;
+            }
+
+            .implementation-plan-section {
+                padding: 15px;
+            }
+
+            .content-area p {
+                text-indent: 1em; /* Further reduce indentation on extra small screens */
+                font-size: 13px;
+            }
+
+            /* Image display area mobile adaptation */
+            .image-showcase-section {
+                padding: 20px;
+                margin-top: 40px;
+            }
+
+            .category-tabs {
+                gap: 8px;
+            }
+
+            .tab {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            .image-gallery {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .image-placeholder {
+                height: 200px;
+            }
+
+            .image-info {
+                padding: 15px;
+            }
+
+            .image-info h3 {
+                font-size: 16px;
+            }
+
+            .image-info p {
+                font-size: 13px;
+            }
+        }
+
+        /* Tablet adaptation */
+        @media (max-width: 768px) and (min-width: 481px) {
+            .image-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+            }
+
+            .image-placeholder {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="logo">🚀</div>
+                <h1 class="title">Thousand-Station Charging Project</h1>
+                <p class="subtitle">Implementation Plan • Five-Year Construction Plan • 1000 Ultra-Fast Charging Stations Construction Plan</p>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-value">5 Years</div>
+                        <div class="stat-label">Project Period</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">1000 Stations</div>
+                        <div class="stat-label">Construction Target</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">¥2.8B</div>
+                        <div class="stat-label">Total Investment</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">4 Phases</div>
+                        <div class="stat-label">Implementation Strategy</div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="index.html" class="btn btn-primary">
+                        🏠 Back to Home
+                    </a>
+                    <a href="项目摘要_en.html" class="btn btn-secondary">
+                        📋 View Summary
+                    </a>
+                    <a href="交互式计算器_en.html" class="btn btn-secondary">
+                        🧮 Financial Calculator
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Image display area -->
+        <div class="image-showcase-section">
+            <div class="section-header">
+                <h2 class="section-title">🖼️ Project Showcase</h2>
+            </div>
+
+            <div class="image-categories">
+                <div class="category-tabs">
+                    <button class="tab active" onclick="switchImageCategory('all')">All Images</button>
+                    <button class="tab" onclick="switchImageCategory('design')">Design Renderings</button>
+                    <button class="tab" onclick="switchImageCategory('planning')">Site Planning</button>
+                    <button class="tab" onclick="switchImageCategory('progress')">Project Progress</button>
+                </div>
+            </div>
+
+            <div id="image-gallery" class="image-gallery">
+                <!-- Ultra-Fast Charging Station Design Rendering -->
+                <div class="image-item" data-category="design">
+                    <div class="image-placeholder">
+                        <img src="images/design/超充站设计效果图.jpg" alt="Ultra-Fast Charging Station Design Rendering" onerror="this.src='https://via.placeholder.com/800x600/1D428A/FFFFFF?text=Ultra-Fast Charging Station Design'">
+                    </div>
+                    <div class="image-info">
+                        <h3>Ultra-Fast Charging Station Design Rendering</h3>
+                        <p>Overall design rendering of Huawei 600kW liquid-cooled ultra-fast charging station, including complete supporting facilities such as charging pile layout, rest area, and service area</p>
+                    </div>
+                </div>
+
+                <!-- Site Planning Diagram -->
+                <div class="image-item" data-category="planning">
+                    <div class="image-placeholder">
+                        <img src="images/planning/场地规划图.jpg" alt="Site Planning Diagram" onerror="this.src='https://via.placeholder.com/800x600/0077C0/FFFFFF?text=Site Planning'">
+                    </div>
+                    <div class="image-info">
+                        <h3>Site Planning Diagram</h3>
+                        <p>Detailed site planning diagram for ultra-fast charging station, including parking space planning, charging pile layout, power facility configuration, safety passages, etc.</p>
+                    </div>
+                </div>
+
+                <!-- Project Progress Chart -->
+                <div class="image-item" data-category="progress">
+                    <div class="image-placeholder">
+                        <img src="images/progress/项目进展图表.jpg" alt="Project Progress Chart" onerror="this.src='https://via.placeholder.com/800x600/FFC72C/1D428A?text=Project Progress'">
+                    </div>
+                    <div class="image-info">
+                        <h3>Project Progress Chart</h3>
+                        <p>Phased implementation progress chart for the thousand-station ultra-fast charging project, showing annual construction targets, completion status, and investment progress</p>
+                    </div>
+                </div>
+
+                <!-- Liquid Cooling System Design Diagram -->
+                <div class="image-item" data-category="design">
+                    <div class="image-placeholder">
+                        <img src="images/design/液冷系统设计图.jpg" alt="Liquid Cooling System Design Diagram" onerror="this.src='https://via.placeholder.com/800x600/10b981/FFFFFF?text=Liquid Cooling System'">
+                    </div>
+                    <div class="image-info">
+                        <h3>Liquid Cooling System Design Diagram</h3>
+                        <p>Huawei liquid-cooled ultra-fast charging core technology system design diagram, showing technical details such as cooling system, power distribution, and safety monitoring</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implementation plan content area -->
+        <div class="implementation-plan-section">
+            <div class="section-header">
+                <h2 class="section-title">📋 Implementation Plan</h2>
+                <button class="refresh-btn" onclick="loadImplementationPlan()">
+                    <span>🔄</span>
+                    <span>Refresh Content</span>
+                </button>
+            </div>
+
+            <div id="implementation-plan-content">
+                <div class="loading-indicator">
+                    <div class="loading-spinner"></div>
+                    <div>Loading implementation plan content...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-action">
+    </div>
+
+    <script>
+        // Implementation plan content loading function
+        function loadImplementationPlan() {
+            const contentDiv = document.getElementById('implementation-plan-content');
+
+            // Show loading status
+            contentDiv.innerHTML = `
+                <div class="loading-indicator">
+                    <div class="loading-spinner"></div>
+                    <div>Loading implementation plan content...</div>
+                </div>
+            `;
+
+            // Use preloaded content first
+            if (typeof IMPLEMENTATION_CONTENT !== 'undefined') {
+                console.log('Using preloaded implementation plan content');
+                const parsedContent = parseMarkdown(IMPLEMENTATION_CONTENT);
+                contentDiv.innerHTML = `<div class="content-area">${parsedContent}</div>`;
+                return;
+            }
+
+            // Try to load content from server
+            loadImplementationPlanFromServer();
+        }
+
+        // Load implementation plan content from server
+        function loadImplementationPlanFromServer() {
+            const contentDiv = document.getElementById('implementation-plan-content');
+
+            fetch('http://localhost:8000/生成式商业计划书内容/实施执行.md')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    return response.text();
+                })
+                .then(content => {
+                    console.log('Successfully loaded implementation plan content from server');
+                    const parsedContent = parseMarkdown(content);
+                    contentDiv.innerHTML = `<div class="content-area">${parsedContent}</div>`;
+                })
+                .catch(error => {
+                    console.warn('Server loading failed, using default content:', error);
+                    loadDefaultImplementationPlan();
+                });
+        }
+
+        // Load default implementation plan content
+        function loadDefaultImplementationPlan() {
+            const contentDiv = document.getElementById('implementation-plan-content');
+
+            const defaultContent = `# Implementation & Execution
+
+## Project Implementation Plan
+
+### 📅 Overall Timeline
+**Project Period**: 5 years (2025-2029)
+**Construction Target**: 1000 liquid-cooled ultra-fast charging stations
+**Total Investment**: ¥2.8 Billion RMB
+**Quality Standards**: National Grid Standards + Huawei Technical Specifications
+
+### 🎯 Phased Implementation Strategy
+
+#### Phase 1: Pilot Validation (2025)
+**Timeline**: January-December 2025
+**Target**: Build 100 ultra-fast charging stations, complete technical validation
+
+#### Phase 2: Scale Expansion (2026-2027)
+**Timeline**: January 2026-December 2027
+**Target**: Add 400 ultra-fast charging stations, establish network effect
+
+#### Phase 3: National Layout (2028)
+**Timeline**: January-December 2028
+**Target**: Add 300 ultra-fast charging stations, achieve national coverage
+
+#### Phase 4: Optimization (2029)
+**Timeline**: January-December 2029
+**Target**: Add 200 ultra-fast charging stations, optimize network layout
+
+*Note: Currently showing default content. For complete content, please start local server or refresh page to retry.*`;
+
+            const parsedContent = parseMarkdown(defaultContent);
+            contentDiv.innerHTML = `<div class="content-area">${parsedContent}</div>`;
+        }
+
+        // Image category switching function
+        function switchImageCategory(category) {
+            // Update tab status
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter displayed images
+            const imageItems = document.querySelectorAll('.image-item');
+            imageItems.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        // Markdown parsing function (supports PDF export optimization and paragraph styles)
+        function parseMarkdown(markdown) {
+            if (!markdown) return '';
+
+            let html = markdown;
+
+            // Process headings (supports h1-h6)
+            html = html.replace(/^###### (.+)$/gm, '<h6>$1</h6>');
+            html = html.replace(/^##### (.+)$/gm, '<h5>$1</h5>');
+            html = html.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
+            html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+            html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+            html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+
+            // Process bold text
+            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+            // Process italic text
+            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+            // Process inline code
+            html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+            // Process links
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+
+            // Process images
+            html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="max-width: 100%; height: auto; border-radius: 8px; margin: 15px 0;">');
+
+            // Process code blocks
+            html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
+
+            // Process blockquotes
+            html = html.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
+
+            // Process unordered lists
+            html = html.replace(/^[\*\-\+] (.+)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+
+            // Process ordered lists
+            html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+
+            // Process tables (enhanced version)
+            html = html.replace(/\|(.+)\|/g, (match, content) => {
+                const cells = content.split('|').map(cell => cell.trim());
+                const isHeader = content.includes('---');
+                const tag = isHeader ? 'th' : 'td';
+                return `<tr>${cells.map(cell => `<${tag}>${cell}</${tag}>`).join('')}</tr>`;
+            });
+
+            // Process horizontal rules
+            html = html.replace(/^---+$/gm, '<hr style="border: none; border-top: 2px solid rgba(255, 255, 255, 0.2); margin: 20px 0;">');
+
+            // Process line breaks - intelligent paragraph processing
+            html = html.replace(/\n\n/g, '</p><p>');
+            html = '<p>' + html + '</p>';
+
+            // Clean up excess paragraph tags
+            html = html.replace(/<p><\/p>/g, '');
+            html = html.replace(/<p>(<h[1-6]>)/g, '$1');
+            html = html.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<ul>)/g, '$1');
+            html = html.replace(/(<\/ul>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<ol>)/g, '$1');
+            html = html.replace(/(<\/ol>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<blockquote>)/g, '$1');
+            html = html.replace(/(<\/blockquote>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<pre>)/g, '$1');
+            html = html.replace(/(<\/pre>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<hr)/g, '$1');
+            html = html.replace(/(>)<\/p>/g, '$1');
+
+            // Add no-indent class to special paragraphs - enhanced recognition
+            html = html.replace(/<p>(\*\*[^*]*\*\*)<\/p>/g, '<p class="no-indent">$1</p>'); // Bold heading paragraphs
+            html = html.replace(/<p>(Phase.*?:.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Phase paragraphs
+            html = html.replace(/<p>(\*\*Timeline\*\*.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Timeline heading paragraphs
+            html = html.replace(/<p>(\*\*Target\*\*.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Target heading paragraphs
+            html = html.replace(/<p>(\*\*Key Areas\*\*.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Key area paragraphs
+            html = html.replace(/<p>(\*\*Key Tasks\*\*.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Key task paragraphs
+            html = html.replace(/<p>(\*\*Expansion Strategy\*\*.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Expansion strategy paragraphs
+            html = html.replace(/<p>(\*\*Layout Focus\*\*.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Layout focus paragraphs
+            html = html.replace(/<p>(\*\*Optimization Focus\*\*.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Optimization focus paragraphs
+            html = html.replace(/<p>(\*Note:.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Note paragraphs
+            html = html.replace(/<p>\(.*?\)<\/p>/g, '<p class="no-indent">$1</p>'); // Parenthetical explanation paragraphs
+            html = html.replace(/<p>\d+\..*?<\/p>/g, '<p class="no-indent">$1</p>'); // Number-started paragraphs
+
+            return html;
+        }
+
+        // Initialization after page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add number animation effects
+            const statValues = document.querySelectorAll('.stat-value');
+
+            const animateValue = (element, start, end, duration) => {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const value = Math.floor(progress * (end - start) + start);
+
+                    if (element.textContent.includes('年')) {
+                        element.textContent = value + '年';
+                    } else if (element.textContent.includes('座')) {
+                        element.textContent = value + '座';
+                    } else if (element.textContent.includes('亿')) {
+                        element.textContent = value + '亿';
+                    } else if (element.textContent.includes('阶段')) {
+                        element.textContent = value + '阶段';
+                    }
+
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            };
+
+            // Trigger animation when element enters viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const text = element.textContent;
+
+                        if (text.includes('5年')) {
+                            animateValue(element, 0, 5, 2000);
+                        } else if (text.includes('1000座')) {
+                            animateValue(element, 0, 1000, 2000);
+                        } else if (text.includes('28亿')) {
+                            animateValue(element, 0, 28, 2000);
+                        } else if (text.includes('4阶段')) {
+                            animateValue(element, 0, 4, 2000);
+                        }
+
+                        observer.unobserve(element);
+                    }
+                });
+            });
+
+            statValues.forEach(stat => observer.observe(stat));
+
+            // Add smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Automatically load implementation plan content after page load
+            loadImplementationPlan();
+        });
+    </script>
+</body>
+</html>

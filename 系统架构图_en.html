@@ -1,0 +1,860 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="库里蓝暗夜主题.css">
+    <script src="technical_solution_content.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Architecture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #0A0E27;
+            min-height: 100vh;
+            color: #FFFFFF;
+            padding: 20px;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+        }
+
+        .container {
+            background: rgba(26, 35, 71, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #FFFFFF !important;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .architecture {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .layer {
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .layer:hover {
+            transform: translateY(-5px);
+        }
+
+        .cloud-layer {
+            background: linear-gradient(135deg, #1D428A 0%, #0077C0 100%);
+            color: #FFFFFF !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .station-layer {
+            background: linear-gradient(135deg, #0077C0 0%, #FFC72C 100%);
+            color: #FFFFFF !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .device-layer {
+            background: linear-gradient(135deg, #FFC72C 0%, #1D428A 100%);
+            color: #FFFFFF !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .layer-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .components {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .component {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            color: #FFFFFF !important;
+        }
+
+        .component:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+            border-color: #FFC72C;
+        }
+
+        .connection {
+            text-align: center;
+            font-size: 24px;
+            color: #FFC72C !important;
+            margin: -20px 0;
+            z-index: 1;
+            position: relative;
+        }
+
+        .metrics {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .metric {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 150px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .metric:hover {
+            border-color: #FFC72C;
+            box-shadow: 0 5px 15px rgba(255, 199, 44, 0.2);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: #B8C5E0;
+            margin-bottom: 5px;
+        }
+
+        .metric-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #FFC72C !important;
+        }
+
+        .network-label {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #B8C5E0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .network-labels {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 10px 0;
+        }
+
+        /* Technical solution content area styles */
+        .technical-solution-section {
+            margin-top: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin: 0;
+        }
+
+        .refresh-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #FFC72C;
+            color: #FFC72C;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .refresh-btn:hover {
+            background: #FFC72C;
+            color: #1D428A;
+        }
+
+        .loading-indicator {
+            text-align: center;
+            color: #B8C5E0;
+            padding: 40px;
+            font-size: 16px;
+        }
+
+        .loading-spinner {
+            border: 3px solid rgba(255, 199, 44, 0.3);
+            border-top: 3px solid #FFC72C;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .content-area {
+            color: #FFFFFF;
+            line-height: 1.8;
+        }
+
+        .content-area h1 {
+            color: #FFFFFF;
+            font-size: 28px;
+            margin: 30px 0 20px 0;
+            border-bottom: 2px solid #FFC72C;
+            padding-bottom: 10px;
+        }
+
+        .content-area h2 {
+            color: #FFFFFF;
+            font-size: 24px;
+            margin: 25px 0 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 8px;
+        }
+
+        .content-area h3 {
+            color: #FFFFFF;
+            font-size: 20px;
+            margin: 20px 0 10px 0;
+        }
+
+        .content-area h4 {
+            color: #FFFFFF;
+            font-size: 18px;
+            margin: 15px 0 8px 0;
+        }
+
+        .content-area h5 {
+            color: #FFFFFF;
+            font-size: 16px;
+            margin: 12px 0 6px 0;
+        }
+
+        .content-area h6 {
+            color: #FFFFFF;
+            font-size: 14px;
+            margin: 10px 0 5px 0;
+        }
+
+        .content-area p {
+            margin-bottom: 15px;
+            color: #B8C5E0;
+            text-align: left;
+            text-indent: 2em;
+            line-height: 1.8;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* Special paragraph styles - no first-line indentation */
+        .content-area p.no-indent {
+            text-indent: 0;
+        }
+
+        .content-area ul, .content-area ol {
+            margin: 15px 0;
+            padding-left: 2em;
+            text-align: left;
+        }
+
+        .content-area li {
+            margin-bottom: 8px;
+            color: #B8C5E0;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .content-area table {
+            width: 100%;
+            max-width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            table-layout: fixed;
+        }
+
+        .content-area th, .content-area td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .content-area th {
+            background: rgba(255, 199, 44, 0.2);
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+
+        .content-area td {
+            color: #B8C5E0;
+        }
+
+        .content-area blockquote {
+            border-left: 4px solid #FFC72C;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #B8C5E0;
+            font-style: italic;
+        }
+
+        .content-area code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #FFC72C;
+            font-family: 'Courier New', monospace;
+        }
+
+        .content-area pre {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .content-area pre code {
+            background: none;
+            padding: 0;
+            color: #FFFFFF;
+        }
+
+        .content-area a {
+            color: #FFC72C;
+            text-decoration: none;
+        }
+
+        .content-area a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            text-align: center;
+            color: #ff6b6b;
+            padding: 40px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1D428A 0%, #0077C0 100%);
+            color: white;
+            box-shadow: 0 10px 25px rgba(29, 66, 138, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(29, 66, 138, 0.4);
+            background: linear-gradient(135deg, #0077C0 0%, #1D428A 100%);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #FFC72C;
+            border: 2px solid #FFC72C;
+        }
+
+        .btn-secondary:hover {
+            background: #FFC72C;
+            color: #1D428A;
+            transform: translateY(-3px);
+        }
+
+        .floating-action {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(16,185,129,0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(16,185,129,0.4);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 40px 20px;
+            }
+
+            .title {
+                font-size: 28px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .technical-solution-section {
+                padding: 20px;
+                margin-top: 40px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .content-area p {
+                text-indent: 1.5em;
+                font-size: 14px;
+            }
+
+            .architecture {
+                gap: 20px;
+            }
+
+            .components {
+                gap: 10px;
+            }
+
+            .component {
+                font-size: 12px;
+                padding: 10px 15px;
+            }
+
+            .metrics {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .metric {
+                min-width: 120px;
+                padding: 15px;
+            }
+        }
+
+        /* Extra small screen adaptation */
+        @media (max-width: 480px) {
+            .title {
+                font-size: 24px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .content-area p {
+                text-indent: 1em;
+                font-size: 13px;
+            }
+
+            .technical-solution-section {
+                padding: 15px;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .architecture {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="hero">
+            <div class="container">
+                <h1 class="title">Thousand-Station Charging System Architecture</h1>
+
+                <div class="architecture">
+                    <!-- Cloud Management Platform -->
+                    <div class="layer cloud-layer">
+                        <div class="layer-title">☁️ Cloud Management Platform</div>
+                        <div class="components">
+                            <div class="component">📊 Operations Management System</div>
+                            <div class="component">📈 Data Analytics System</div>
+                            <div class="component">🎧 Customer Service System</div>
+                        </div>
+                    </div>
+
+                    <div class="connection">⬇️ 5G Network</div>
+
+                    <!-- Station Management System -->
+                    <div class="layer station-layer">
+                        <div class="layer-title">🏢 Station Management System</div>
+                        <div class="components">
+                            <div class="component">⚡ Power Distribution System</div>
+                            <div class="component">🌡️ Environmental Monitoring System</div>
+                            <div class="component">🛡️ Security Protection System</div>
+                        </div>
+                    </div>
+
+                    <div class="connection">⬇️ Industrial Bus</div>
+
+                    <!-- Charging Device Layer -->
+                    <div class="layer device-layer">
+                        <div class="layer-title">🔋 Charging Device Layer</div>
+                        <div class="components">
+                            <div class="component">🚗 Liquid-Cooled Ultra-Fast Charging Pile</div>
+                            <div class="component">🔋 Energy Storage System</div>
+                            <div class="component">☀️ Photovoltaic System</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="network-labels">
+                    <div class="network-label">📶 5G Network</div>
+                    <div class="network-label">🌐 Fiber Optic Communication</div>
+                    <div class="network-label">🔌 Industrial Bus</div>
+                </div>
+
+                <div class="metrics">
+                    <div class="metric">
+                        <div class="metric-label">Charging Power</div>
+                        <div class="metric-value">600kW</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Charging Speed</div>
+                        <div class="metric-value">1km per second</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Conversion Efficiency</div>
+                        <div class="metric-value">>96%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Service Life</div>
+                        <div class="metric-value">15 years</div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="index.html" class="btn btn-primary">
+                        🏠 Back to Home
+                    </a>
+                    <a href="项目摘要_en.html" class="btn btn-secondary">
+                        📋 View Summary
+                    </a>
+                    <a href="项目实施计划_en.html" class="btn btn-secondary">
+                        📋 Implementation Plan
+                    </a>
+                    <a href="交互式计算器_en.html" class="btn btn-secondary">
+                        🧮 Financial Calculator
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Solution Content Area -->
+        <div class="technical-solution-section">
+            <div class="section-header">
+                <h2 class="section-title">🔧 Technical Solution Details</h2>
+                <button class="refresh-btn" onclick="loadTechnicalSolution()">
+                    <span>🔄</span>
+                    <span>Refresh Content</span>
+                </button>
+            </div>
+
+            <div id="technical-solution-content">
+                <div class="loading-indicator">
+                    <div class="loading-spinner"></div>
+                    <div>Loading technical solution content...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-action">
+    </div>
+
+    <script>
+        // 技术方案内容加载函数
+        function loadTechnicalSolution() {
+            const contentDiv = document.getElementById('technical-solution-content');
+
+            // Display loading status
+            contentDiv.innerHTML = `
+                <div class="loading-indicator">
+                    <div class="loading-spinner"></div>
+                    <div>Loading technical solution content...</div>
+                </div>
+            `;
+
+            // Use preloaded content preferentially
+            if (typeof TECHNICAL_SOLUTION_CONTENT !== 'undefined') {
+                console.log('Using preloaded technical solution content');
+                const parsedContent = parseMarkdown(TECHNICAL_SOLUTION_CONTENT);
+                contentDiv.innerHTML = `<div class="content-area">${parsedContent}</div>`;
+                return;
+            }
+
+            // Try to load content from server
+            loadTechnicalSolutionFromServer();
+        }
+
+        // Load technical solution content from server
+        function loadTechnicalSolutionFromServer() {
+            const contentDiv = document.getElementById('technical-solution-content');
+
+            fetch('http://localhost:8000/生成式商业计划书内容/技术方案.md')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    return response.text();
+                })
+                .then(content => {
+                    console.log('Successfully loaded technical solution content from server');
+                    const parsedContent = parseMarkdown(content);
+                    contentDiv.innerHTML = `<div class="content-area">${parsedContent}</div>`;
+                })
+                .catch(error => {
+                    console.warn('Server loading failed, using default content:', error);
+                    loadDefaultTechnicalSolution();
+                });
+        }
+
+        // Load default technical solution content
+        function loadDefaultTechnicalSolution() {
+            const contentDiv = document.getElementById('technical-solution-content');
+
+            const defaultContent = `# 技术方案
+
+## 核心技术优势
+
+### ⚡ 超充技术
+- **充电功率**：600kW液冷超充技术
+- **充电速度**："一秒一公里"，60倍于传统充电
+- **转换效率**：>96%，行业领先水平
+- **兼容性**：支持各种车型充电需求
+
+### 🌡️ 液冷散热系统
+- **散热效率**：提升300%，确保稳定运行
+- **温度控制**：智能温控系统，±1°C精度
+- **噪音控制**：<60dB，静音运行
+- **可靠性**：24/7连续运行能力
+
+## 系统架构设计
+
+### 🏗️ 三层架构
+1. **云管理平台**
+   - 运营管理系统
+   - 数据分析系统
+   - 客户服务系统
+
+2. **场站管理系统**
+   - 功率分配系统
+   - 环境监控系统
+   - 安全防护系统
+
+3. **充电设备层**
+   - 液冷超充桩
+   - 储能系统
+   - 光伏系统
+
+### 📡 通信网络
+- **5G网络**：高速数据传输
+- **光纤通信**：稳定可靠连接
+- **工业总线**：设备间通信
+
+*Note: Currently displaying default content. To view full content, please start local server or refresh page to retry.*`;
+
+            const parsedContent = parseMarkdown(defaultContent);
+            contentDiv.innerHTML = `<div class="content-area">${parsedContent}</div>`;
+        }
+
+        // Markdown parsing function (with paragraph style support)
+        function parseMarkdown(markdown) {
+            if (!markdown) return '';
+
+            let html = markdown;
+
+            // 处理标题（支持h1-h6）
+            html = html.replace(/^###### (.+)$/gm, '<h6>$1</h6>');
+            html = html.replace(/^##### (.+)$/gm, '<h5>$1</h5>');
+            html = html.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
+            html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+            html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+            html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+
+            // 处理粗体文本
+            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+            // 处理斜体文本
+            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+            // 处理行内代码
+            html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+            // 处理链接
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+
+            // 处理图片
+            html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="max-width: 100%; height: auto; border-radius: 8px; margin: 15px 0;">');
+
+            // 处理代码块
+            html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
+
+            // 处理引用块
+            html = html.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
+
+            // 处理无序列表
+            html = html.replace(/^[\*\-\+] (.+)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+
+            // 处理有序列表
+            html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+
+            // 处理分隔线
+            html = html.replace(/^---+$/gm, '<hr style="border: none; border-top: 2px solid rgba(255, 255, 255, 0.2); margin: 20px 0;">');
+
+            // 处理换行 - 智能段落处理
+            html = html.replace(/\n\n/g, '</p><p>');
+            html = '<p>' + html + '</p>';
+
+            // 清理多余的段落标签
+            html = html.replace(/<p><\/p>/g, '');
+            html = html.replace(/<p>(<h[1-6]>)/g, '$1');
+            html = html.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<ul>)/g, '$1');
+            html = html.replace(/(<\/ul>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<ol>)/g, '$1');
+            html = html.replace(/(<\/ol>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<blockquote>)/g, '$1');
+            html = html.replace(/(<\/blockquote>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<pre>)/g, '$1');
+            html = html.replace(/(<\/pre>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<hr)/g, '$1');
+            html = html.replace(/(>)<\/p>/g, '$1');
+
+            // 为特殊段落添加no-indent类
+            html = html.replace(/<p>(\*\*[^*]*\*\*)<\/p>/g, '<p class="no-indent">$1</p>'); // 粗体标题段落
+            html = html.replace(/<p>(\*\*.*?\*\*：.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // 粗体标题段落
+            html = html.replace(/<p>(\*注：.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // 注释段落
+            html = html.replace(/<p>（.*?）<\/p>/g, '<p class="no-indent">$1</p>'); // 括号说明段落
+            html = html.replace(/<p>\d+\..*?<\/p>/g, '<p class="no-indent">$1</p>'); // 数字开头的段落
+
+            return html;
+        }
+
+        // Initialization after page load completes
+        document.addEventListener('DOMContentLoaded', function() {
+            // Automatically load technical solution content after page load completes
+            loadTechnicalSolution();
+        });
+    </script>
+</body>
+</html>

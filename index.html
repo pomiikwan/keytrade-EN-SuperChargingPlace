@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="库里蓝暗夜主题.css">
+    <script src="js/terminology_translations.js"></script>
+    <script src="js/content_translations.js"></script>
+    <script src="js/language_switch.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thousand-Station Liquid-Cooled Ultra-Fast Charging Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: #0A0E27;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(29, 66, 138, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 119, 192, 0.2) 0%, transparent 50%),
+                linear-gradient(135deg, #0A0E27 0%, #1A2347 100%);
+            min-height: 100vh;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(26, 35, 71, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 119, 192, 0.3);
+            padding: 20px 0;
+            box-shadow: 0 4px 30px rgba(0, 119, 192, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #1D428A 0%, #0077C0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(0, 119, 192, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 199, 44, 0.3), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(0deg) translateX(-100%); }
+            100% { transform: rotate(0deg) translateX(100%); }
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            background: linear-gradient(135deg, #1D428A 0%, #0077C0 50%, #FFC72C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 2px;
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: #B8C5D6;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 10px 18px;
+            border: 1px solid rgba(0, 119, 192, 0.5);
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: rgba(26, 35, 71, 0.6);
+            color: #B8C5D6;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(135deg, #1D428A 0%, #0077C0 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 119, 192, 0.4);
+            border-color: rgba(255, 199, 44, 0.6);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, #1D428A 0%, #0077C0 100%);
+            color: white;
+            border-color: #FFC72C;
+            box-shadow: 0 4px 15px rgba(255, 199, 44, 0.3);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 20px 40px;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 60px;
+            color: white;
+        }
+
+        .hero-section h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #B8C5D6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 119, 192, 0.5);
+            font-weight: 700;
+        }
+
+        .hero-section p {
+            font-size: 20px;
+            color: #B8C5D6;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .stat-item {
+            background: rgba(26, 35, 71, 0.7);
+            backdrop-filter: blur(15px);
+            padding: 20px 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(0, 119, 192, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 119, 192, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 119, 192, 0.3);
+            border-color: rgba(255, 199, 44, 0.4);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            background: linear-gradient(135deg, #FFC72C 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #B8C5D6;
+            font-weight: 500;
+        }
+
+        .navigation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .nav-card {
+            background: rgba(26, 35, 71, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 119, 192, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(0, 119, 192, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #1D428A, #0077C0, #FFC72C);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 119, 192, 0.4);
+            border-color: rgba(255, 199, 44, 0.5);
+            background: rgba(29, 66, 138, 0.95);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1D428A 0%, #0077C0 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 6px 20px rgba(0, 119, 192, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .nav-card:hover .card-icon {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 199, 44, 0.5);
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #FFFFFF;
+        }
+
+        .card-description {
+            color: #B8C5D6;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .card-features li {
+            padding: 5px 0;
+            color: #B8C5D6;
+            font-size: 14px;
+        }
+
+        .card-features li::before {
+            content: '✓';
+            color: #FFC72C;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .card-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #1D428A 0%, #0077C0 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 119, 192, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 119, 192, 0.3);
+        }
+
+        .card-action:hover {
+            transform: translateX(5px) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 119, 192, 0.5);
+            background: linear-gradient(135deg, #0077C0 0%, #1D428A 100%);
+            border-color: #FFC72C;
+        }
+
+        .quick-actions {
+            background: rgba(26, 35, 71, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 119, 192, 0.3);
+            border: 1px solid rgba(0, 119, 192, 0.3);
+        }
+
+        .quick-actions h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-btn.primary {
+            background: linear-gradient(135deg, #1D428A 0%, #0077C0 100%);
+            color: white;
+            border: 1px solid rgba(0, 119, 192, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 119, 192, 0.3);
+        }
+
+        .action-btn.secondary {
+            background: rgba(26, 35, 71, 0.7);
+            color: #B8C5D6;
+            border: 1px solid rgba(0, 119, 192, 0.4);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 119, 192, 0.4);
+        }
+
+        .action-btn.primary:hover {
+            background: linear-gradient(135deg, #0077C0 0%, #1D428A 100%);
+            border-color: #FFC72C;
+            box-shadow: 0 12px 30px rgba(255, 199, 44, 0.4);
+        }
+
+        .action-btn.secondary:hover {
+            background: rgba(29, 66, 138, 0.9);
+            color: white;
+            border-color: #FFC72C;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: rgba(26, 35, 71, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid rgba(0, 119, 192, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 119, 192, 0.4);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #B8C5D6;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #FFC72C;
+            background: rgba(255, 199, 44, 0.1);
+            transform: rotate(90deg);
+        }
+
+        /* 模态框内容样式 */
+        .modal-content h3 {
+            color: #FFFFFF;
+            font-size: 22px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .modal-content p {
+            color: #B8C5D6;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-content strong {
+            color: #FFC72C;
+        }
+
+        .modal-content ul,
+        .modal-content ol {
+            color: #B8C5D6;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-content li {
+            margin-bottom: 8px;
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(26, 35, 71, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #1D428A, #0077C0);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #0077C0, #1D428A);
+        }
+
+        @media (max-width: 768px) {
+            .navigation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-section h2 {
+                font-size: 32px;
+            }
+
+            .stats-bar {
+                gap: 20px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(26, 35, 71, 0.3);
+            border-top: 4px solid #FFC72C;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            box-shadow: 0 0 20px rgba(255, 199, 44, 0.5);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 页面加载动画 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 脉冲动画效果 */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header fade-in">
+    <link rel="stylesheet" href="库里蓝暗夜主题.css">
+
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">⚡</div>
+                <div class="logo-text">
+                    <h1>Thousand-Station Charging Project</h1>
+                    <p>Thousand-Station Liquid-Cooled Ultra-Fast Charging Intelligent Charging Network Investment Platform</p>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn active" onclick="scrollToSection('navigation')">Navigation</button>
+                <button class="nav-btn" onclick="scrollToSection('quick-actions')">Quick Actions</button>
+                <button class="nav-btn" onclick="showHelp()">Help</button>
+                <button class="nav-btn" onclick="window.open('https://pomiikwan.github.io/keytrade-SuperChargingPlace/', '_blank')">中文版</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <section class="hero-section fade-in">
+            <h2>Welcome to Thousand-Station Ultra-Fast Charging Project</h2>
+
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-number">1000</div>
+                    <div class="stat-label">Ultra-Fast Charging Stations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2.8 Billion</div>
+                    <div class="stat-label">Total Investment</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">42.8%</div>
+                    <div class="stat-label">Annual ROI</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.5 Years</div>
+                    <div class="stat-label">Payback Period</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="navigation" class="navigation-grid">
+            <div class="nav-card" onclick="openTool('行业动态新闻_en.html')">
+                <div class="card-icon">📰</div>
+                <h3 class="card-title">Industry News & Updates</h3>
+                <p class="card-description">Real-time monitoring of NEV industry policies, technologies, markets, and competitor dynamics</p>
+                <ul class="card-features">
+                    <li>Real-time policy & regulation updates</li>
+                    <li>Technology trend tracking</li>
+                    <li>Market competition analysis</li>
+                    <li>Competitor dynamics monitoring</li>
+                </ul>
+                <a href="#" class="card-action">
+                    View News <span>→</span>
+                </a>
+            </div>
+
+            <div class="nav-card" onclick="openTool('市场图表_en.html')">
+                <div class="card-icon">🌍</div>
+                <h3 class="card-title">Market Analysis</h3>
+                <p class="card-description">EV market trends and charging infrastructure development analysis</p>
+                <ul class="card-features">
+                    <li>EV growth trends</li>
+                    <li>Charging infrastructure demand</li>
+                    <li>Competitive landscape analysis</li>
+                    <li>Policy support assessment</li>
+                </ul>
+                <a href="#" class="card-action">
+                    Market Analysis <span>→</span>
+                </a>
+            </div>
+
+            <div class="nav-card" onclick="openTool('项目摘要_en.html')">
+                <div class="card-icon">📖</div>
+                <h3 class="card-title">Project Summary</h3>
+                <p class="card-description">Project overview, user guide, and development documentation</p>
+                <ul class="card-features">
+                    <li>Project background</li>
+                    <li>Feature usage guide</li>
+                    <li>Technical implementation</li>
+                    <li>FAQ & support</li>
+                </ul>
+                <a href="#" class="card-action">
+                    Project Details <span>→</span>
+                </a>
+            </div>
+
+            <div class="nav-card" onclick="openTool('项目实施计划_en.html')">
+                <div class="card-icon">🖼️</div>
+                <h3 class="card-title">Project Implementation Planning</h3>
+                <p class="card-description">Ultra-fast charging station renderings, technical images, and project implementation planning</p>
+                <ul class="card-features">
+                    <li>Charging station design renderings</li>
+                    <li>Technical equipment images</li>
+                    <li>Site planning diagrams</li>
+                    <li>Project progress photos</li>
+                </ul>
+                <a href="#" class="card-action">
+                    View Details <span>→</span>
+                </a>
+            </div>
+
+            <div class="nav-card" onclick="openTool('系统架构图_en.html')">
+                <div class="card-icon">🏗️</div>
+                <h3 class="card-title">Technical Architecture</h3>
+                <p class="card-description">System architecture and core competitive advantages demonstration</p>
+                <ul class="card-features">
+                    <li>Three-tier system architecture</li>
+                    <li>Liquid-cooling technology solution</li>
+                    <li>Intelligent operation & maintenance system</li>
+                    <li>Technical advantages explanation</li>
+                </ul>
+                <a href="#" class="card-action">
+                    Technical Architecture <span>→</span>
+                </a>
+            </div>
+
+            <div class="nav-card" onclick="openTool('财务图表_en.html')">
+                <div class="card-icon">💰</div>
+                <h3 class="card-title">Financial Analysis</h3>
+                <p class="card-description">Professional financial analysis, cash flow and return on investment analysis</p>
+                <ul class="card-features">
+                    <li>Cash flow forecast analysis</li>
+                    <li>IRR sensitivity analysis</li>
+                    <li>Payback period calculation</li>
+                    <li>Profitability assessment</li>
+                </ul>
+                <a href="#" class="card-action">
+                    Financial Analysis <span>→</span>
+                </a>
+            </div>
+
+            <div class="nav-card" onclick="openTool('商业计划书投资者版_en.html')">
+                <div class="card-icon">📊</div>
+                <h3 class="card-title">Official Business Plan</h3>
+                <p class="card-description">Complete project presentation including market analysis, technical solutions, and financial forecasts</p>
+                <ul class="card-features">
+                    <li>Market opportunity and competitive analysis</li>
+                    <li>Technical architecture and advantages</li>
+                    <li>Detailed financial models</li>
+                    <li>Risk analysis and response strategies</li>
+                </ul>
+                <a href="#" class="card-action">
+                    View Details <span>→</span>
+                </a>
+            </div>
+
+            <div class="nav-card" onclick="openTool('增强交互式计算器_en.html')">
+                <div class="card-icon">🧮</div>
+                <h3 class="card-title">Multi-Scenario Forecasting</h3>
+                <p class="card-description">Real-time parameter adjustment and financial analysis, supporting multiple investment scenario analysis</p>
+                <ul class="card-features">
+                    <li>Real-time calculation of key indicators (IRR, NPV)</li>
+                    <li>Three scenarios: Conservative/Baseline/Optimistic</li>
+                    <li>Dynamic cash flow forecast charts</li>
+                    <li>Parameter validation and reasonableness checks</li>
+                </ul>
+                <a href="#" class="card-action">
+                    Use Now <span>→</span>
+                </a>
+            </div>
+
+            <div class="nav-card" onclick="openTool('自动商业计划书生成器_增强版_en.html')">
+                <div class="card-icon">📄</div>
+                <h3 class="card-title">Intelligent Business Planning</h3>
+                <p class="card-description">Smart generation of personalized business plans with multiple templates and format export options</p>
+                <ul class="card-features">
+                    <li>Parameter-driven content generation</li>
+                    <li>Multiple professional templates</li>
+                    <li>Real-time preview functionality</li>
+                    <li>PDF/Word/Excel export</li>
+                </ul>
+                <a href="#" class="card-action">
+                    Generate Plan <span>→</span>
+                </a>
+            </div>
+        </section>
+
+        <section id="quick-actions" class="quick-actions">
+            <h3>Quick Actions</h3>
+            <div class="action-buttons">
+                <button class="action-btn primary" onclick="openTool('交互式计算器_en.html')">
+                    <span>🧮</span> Open Financial Calculator
+                </button>
+                <button class="action-btn secondary" onclick="showContact()">
+                    <span>📞</span> Contact Project Manager
+                </button>
+            </div>
+            <div class="loading-spinner" id="loadingSpinner"></div>
+        </section>
+    </main>
+
+    <div class="modal" id="helpModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('helpModal')">×</button>
+            <h3>Help Guide</h3>
+            <p><strong>Welcome to Thousand-Station Liquid-Cooled Ultra-Fast Charging Project Navigation System!</strong></p>
+            <br>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>• <strong>Interactive Calculator:</strong>Real-time parameter adjustment with financial analysis results</li>
+                <li>• <strong>Business Plan:</strong>Complete project introduction and investment analysis</li>
+                <li>• <strong>Chart Analysis:</strong>Data visualization for intuitive understanding of project potential</li>
+                <li>• <strong>PDF Export:</strong>One-click generation of professional business plan documents</li>
+            </ul>
+            <br>
+            <p><strong>Usage Recommendations:</strong></p>
+            <ul>
+                <li>• Review the complete business plan first to understand the project</li>
+                <li>• Use the interactive calculator for personalized analysis</li>
+                <li>• View charts to understand data trends</li>
+                <li>• Export PDF for in-depth study and sharing</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('contactModal')">×</button>
+            <h3>Contact Information</h3>
+            <p><strong>Project Company:</strong> Shenzhen Super Computing Power Technology Co., Ltd.</p>
+            <p><strong>Contact Email:</strong> invest@supercharging.com</p>
+            <p><strong>Project Address:</strong> Nanshan District, Shenzhen</p>
+            <br>
+            <p><strong>Investment Inquiry:</strong></p>
+            <p>For more investment details, please email our investment consultation address, and we will respond promptly.</p>
+            <br>
+            <p><strong>Technical Support:</strong></p>
+            <p>If you encounter technical issues during use, please describe the problem in detail, and we will provide technical support.</p>
+        </div>
+    </div>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // 更新导航按钮状态
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function openTool(filename) {
+            showLoading();
+            setTimeout(() => {
+                window.open(filename, '_blank');
+                hideLoading();
+            }, 500);
+        }
+
+        function showLoading() {
+            document.getElementById('loadingSpinner').style.display = 'block';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingSpinner').style.display = 'none';
+        }
+
+        function showHelp() {
+            document.getElementById('helpModal').style.display = 'flex';
+        }
+
+        function showContact() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function exportPDF() {
+            showLoading();
+            // 这里将调用PDF生成功能
+            setTimeout(() => {
+                hideLoading();
+                alert('PDF Export Demo: In actual project, a complete business plan PDF document will be generated, including all analysis results and charts.');
+            }, 2000);
+        }
+
+        function downloadData() {
+            showLoading();
+            setTimeout(() => {
+                // 创建CSV下载
+                const csvContent = "Financial Indicators,Value\nIRR,42.8%\nNPV@12%,¥1.24 Billion\nPayback Period,4.5 Years\n10-Year Cumulative Profit,¥12.19 Billion";
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement("a");
+                const url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", "Thousand_Station_Charging_Project_Financial_Data.csv");
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                hideLoading();
+            }, 1000);
+        }
+
+        // 点击模态框外部关闭
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        // 页面加载动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.nav-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

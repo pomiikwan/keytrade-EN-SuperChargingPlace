@@ -1,0 +1,3044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automated Business Plan Generator</title>
+    <link rel="stylesheet" href="库里蓝暗夜主题.css">
+    <style>
+        /* Automated Generator Specific Styles */
+        .generator-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .workflow-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .workflow-steps::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, #0077C0, #FFC72C);
+            z-index: 0;
+        }
+
+        .step {
+            background: rgba(26, 35, 71, 0.9);
+            border: 2px solid rgba(0, 119, 192, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            width: 200px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .step.active {
+            border-color: #FFC72C;
+            background: rgba(29, 66, 138, 0.95);
+            box-shadow: 0 8px 25px rgba(255, 199, 44, 0.3);
+        }
+
+        .step.completed {
+            border-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #1D428A, #0077C0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .step.active .step-number {
+            background: linear-gradient(135deg, #FFC72C, #FFD700);
+            animation: pulse 2s infinite;
+        }
+
+        .step.completed .step-number {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+        }
+
+        .step-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+        }
+
+        .step-description {
+            font-size: 12px;
+            color: #B8C5D6;
+            line-height: 1.4;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .config-panel {
+            background: rgba(26, 35, 71, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(0, 119, 192, 0.3);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .preview-panel {
+            background: rgba(26, 35, 71, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(0, 119, 192, 0.3);
+            min-height: 800px;
+        }
+
+        .template-selector {
+            margin-bottom: 30px;
+        }
+
+        .template-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .template-option {
+            background: rgba(29, 66, 138, 0.3);
+            border: 2px solid rgba(0, 119, 192, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .template-option:hover {
+            border-color: #FFC72C;
+            transform: translateY(-2px);
+        }
+
+        .template-option.selected {
+            border-color: #FFC72C;
+            background: rgba(255, 199, 44, 0.1);
+            box-shadow: 0 4px 15px rgba(255, 199, 44, 0.3);
+        }
+
+        .template-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .template-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 5px;
+        }
+
+        .template-desc {
+            font-size: 12px;
+            color: #B8C5D6;
+        }
+
+        .section-config {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(29, 66, 138, 0.2);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item:hover {
+            background: rgba(29, 66, 138, 0.4);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #FFC72C;
+        }
+
+        .checkbox-item label {
+            color: #B8C5D6;
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .customization-options {
+            margin-top: 20px;
+        }
+
+        .color-scheme-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .color-scheme {
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .color-scheme:hover {
+            transform: scale(1.05);
+        }
+
+        .color-scheme.selected {
+            border-color: #FFC72C;
+            box-shadow: 0 0 15px rgba(255, 199, 44, 0.5);
+        }
+
+        .scheme-blue {
+            background: linear-gradient(135deg, #1D428A, #0077C0);
+            color: white;
+        }
+
+        .scheme-green {
+            background: linear-gradient(135deg, #2E7D32, #4CAF50);
+            color: white;
+        }
+
+        .scheme-purple {
+            background: linear-gradient(135deg, #6A1B9A, #9C27B0);
+            color: white;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #1D428A, #0077C0);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            box-shadow: 0 6px 20px rgba(0, 119, 192, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .generate-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .generate-btn:hover::before {
+            left: 100%;
+        }
+
+        .generate-btn:hover {
+            background: linear-gradient(135deg, #0077C0, #1D428A);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 119, 192, 0.5);
+        }
+
+        .generate-btn:disabled {
+            background: rgba(107, 114, 128, 0.5);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .preview-content {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 30px;
+            min-height: 700px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .preview-header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #1D428A;
+            padding-bottom: 30px;
+        }
+
+        .preview-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1D428A;
+            margin-bottom: 15px;
+        }
+
+        .preview-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .preview-meta {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .preview-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            page-break-inside: avoid;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .preview-section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1D428A;
+            margin-bottom: 20px;
+            border-left: 5px solid #0077C0;
+            padding-left: 15px;
+            line-height: 1.3;
+        }
+
+        /* Unified Subtitle Styles */
+        .preview-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1D428A;
+            margin: 20px 0 12px 0;
+            line-height: 1.4;
+        }
+
+        /* Unified Paragraph Styles */
+        .preview-section p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Unified List Styles */
+        .preview-section ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .preview-section li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .preview-data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .preview-data-card {
+            background: rgba(248, 250, 252, 0.8);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+            border-radius: 10px;
+            padding: 20px 15px;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .preview-data-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(29, 66, 138, 0.1);
+        }
+
+        .preview-data-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1D428A;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .preview-data-label {
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .export-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .export-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .export-pdf {
+            background: linear-gradient(135deg, #1D428A, #0077C0);
+            color: white;
+        }
+
+        .export-word {
+            background: linear-gradient(135deg, #2E7D32, #4CAF50);
+            color: white;
+        }
+
+        .export-excel {
+            background: linear-gradient(135deg, #1565C0, #42A5F5);
+            color: white;
+        }
+
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress-bar {
+            display: none;
+            width: 100%;
+            height: 6px;
+            background: rgba(26, 35, 71, 0.3);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1D428A, #0077C0, #FFC72C);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        .status-message {
+            display: none;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .status-success {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            color: #4CAF50;
+        }
+
+        .status-error {
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            color: #F44336;
+        }
+
+        .status-info {
+            background: rgba(33, 150, 243, 0.1);
+            border: 1px solid rgba(33, 150, 243, 0.3);
+            color: #2196F3;
+        }
+
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .config-panel {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .workflow-steps {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .workflow-steps::before {
+                display: none;
+            }
+
+            .step {
+                width: 100%;
+            }
+
+            .template-options {
+                grid-template-columns: 1fr;
+            }
+
+            .color-scheme-selector {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Unified Chart and Image Container Styles */
+        .chart-container, .image-container {
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(29, 66, 138, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 119, 192, 0.2);
+        }
+
+        .chart-title, .image-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1D428A;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .chart-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            min-height: 200px;
+        }
+
+        .chart-wrapper canvas {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .image-wrapper {
+            text-align: center;
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .content-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            margin-top: 12px;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .tech-images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .preview-section {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .tech-images-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .chart-wrapper canvas {
+                width: 100%;
+                height: 150px;
+            }
+        }
+
+        /* Chart Loading Animation */
+        @keyframes chartLoading {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.3; }
+        }
+
+        .chart-loading {
+            animation: chartLoading 1.5s ease-in-out infinite;
+        }
+
+        /* Image Error State */
+        .content-image.error {
+            display: none;
+        }
+
+        .image-error {
+            padding: 20px;
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            text-align: center;
+            color: #6c757d;
+        }
+
+        /* Refresh Container Styles */
+        .refresh-container {
+            margin-bottom: 20px;
+        }
+
+        /* Refresh Button Styles */
+        .refresh-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Content Mode Toggle Styles */
+        .content-mode-toggle {
+            background: rgba(29, 66, 138, 0.1);
+            border: 1px solid rgba(0, 119, 192, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .mode-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mode-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mode-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(26, 35, 71, 0.6);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .mode-option:hover {
+            background: rgba(29, 66, 138, 0.4);
+            border-color: rgba(0, 119, 192, 0.3);
+        }
+
+        .mode-option input[type="radio"] {
+            accent-color: #FFC72C;
+            width: 16px;
+            height: 16px;
+        }
+
+        .mode-option span {
+            color: #B8C5D6;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .mode-option input[type="radio"]:checked + span {
+            color: #FFC72C;
+            font-weight: 600;
+        }
+
+        .mode-option:has(input[type="radio"]:checked) {
+            background: rgba(29, 66, 138, 0.6);
+            border-color: #FFC72C;
+            box-shadow: 0 2px 8px rgba(255, 199, 44, 0.2);
+        }
+
+        .refresh-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .refresh-btn:disabled {
+            background: linear-gradient(135deg, #9CA3AF, #6B7280);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* MD Content Styles */
+        .md-content {
+            line-height: 1.8;
+            color: #374151;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            border-left: 4px solid #1D428A;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        /* MD Enhanced Mode Styles */
+        .md-content.md-enhanced-mode {
+            border-left-color: #10B981;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(16, 185, 129, 0.05));
+        }
+
+        /* MD Only Mode Styles */
+        .md-content.md-only-mode {
+            background: rgba(255, 255, 255, 0.95);
+            border-left-color: #FFC72C;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        /* MD Title Styles */
+        .md-content h2 {
+            color: #1D428A;
+            font-size: 22px;
+            font-weight: 700;
+            margin: 30px 0 20px 0;
+            border-bottom: 3px solid #1D428A;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .md-content h2::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: #1D428A;
+            border-radius: 50%;
+        }
+
+        .md-content h3 {
+            color: #1F2937;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            border-left: 5px solid #0077C0;
+            padding-left: 15px;
+            background: linear-gradient(90deg, rgba(0, 119, 192, 0.1), transparent);
+            padding-top: 8px;
+            padding-bottom: 8px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .md-content h4 {
+            color: #374151;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 20px 0 12px 0;
+            border-left: 3px solid #10B981;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .md-content h4::before {
+            content: '▶';
+            position: absolute;
+            left: -20px;
+            top: 2px;
+            color: #10B981;
+            font-size: 12px;
+        }
+
+        .md-content h5 {
+            color: #4B5563 !important;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 18px 0 10px 0;
+            border-bottom: 1px dashed #9CA3AF;
+            padding-bottom: 5px;
+        }
+
+        .md-content h6 {
+            color: #6B7280 !important;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 15px 0 8px 0;
+            font-style: italic;
+        }
+
+        .md-content p {
+            margin-bottom: 12px;
+            text-align: justify;
+            color: #374151 !important;
+        }
+
+        .md-content ul, .md-content ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .md-content li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+            color: #374151 !important;
+        }
+
+        .md-content strong {
+            color: #1D428A;
+            font-weight: 600;
+        }
+
+        .md-content em {
+            color: #6B7280;
+            font-style: italic;
+        }
+
+        /* Additional MD Element Styles */
+        .md-content code {
+            background: #F3F4F6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #D1D5DB;
+            border: 1px solid #E5E7EB;
+        }
+
+        .md-content pre {
+            background: #1F2937;
+            color: #F9FAFB;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 16px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .md-content pre code {
+            background: transparent;
+            border: none;
+            color: inherit;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        .md-content a {
+            color: #1D428A;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .md-content a:hover {
+            color: #0077C0;
+            border-bottom-color: #0077C0;
+        }
+
+        .md-content hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #1D428A, transparent);
+            margin: 24px 0;
+            position: relative;
+        }
+
+        .md-content hr::before {
+            content: '※';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            padding: 0 8px;
+            color: #1D428A;
+            font-weight: bold;
+        }
+
+        /* Optimized Table Styles - Prevent Line Breaks, PDF Background Compatible */
+        .md-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+            border-radius: 6px;
+            overflow: hidden;
+            table-layout: fixed; /* Fixed table layout, prevent line breaks */
+        }
+
+        .md-content th,
+        .md-content td {
+            border: 1px solid #D1D5DB;
+            padding: 10px 12px;
+            text-align: left;
+            vertical-align: top;
+            white-space: nowrap; /* Prevent cell content from wrapping */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #374151 !important;
+            font-size: 13px;
+        }
+
+        .md-content th {
+            background: #1D428A !important;
+            color: #FFFFFF !important;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            border-bottom: 2px solid #1D428A;
+        }
+
+        .md-content tr:nth-child(even) {
+            background-color: #F9FAFB;
+        }
+
+        .md-content tr:hover {
+            background-color: #F3F4F6;
+            transition: background-color 0.2s ease;
+        }
+
+        .md-content tr td:first-child {
+            font-weight: 600;
+            color: #1F2937 !important;
+            background-color: rgba(29, 66, 138, 0.05);
+            white-space: nowrap;
+            border-left: none;
+        }
+
+        .md-content ul, .md-content ol {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .md-content li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 8px;
+        }
+
+        .md-content ul li::before {
+            content: '•';
+            position: absolute;
+            left: -16px;
+            color: #10B981;
+            font-weight: bold;
+        }
+
+        .md-content ol li {
+            counter-increment: list-item;
+        }
+
+        .md-content ol {
+            counter-reset: list-item;
+        }
+
+        .md-content ol li::before {
+            content: counter(list-item) ".";
+            position: absolute;
+            left: -24px;
+            color: #1D428A;
+            font-weight: 600;
+        }
+
+        /* Content Update Information Styles */
+        .content-update-info {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(16, 185, 129, 0.05);
+            border-top: 1px dashed #10B981;
+            text-align: right;
+        }
+
+        .content-update-info small {
+            color: #6B7280;
+            font-size: 12px;
+        }
+
+        /* Loading State Styles */
+        .loading-indicator {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #6B7280;
+        }
+
+        .loading-indicator.show {
+            display: block;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #E5E7EB;
+            border-top: 2px solid #1D428A;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="generator-container">
+        <!-- Header Section -->
+        <div class="header-section fade-in">
+            <div class="header">
+                <h1 class="title">Automated Business Plan Generator</h1>
+                <p class="subtitle">Parameter-Driven · Real-Time Generation · Multi-Format Export</p>
+            </div>
+        </div>
+
+        <!-- Workflow Steps -->
+        <div class="workflow-steps">
+            <div class="step active" id="step1">
+                <div class="step-number">1</div>
+                <div class="step-title">Parameter Configuration</div>
+                <div class="step-description">Set project basic parameters and financial models</div>
+            </div>
+            <div class="step" id="step2">
+                <div class="step-number">2</div>
+                <div class="step-title">Template Selection</div>
+                <div class="step-description">Select business plan template and style</div>
+            </div>
+            <div class="step" id="step3">
+                <div class="step-number">3</div>
+                <div class="step-title">Generate Preview</div>
+                <div class="step-description">Real-time generation and preview of business plan</div>
+            </div>
+            <div class="step" id="step4">
+                <div class="step-number">4</div>
+                <div class="step-title">Export Download</div>
+                <div class="step-description">Not currently support PDF, Word, Excel multi-format export</div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Configuration Panel -->
+            <div class="config-panel">
+                <!-- Template Selection -->
+                <div class="template-selector">
+                    <div class="section-title">
+                        <span>📄</span>
+                        <span>Select Template</span>
+                    </div>
+                    <div class="template-options">
+                        <div class="template-option selected" onclick="selectTemplate('investor')">
+                            <div class="template-icon">💼</div>
+                            <div class="template-name">Investor Version</div>
+                            <div class="template-desc">Professional Investment Presentation</div>
+                        </div>
+                        <div class="template-option" onclick="selectTemplate('bank')">
+                            <div class="template-icon">🏦</div>
+                            <div class="template-name">Bank Financing Version</div>
+                            <div class="template-desc">Loan Application Dedicated</div>
+                        </div>
+                        <div class="template-option" onclick="selectTemplate('government')">
+                            <div class="template-icon">🏛️</div>
+                            <div class="template-name">Government Application Version</div>
+                            <div class="template-desc">Policy Fund Application</div>
+                        </div>
+                        <div class="template-option" onclick="selectTemplate('partner')">
+                            <div class="template-icon">🤝</div>
+                            <div class="template-name">Partnership Negotiation Version</div>
+                            <div class="template-desc">Business Cooperation Presentation</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Configuration -->
+                <div class="section-config">
+                    <div class="section-title">
+                        <span>📋</span>
+                        <span>Content Configuration</span>
+                    </div>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="execSummary" checked>
+                            <label for="execSummary">Executive Summary</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="marketAnalysis" checked>
+                            <label for="marketAnalysis">Market Analysis</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="technicalPlan" checked>
+                            <label for="technicalPlan">Technical Plan</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="financialModel" checked>
+                            <label for="financialModel">Financial Analysis</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="riskAssessment" checked>
+                            <label for="riskAssessment">Risk Assessment</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="implementationPlan" checked>
+                            <label for="implementationPlan">Implementation Execution</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="teamIntro" checked>
+                            <label for="teamIntro">Team Introduction</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="financingPlan" checked>
+                            <label for="financingPlan">Financing Plan</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="appendix">
+                            <label for="appendix">Appendix Materials</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Style Configuration -->
+                <div class="customization-options">
+                    <div class="section-title">
+                        <span>🎨</span>
+                        <span>Color Scheme</span>
+                    </div>
+                    <div class="color-scheme-selector">
+                        <div class="color-scheme scheme-blue selected" onclick="selectColorScheme('blue')">
+                            Curry Blue
+                        </div>
+                        <div class="color-scheme scheme-green" onclick="selectColorScheme('green')">
+                            Business Green
+                        </div>
+                        <div class="color-scheme scheme-purple" onclick="selectColorScheme('purple')">
+                            Technology Purple
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button class="generate-btn" onclick="generateBusinessPlan()">
+                    <span>🚀 Generate Business Plan</span>
+                </button>
+
+                <!-- Progress Bar -->
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <!-- Status Message -->
+                <div class="status-message" id="statusMessage"></div>
+            </div>
+
+            <!-- Preview Panel -->
+            <div class="preview-panel">
+                <div class="preview-content" id="previewContent">
+                    <!-- Preview Header -->
+                    <div class="preview-header">
+                        <h1 class="preview-title" id="previewTitle">Thousand-Station Charging Project</h1>
+                        <h2 class="preview-subtitle" id="previewSubtitle">Business Plan</h2>
+                        <p class="preview-meta" id="previewMeta">Shenzhen Supercomputing Power Technology Co., Ltd. | October 2025</p>
+                    </div>
+
+                    <!-- Executive Summary -->
+                    <div class="preview-section" id="execSummarySection">
+                        <h3 class="preview-section-title">Executive Summary</h3>
+                        <p><strong>Project Overview:</strong> The Thousand-Station Liquid-Cooled Ultra-Fast Charging Project plans to invest 2.8 billion RMB to build 1,000 Huawei liquid-cooled ultra-fast charging stations within 5 years, with total power of 7200kW per station. The project adopts globally leading 600kW liquid-cooled ultra-fast charging technology, achieving "one second per kilometer" charging speed, providing ultimate charging experience for new energy vehicle owners.</p>
+
+                        <div class="preview-data-grid">
+                            <div class="preview-data-card">
+                                <div class="preview-data-value" id="paramInvestment">2.8 Billion RMB</div>
+                                <div class="preview-data-label">Total Investment Scale</div>
+                            </div>
+                            <div class="preview-data-card">
+                                <div class="preview-data-value" id="paramStations">1,000 Stations</div>
+                                <div class="preview-data-label">Number of Charging Stations</div>
+                            </div>
+                            <div class="preview-data-card">
+                                <div class="preview-data-value" id="paramIRR">42.8%</div>
+                                <div class="preview-data-label">Project IRR</div>
+                            </div>
+                            <div class="preview-data-card">
+                                <div class="preview-data-value" id="paramPayback">4.5 Years</div>
+                                <div class="preview-data-label">Investment Payback Period</div>
+                            </div>
+                        </div>
+
+                        <p><strong>Investment Highlights:</strong></p>
+                        <ul>
+                            <li>Technology Leadership: Huawei liquid-cooled ultra-fast charging technology, industry-leading power density</li>
+                            <li>Massive Market: Charging pile market annual compound growth rate of 35%</li>
+                            <li>Generous Returns: Project IRR 42.8%, investment payback period 4.5 years</li>
+                            <li>Diverse Exit Options: IPO, M&A, REITs triple exit mechanisms</li>
+                        </ul>
+                    </div>
+
+                    <!-- Market Analysis -->
+                    <div class="preview-section" id="marketAnalysisSection">
+                        <h3 class="preview-section-title">Market Analysis</h3>
+                        <p><strong>Industry Background:</strong> China's new energy vehicle industry is in a period of explosive growth. In 2023, China's new energy vehicle sales reached 9.5 million units, with penetration rate exceeding 35%. It is expected that by 2028, China's electric vehicle ownership will reach 70 million units, and charging pile demand will exceed 38 million.</p>
+
+                        <p><strong>Market Size:</strong></p>
+                        <ul>
+                            <li>Global Charging Pile Market: Expected to reach $125.39 billion by 2030</li>
+                            <li>China Market Size: Accounting for 67.4% of global market share</li>
+                            <li>Annual Compound Growth Rate: 35%</li>
+                            <li>Ultra-Fast Charging Market: Growing from 12 billion RMB in 2023 to 80 billion RMB in 2028</li>
+                        </ul>
+
+                        <!-- Market Chart Display Area -->
+                        <div class="chart-container">
+                            <h4 class="chart-title">New Energy Vehicle Market Growth Trends</h4>
+                            <div class="chart-wrapper">
+                                <canvas id="marketGrowthChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-container">
+                            <h4 class="chart-title">Charging Pile Market Size Forecast</h4>
+                            <div class="chart-wrapper">
+                                <canvas id="marketSizeChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                       </div>
+                    </div>
+
+                    <!-- Technical Solution -->
+                    <div class="preview-section" id="technicalPlanSection">
+                        <h3 class="preview-section-title">Technical Solution</h3>
+                        <p><strong>Core Advantages:</strong></p>
+                        <ul>
+                            <li>Power Leadership: 600kW liquid-cooled ultra-fast charging technology, industry's highest power</li>
+                            <li>Charging Speed: "One second per kilometer", 60 times faster than traditional charging</li>
+                            <li>Efficiency Improvement: Conversion efficiency >96%, cooling efficiency improved by 300%</li>
+                            <li>Service Life: Over 15 years design life, 2 times industry average</li>
+                        </ul>
+
+                        <!-- Technical Image Display Area -->
+                        <div class="image-container">
+                            <h4 class="image-title">Technical Architecture Diagram</h4>
+                            <div class="image-wrapper">
+                                <img src="系统架构图.png" alt="系统架构图" class="content-image" />
+                                <p class="image-caption">Overall Architecture Diagram of Thousand-Station Liquid-Cooled Ultra-Fast Charging System</p>
+                            </div>
+                        </div>
+                        <div class="tech-images-grid">
+                            <div class="image-container">
+                                <h4 class="image-title">Power System Architecture</h4>
+                                <div class="image-wrapper">
+                                    <img src="电力系统架构图.png" alt="电力系统架构图" class="content-image" />
+                                    <p class="image-caption">10kV/20kV Grid Connection and Power Distribution System</p>
+                                </div>
+                            </div>
+
+                            <div class="image-container">
+                                <h4 class="image-title">Liquid-Cooling System Principle</h4>
+                                <div class="image-wrapper">
+                                    <img src="液冷系统原理图.png" alt="液冷系统原理图" class="content-image" />
+                                    <p class="image-caption">Working Principle Schematic of Liquid-Cooling Heat Dissipation System</p>
+                                </div>
+                            </div>
+
+                            <div class="image-container">
+                                <h4 class="image-title">Charging Station Layout</h4>
+                                <div class="image-wrapper">
+                                    <img src="充电站布局图.png" alt="充电站布局图" class="content-image" />
+                                    <p class="image-caption">Standard Layout Design of Super Charging Station</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financial Model -->
+                    <div class="preview-section" id="financialModelSection">
+                        <h3 class="preview-section-title">Financial Analysis</h3>
+                        <div class="preview-data-grid">
+                            <div class="preview-data-card">
+                                <div class="preview-data-value" id="financialNPV">1.24 Billion</div>
+                                <div class="preview-data-label">NPV@12%</div>
+                            </div>
+                            <div class="preview-data-card">
+                                <div class="preview-data-value" id="financialProfit">12.19 Billion</div>
+                                <div class="preview-data-label">10-Year Cumulative Profit</div>
+                            </div>
+                            <div class="preview-data-card">
+                                <div class="preview-data-value" id="financialROI">435%</div>
+                                <div class="preview-data-label">Return on Investment</div>
+                            </div>
+                            <div class="preview-data-card">
+                                <div class="preview-data-value" id="financialMultiple">15-25x</div>
+                                <div class="preview-data-label">Expected Return Multiple</div>
+                            </div>
+                        </div>
+
+                        <!-- Financial Chart Display Area -->
+                        <div class="chart-container">
+                            <h4 class="chart-title">Cash Flow Forecast Chart</h4>
+                            <div class="chart-wrapper">
+                                <canvas id="cashFlowChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-container">
+                            <h4 class="chart-title">Investment Return Analysis</h4>
+                            <div class="chart-wrapper">
+                                <canvas id="roiChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Assessment -->
+                    <div class="preview-section" id="riskAssessmentSection">
+                        <h3 class="preview-section-title">Risk Assessment</h3>
+                        <p><strong>Risk Control Measures:</strong></p>
+                        <ul>
+                            <li>Technical Risk: Huawei mature technology, continuous R&D investment</li>
+                            <li>Market Risk: Diversified layout, flexible pricing strategy</li>
+                            <li>Policy Risk: Government relationship maintenance, policy tracking mechanism</li>
+                            <li>Operational Risk: Intelligent operation and maintenance, standardized management</li>
+                        </ul>
+                    </div>
+
+                    <!-- Implementation Execution -->
+                    <div class="preview-section" id="implementationPlanSection">
+                        <h3 class="preview-section-title">Implementation Execution</h3>
+                        <p><strong>Project Implementation Plan:</strong> The project adopts a phased implementation strategy to ensure steady progress and risk control.</p>
+
+                        <div class="preview-data-grid">
+                            <div class="preview-data-card">
+                                <div class="preview-data-value">5 Years</div>
+                                <div class="preview-data-label">Construction Period</div>
+                            </div>
+                            <div class="preview-data-card">
+                                <div class="preview-data-value">200 Stations</div>
+                                <div class="preview-data-label">Annual Construction</div>
+                            </div>
+                            <div class="preview-data-card">
+                                <div class="preview-data-value">4 Phases</div>
+                                <div class="preview-data-label">Implementation Steps</div>
+                            </div>
+                            <div class="preview-data-card">
+                                <div class="preview-data-value">99.5%</div>
+                                <div class="preview-data-label">Quality Objectives</div>
+                            </div>
+                        </div>
+
+                        <!-- Implementation Plan Chart -->
+                        <div class="chart-container">
+                            <h4 class="chart-title">Project Implementation Progress Planning</h4>
+                            <div class="chart-wrapper">
+                                <canvas id="implementationChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Introduction -->
+                    <div class="preview-section" id="teamIntroSection">
+                        <h3 class="preview-section-title">Team Introduction</h3>
+                        <p><strong>Core Team:</strong> Gathering senior experts in new energy, power, finance, management and other fields, with rich project experience and industry resources.</p>
+
+                        <div class="preview-data-grid">
+                            <div class="preview-data-card">
+                                <div class="preview-data-value">50+</div>
+                                <div class="preview-data-label">Core Team</div>
+                            </div>
+                            <div class="preview-data-card">
+                                <div class="preview-data-value">15+ Years</div>
+                                <div class="preview-data-label">Average Experience</div>
+                            </div>
+                            <div class="preview-data-card">
+                                <div class="preview-data-value">PhD 30%</div>
+                                <div class="preview-data-label">Education Composition</div>
+                            </div>
+                            <div class="preview-data-card">
+                                <div class="preview-data-value">8</div>
+                                <div class="preview-data-label">Professional Fields</div>
+                            </div>
+                        </div>
+
+                        <!-- Team Composition Chart -->
+                        <div class="chart-container">
+                            <h4 class="chart-title">Team Professional Composition Distribution</h4>
+                            <div class="chart-wrapper">
+                                <canvas id="teamChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financing Plan -->
+                    <div class="preview-section" id="financingPlanSection">
+                        <h3 class="preview-section-title">Financing Plan</h3>
+                        <p><strong>Financing Strategy:</strong> Adopting a diversified financing strategy, combining equity financing and debt financing to optimize capital structure and reduce financing costs.</p>
+
+                        <div class="preview-data-grid">
+                            <div class="preview-data-card">
+                                <div class="preview-data-value">2.8 Billion</div>
+                                <div class="preview-data-label">Total Financing Amount</div>
+                            </div>
+                            <div class="preview-data-card">
+                                <div class="preview-data-value">40%</div>
+                                <div class="preview-data-label">Equity Financing</div>
+                            </div>
+                            <div class="preview-data-card">
+                                <div class="preview-data-value">60%</div>
+                                <div class="preview-data-label">Debt Financing</div>
+                            </div>
+                            <div class="preview-data-card">
+                                <div class="preview-data-value">7.8%</div>
+                                <div class="preview-data-label">Comprehensive Cost</div>
+                            </div>
+                        </div>
+
+                        <!-- Financing Structure Chart -->
+                        <div class="chart-container">
+                            <h4 class="chart-title">Financing Structure Analysis</h4>
+                            <div class="chart-wrapper">
+                                <canvas id="financingChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Export Operations -->
+                <div class="export-actions">
+                    <button class="export-btn export-pdf" onclick="exportPDF()">
+                        <span>📄</span>
+                        <span>Export PDF</span>
+                    </button>
+                    <button class="export-btn export-word" onclick="exportWord()">
+                        <span>📝</span>
+                        <span>Export Word</span>
+                    </button>
+                    <button class="export-btn export-excel" onclick="exportExcel()">
+                        <span>📊</span>
+                        <span>Export Excel</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentTemplate = 'investor';
+        let currentColorScheme = 'blue';
+        let businessPlanData = {};
+        let generationInProgress = false;
+        let mdContentCache = {}; // MD file content cache
+        let fileWatchers = {}; // File watchers
+
+        // Chart rendering functions
+        function renderCashFlowChart() {
+            const canvas = document.getElementById('cashFlowChart');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+
+            // Data
+            const years = ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6', 'Year 7', 'Year 8', 'Year 9', 'Year 10'];
+            const cashFlowData = [-28.0, 13.5, 14.8, 17.9, 21.3, 26.5, 28.9, 31.2, 33.8, 36.5];
+            const cumulativeData = [-28.0, -14.5, 0.3, 18.2, 39.5, 66.0, 94.9, 126.1, 159.9, 196.4];
+
+            // Set styles
+            const colors = {
+                primary: '#1D428A',
+                secondary: '#0077C0',
+                accent: '#FFC72C',
+                success: '#10B981',
+                danger: '#EF4444'
+            };
+
+            // Draw coordinate axes
+            ctx.strokeStyle = '#e5e7eb';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(50, height - 40);
+            ctx.lineTo(width - 30, height - 40);
+            ctx.moveTo(50, 20);
+            ctx.lineTo(50, height - 40);
+            ctx.stroke();
+
+            // Draw cash flow bar chart
+            const barWidth = (width - 100) / years.length * 0.6;
+            const scale = (height - 80) / 50; // Scale ratio
+
+            cashFlowData.forEach((value, index) => {
+                const x = 50 + (index * (width - 100) / years.length) + ((width - 100) / years.length - barWidth) / 2;
+                const barHeight = Math.abs(value) * scale;
+                const y = value >= 0 ? height - 40 - barHeight : height - 40;
+
+                ctx.fillStyle = value >= 0 ? colors.success : colors.danger;
+                ctx.fillRect(x, y, barWidth, barHeight);
+
+                // Draw value labels
+                ctx.fillStyle = '#374151';
+                ctx.font = '10px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(value.toFixed(1), x + barWidth / 2, y - 5);
+            });
+
+            // Draw cumulative cash flow curve
+            ctx.strokeStyle = colors.primary;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+
+            cumulativeData.forEach((value, index) => {
+                const x = 50 + (index * (width - 100) / (years.length - 1));
+                const y = height - 40 - (value + 30) * scale;
+
+                if (index === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            ctx.stroke();
+
+            // Draw X-axis labels
+            ctx.fillStyle = '#6b7280';
+            ctx.font = '11px sans-serif';
+            ctx.textAlign = 'center';
+            years.forEach((year, index) => {
+                const x = 50 + (index * (width - 100) / years.length) + ((width - 100) / years.length) / 2;
+                ctx.fillText(year, x, height - 25);
+            });
+
+            // Add legend
+            ctx.fillStyle = colors.success;
+            ctx.fillRect(width - 150, 10, 15, 10);
+            ctx.fillStyle = '#374151';
+            ctx.font = '12px sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('Annual Cash Flow', width - 130, 19);
+
+            ctx.fillStyle = colors.primary;
+            ctx.fillRect(width - 150, 25, 15, 2);
+            ctx.fillText('Cumulative Cash Flow', width - 130, 29);
+        }
+
+        function renderROIChart() {
+            const canvas = document.getElementById('roiChart');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // 清除画布
+            ctx.clearRect(0, 0, width, height);
+
+            // Data
+            const scenarios = ['Conservative', 'Base', 'Optimistic'];
+            const irrData = [35.6, 42.8, 50.2];
+            const multipleData = [12.5, 18.3, 25.8];
+
+            // Set styles
+            const colors = {
+                primary: '#1D428A',
+                secondary: '#0077C0',
+                accent: '#FFC72C',
+                success: '#10B981'
+            };
+
+            // Draw coordinate axes
+            ctx.strokeStyle = '#e5e7eb';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(60, height - 40);
+            ctx.lineTo(width - 30, height - 40);
+            ctx.moveTo(60, 20);
+            ctx.lineTo(60, height - 40);
+            ctx.stroke();
+
+            // Draw IRR bar chart
+            const barWidth = 40;
+            const spacing = (width - 120) / scenarios.length;
+            const irrScale = (height - 80) / 60;
+
+            irrData.forEach((value, index) => {
+                const x = 60 + spacing * index + spacing / 2 - barWidth / 2;
+                const barHeight = value * irrScale;
+                const y = height - 40 - barHeight;
+
+                // Gradient fill
+                const gradient = ctx.createLinearGradient(0, y, 0, height - 40);
+                gradient.addColorStop(0, colors.primary);
+                gradient.addColorStop(1, colors.secondary);
+                ctx.fillStyle = gradient;
+                ctx.fillRect(x, y, barWidth, barHeight);
+
+                // Draw value labels
+                ctx.fillStyle = '#374151';
+                ctx.font = 'bold 12px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(value + '%', x + barWidth / 2, y - 5);
+
+                // Draw scenario labels
+                ctx.fillStyle = '#6b7280';
+                ctx.font = '12px sans-serif';
+                ctx.fillText(scenarios[index], x + barWidth / 2, height - 25);
+            });
+
+            // Add title and units
+            ctx.fillStyle = '#374151';
+            ctx.font = 'bold 14px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('Internal Rate of Return (IRR) Comparison', width / 2, 15);
+
+            // Draw return multiple indicators
+            const multipleY = height - 70;
+            ctx.font = '11px sans-serif';
+            ctx.textAlign = 'left';
+            multipleData.forEach((value, index) => {
+                const x = 60 + spacing * index + spacing / 2 - 30;
+                ctx.fillStyle = colors.accent;
+                ctx.fillText(`${value}倍`, x, multipleY);
+            });
+        }
+
+        function renderMarketGrowthChart() {
+            const canvas = document.getElementById('marketGrowthChart');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // 清除画布
+            ctx.clearRect(0, 0, width, height);
+
+            // 数据
+            const years = ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028'];
+            const salesData = [137, 352, 689, 950, 1200, 1500, 1850, 2250, 2700];
+            const penetrationData = [5.4, 13.4, 25.6, 35.2, 42.0, 48.5, 54.2, 59.8, 64.5];
+
+            // Set styles
+            const colors = {
+                primary: '#1D428A',
+                secondary: '#0077C0',
+                accent: '#FFC72C',
+                success: '#10B981'
+            };
+
+            // Draw coordinate axes
+            ctx.strokeStyle = '#e5e7eb';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(50, height - 60);
+            ctx.lineTo(width - 30, height - 60);
+            ctx.moveTo(50, 20);
+            ctx.lineTo(50, height - 60);
+            ctx.stroke();
+
+            // Draw sales curve (left axis)
+            ctx.strokeStyle = colors.primary;
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+
+            const maxSales = Math.max(...salesData);
+            const salesScale = (height - 100) / maxSales;
+
+            salesData.forEach((value, index) => {
+                const x = 50 + (index * (width - 100) / (years.length - 1));
+                const y = height - 60 - value * salesScale;
+
+                if (index === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+
+                // 绘制数据点
+                ctx.fillStyle = colors.primary;
+                ctx.beginPath();
+                ctx.arc(x, y, 4, 0, 2 * Math.PI);
+                ctx.fill();
+            });
+            ctx.stroke();
+
+            // Draw penetration rate curve (right axis)
+            ctx.strokeStyle = colors.success;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+
+            const maxPenetration = Math.max(...penetrationData);
+            const penetrationScale = (height - 100) / maxPenetration;
+
+            penetrationData.forEach((value, index) => {
+                const x = 50 + (index * (width - 100) / (years.length - 1));
+                const y = height - 60 - value * penetrationScale;
+
+                if (index === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+
+                // 绘制数据点
+                ctx.fillStyle = colors.success;
+                ctx.beginPath();
+                ctx.arc(x, y, 3, 0, 2 * Math.PI);
+                ctx.fill();
+            });
+            ctx.stroke();
+
+            // Draw X-axis labels
+            ctx.fillStyle = '#6b7280';
+            ctx.font = '10px sans-serif';
+            ctx.textAlign = 'center';
+            years.forEach((year, index) => {
+                const x = 50 + (index * (width - 100) / (years.length - 1));
+                ctx.fillText(year, x, height - 45);
+            });
+
+            // 添加Y轴标签
+            ctx.save();
+            ctx.translate(15, height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillStyle = colors.primary;
+            ctx.font = '11px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('Sales (10,000 units)', 0, 0);
+            ctx.restore();
+
+            ctx.save();
+            ctx.translate(width - 15, height / 2);
+            ctx.rotate(Math.PI / 2);
+            ctx.fillStyle = colors.success;
+            ctx.font = '11px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('Penetration Rate (%)', 0, 0);
+            ctx.restore();
+
+            // Add legend
+            ctx.fillStyle = colors.primary;
+            ctx.fillRect(width - 150, 10, 15, 3);
+            ctx.fillStyle = '#374151';
+            ctx.font = '11px sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('销量(左轴)', width - 130, 14);
+
+            ctx.fillStyle = colors.success;
+            ctx.fillRect(width - 150, 25, 15, 3);
+            ctx.fillText('渗透率(右轴)', width - 130, 29);
+        }
+
+        function renderMarketSizeChart() {
+            const canvas = document.getElementById('marketSizeChart');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // 清除画布
+            ctx.clearRect(0, 0, width, height);
+
+            // 数据
+            const segments = ['Liquid-Cooled Ultra-Fast Charging', 'Regular Fast Charging', 'Slow Charging', 'Others'];
+            const marketData = [800, 1200, 600, 400];
+            const colors = ['#1D428A', '#0077C0', '#10B981', '#FFC72C'];
+
+            // Draw pie chart
+            const centerX = width / 2;
+            const centerY = height / 2 - 10;
+            const radius = Math.min(width, height) / 3;
+
+            const total = marketData.reduce((sum, value) => sum + value, 0);
+            let currentAngle = -Math.PI / 2;
+
+            marketData.forEach((value, index) => {
+                const sliceAngle = (value / total) * 2 * Math.PI;
+
+                // Draw sector
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
+                ctx.lineTo(centerX, centerY);
+                ctx.fillStyle = colors[index];
+                ctx.fill();
+
+                // Draw border
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Draw percentage labels
+                const percentage = ((value / total) * 100).toFixed(1);
+                const labelAngle = currentAngle + sliceAngle / 2;
+                const labelX = centerX + Math.cos(labelAngle) * (radius * 0.7);
+                const labelY = centerY + Math.sin(labelAngle) * (radius * 0.7);
+
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 12px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(percentage + '%', labelX, labelY);
+
+                currentAngle += sliceAngle;
+            });
+
+            // Add legend
+            ctx.font = '11px sans-serif';
+            ctx.textAlign = 'left';
+
+            segments.forEach((segment, index) => {
+                const legendY = 20 + index * 20;
+                ctx.fillStyle = colors[index];
+                ctx.fillRect(10, legendY - 8, 12, 12);
+
+                ctx.fillStyle = '#374151';
+                ctx.fillText(`${segment}: ${marketData[index]} Billion RMB`, 28, legendY);
+            });
+
+            // 添加标题
+            ctx.fillStyle = '#374151';
+            ctx.font = 'bold 12px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('2028 Charging Pile Market Size Forecast (Billion RMB)', width / 2, height - 10);
+        }
+
+        function renderImplementationChart() {
+            const canvas = document.getElementById('implementationChart');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            ctx.clearRect(0, 0, width, height);
+
+            // 数据
+            const phases = ['2025年', '2026年', '2027年', '2028年', '2029年'];
+            const stationsData = [100, 300, 500, 800, 1000];
+            const colors = {
+                primary: '#1D428A',
+                secondary: '#0077C0',
+                accent: '#FFC72C'
+            };
+
+            // Draw coordinate axes
+            ctx.strokeStyle = '#e5e7eb';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(50, height - 40);
+            ctx.lineTo(width - 30, height - 40);
+            ctx.moveTo(50, 20);
+            ctx.lineTo(50, height - 40);
+            ctx.stroke();
+
+            // 绘制柱状图
+            const barWidth = (width - 100) / phases.length * 0.6;
+            const scale = (height - 80) / 1200;
+
+            stationsData.forEach((value, index) => {
+                const x = 50 + (index * (width - 100) / phases.length) + ((width - 100) / phases.length - barWidth) / 2;
+                const barHeight = value * scale;
+                const y = height - 40 - barHeight;
+
+                // Gradient fill
+                const gradient = ctx.createLinearGradient(0, y, 0, height - 40);
+                gradient.addColorStop(0, colors.primary);
+                gradient.addColorStop(1, colors.secondary);
+                ctx.fillStyle = gradient;
+                ctx.fillRect(x, y, barWidth, barHeight);
+
+                // Draw value labels
+                ctx.fillStyle = '#374151';
+                ctx.font = 'bold 12px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(value, x + barWidth / 2, y - 5);
+            });
+
+            // Draw X-axis labels
+            ctx.fillStyle = '#6b7280';
+            ctx.font = '11px sans-serif';
+            ctx.textAlign = 'center';
+            phases.forEach((phase, index) => {
+                const x = 50 + (index * (width - 100) / phases.length) + ((width - 100) / phases.length) / 2;
+                ctx.fillText(phase, x, height - 25);
+            });
+
+            // 添加Y轴标签
+            ctx.fillStyle = '#374151';
+            ctx.font = '10px sans-serif';
+            ctx.textAlign = 'right';
+            for (let i = 0; i <= 1000; i += 200) {
+                const y = height - 40 - (i * scale);
+                ctx.fillText(i, 45, y + 3);
+            }
+
+            // 添加标题
+            ctx.fillStyle = '#374151';
+            ctx.font = 'bold 12px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('项目实施进度规划', width / 2, 15);
+        }
+
+        function renderTeamChart() {
+            const canvas = document.getElementById('teamChart');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            ctx.clearRect(0, 0, width, height);
+
+            // 数据
+            const departments = ['R&D', 'Project Management', 'Marketing', 'Finance', 'Human Resources'];
+            const teamData = [26, 10, 8, 9, 5];
+            const colors = ['#1D428A', '#0077C0', '#10B981', '#FFC72C', '#EF4444'];
+
+            // 绘制柱状图
+            const barWidth = (width - 100) / departments.length * 0.7;
+            const scale = (height - 80) / 30;
+
+            departments.forEach((dept, index) => {
+                const x = 50 + (index * (width - 100) / departments.length) + ((width - 100) / departments.length - barWidth) / 2;
+                const barHeight = teamData[index] * scale;
+                const y = height - 40 - barHeight;
+
+                ctx.fillStyle = colors[index];
+                ctx.fillRect(x, y, barWidth, barHeight);
+
+                // Draw value labels
+                ctx.fillStyle = '#374151';
+                ctx.font = 'bold 11px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(teamData[index], x + barWidth / 2, y - 5);
+            });
+
+            // Draw X-axis labels
+            ctx.fillStyle = '#6b7280';
+            ctx.font = '10px sans-serif';
+            ctx.textAlign = 'center';
+            departments.forEach((dept, index) => {
+                const x = 50 + (index * (width - 100) / departments.length) + ((width - 100) / departments.length) / 2;
+                ctx.fillText(dept, x, height - 25);
+            });
+
+            // 添加标题
+            ctx.fillStyle = '#374151';
+            ctx.font = 'bold 12px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('Team Professional Composition Distribution (People)', width / 2, 15);
+        }
+
+        function renderFinancingChart() {
+            const canvas = document.getElementById('financingChart');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            ctx.clearRect(0, 0, width, height);
+
+            // 数据
+            const financingTypes = ['Equity Financing', 'Bank Loans', 'Bond Issuance'];
+            const financingData = [11.2, 12, 4.8];
+            const colors = ['#1D428A', '#0077C0', '#10B981'];
+
+            // 绘制水平柱状图
+            const barHeight = (height - 100) / financingTypes.length * 0.6;
+            const scale = (width - 120) / 15;
+
+            financingData.forEach((value, index) => {
+                const y = 40 + (index * (height - 60) / financingTypes.length) + ((height - 60) / financingTypes.length - barHeight) / 2;
+                const barWidth = value * scale;
+
+                ctx.fillStyle = colors[index];
+                ctx.fillRect(70, y, barWidth, barHeight);
+
+                // Draw value labels
+                ctx.fillStyle = '#374151';
+                ctx.font = 'bold 12px sans-serif';
+                ctx.textAlign = 'left';
+                ctx.fillText(value + ' Billion RMB', 75 + barWidth, y + barHeight / 2 + 4);
+            });
+
+            // 绘制Y轴标签
+            ctx.fillStyle = '#6b7280';
+            ctx.font = '11px sans-serif';
+            ctx.textAlign = 'right';
+            financingTypes.forEach((type, index) => {
+                const y = 40 + (index * (height - 60) / financingTypes.length) + ((height - 60) / financingTypes.length) / 2;
+                ctx.fillText(type, 65, y + 4);
+            });
+
+            // 添加标题
+            ctx.fillStyle = '#374151';
+            ctx.font = 'bold 12px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('Financing Structure Analysis', width / 2, 20);
+        }
+
+        // 图片错误处理函数
+        function handleImageError(img) {
+            img.classList.add('error');
+            const wrapper = img.parentElement;
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'image-error';
+            errorDiv.innerHTML = 'Image Load Failed<br><small>' + img.alt + '</small>';
+            wrapper.appendChild(errorDiv);
+        }
+
+        // 初始化所有图表
+        function initializeCharts() {
+            // Delay rendering to ensure DOM elements are created
+            setTimeout(() => {
+                renderCashFlowChart();
+                renderROIChart();
+                renderMarketGrowthChart();
+                renderMarketSizeChart();
+                renderImplementationChart();
+                renderTeamChart();
+                renderFinancingChart();
+
+                // Set up image error handling
+                document.querySelectorAll('.content-image').forEach(img => {
+                    img.onerror = function() {
+                        handleImageError(this);
+                    };
+                });
+            }, 100);
+        }
+
+        // Select template
+        function selectTemplate(template) {
+            currentTemplate = template;
+
+            // Update UI state
+            document.querySelectorAll('.template-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+
+            // Update preview content
+            updatePreviewForTemplate(template);
+        }
+
+        // Select color scheme
+        function selectColorScheme(scheme) {
+            currentColorScheme = scheme;
+
+            // Update UI state
+            document.querySelectorAll('.color-scheme').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+
+            // Apply color scheme to preview
+            applyColorScheme(scheme);
+        }
+
+        // Apply color scheme
+        function applyColorScheme(scheme) {
+            const previewContent = document.getElementById('previewContent');
+            const colorSchemes = {
+                blue: {
+                    primary: '#1D428A',
+                    secondary: '#0077C0',
+                    accent: '#FFC72C'
+                },
+                green: {
+                    primary: '#2E7D32',
+                    secondary: '#4CAF50',
+                    accent: '#FFC107'
+                },
+                purple: {
+                    primary: '#6A1B9A',
+                    secondary: '#9C27B0',
+                    accent: '#FFC72C'
+                }
+            };
+
+            const colors = colorSchemes[scheme];
+
+            // Update preview area colors
+            const styleSheet = document.createElement('style');
+            styleSheet.textContent = `
+                .preview-title { color: ${colors.primary} !important; }
+                .preview-section-title { color: ${colors.primary} !important; border-left-color: ${colors.secondary} !important; }
+                .preview-section h4 { color: ${colors.primary} !important; }
+                .chart-title, .image-title { color: ${colors.primary} !important; }
+                .preview-header { border-bottom-color: ${colors.primary} !important; }
+                .preview-data-value { color: ${colors.primary} !important; }
+                .preview-section {
+                    background: white !important;
+                    border-color: ${colors.secondary}20 !important;
+                }
+                .chart-container, .image-container {
+                    background: ${colors.primary}08 !important;
+                    border-color: ${colors.secondary}33 !important;
+                }
+            `;
+
+            // Remove old styles
+            const oldStyle = document.getElementById('dynamicColorStyle');
+            if (oldStyle) {
+                oldStyle.remove();
+            }
+
+            styleSheet.id = 'dynamicColorStyle';
+            document.head.appendChild(styleSheet);
+        }
+
+        // 更新模板预览
+        function updatePreviewForTemplate(template) {
+            const templates = {
+                investor: {
+                    title: 'Thousand-Station Liquid-Cooled Ultra-Fast Charging Project',
+                    subtitle: 'Business Plan (Investor Version)',
+                    meta: 'Shenzhen Supercomputing Power Technology Co., Ltd. | October 2025'
+                },
+                bank: {
+                    title: 'Thousand-Station Liquid-Cooled Ultra-Fast Charging Project',
+                    subtitle: 'Financing Application Report (Bank Version)',
+                    meta: 'Shenzhen Supercomputing Power Technology Co., Ltd. | October 2025'
+                },
+                government: {
+                    title: 'Thousand-Station Liquid-Cooled Ultra-Fast Charging Project',
+                    subtitle: 'Policy Fund Application Report',
+                    meta: 'Shenzhen Supercomputing Power Technology Co., Ltd. | October 2025'
+                },
+                partner: {
+                    title: 'Thousand-Station Liquid-Cooled Ultra-Fast Charging Project',
+                    subtitle: 'Business Cooperation Plan',
+                    meta: 'Shenzhen Supercomputing Power Technology Co., Ltd. | October 2025'
+                }
+            };
+
+            const templateData = templates[template];
+            document.getElementById('previewTitle').textContent = templateData.title;
+            document.getElementById('previewSubtitle').textContent = templateData.subtitle;
+            document.getElementById('previewMeta').textContent = templateData.meta;
+        }
+
+        // Generate business plan
+        async function generateBusinessPlan() {
+            if (generationInProgress) return;
+
+            generationInProgress = true;
+            const generateBtn = document.querySelector('.generate-btn');
+            const progressBar = document.getElementById('progressBar');
+            const progressFill = document.getElementById('progressFill');
+            const statusMessage = document.getElementById('statusMessage');
+
+            // Disable button
+            generateBtn.disabled = true;
+            generateBtn.innerHTML = '<span>⏳ Generating...</span>';
+
+            // Show progress bar
+            progressBar.style.display = 'block';
+            statusMessage.style.display = 'block';
+            statusMessage.className = 'status-message status-info';
+            statusMessage.textContent = 'Generating business plan...';
+
+            try {
+                // Step 1: Collect configuration parameters
+                updateProgress(20);
+                await sleep(500);
+                statusMessage.textContent = 'Collecting configuration parameters...';
+
+                const config = collectConfiguration();
+
+                // Step 2: Generate content
+                updateProgress(40);
+                await sleep(500);
+                statusMessage.textContent = 'Generating content...';
+
+                const content = await generateContent(config);
+
+                // Step 3: Update preview
+                updateProgress(60);
+                await sleep(500);
+                statusMessage.textContent = 'Updating preview...';
+
+                updatePreview(content);
+
+                // Step 4: Complete generation
+                updateProgress(80);
+                await sleep(500);
+                statusMessage.textContent = 'Optimizing format...';
+
+                updateProgress(100);
+                await sleep(300);
+
+                // 显示成功消息
+                statusMessage.className = 'status-message status-success';
+                statusMessage.textContent = '✅ Business plan generated successfully!';
+
+                // Update workflow steps
+                updateWorkflowStep(3);
+
+                // Save data
+                businessPlanData = {
+                    config: config,
+                    content: content,
+                    template: currentTemplate,
+                    colorScheme: currentColorScheme,
+                    generatedAt: new Date().toISOString()
+                };
+
+            } catch (error) {
+                console.error('Error generating business plan:', error);
+                statusMessage.className = 'status-message status-error';
+                statusMessage.textContent = '❌ Generation failed, please try again';
+            } finally {
+                // Restore button state
+                setTimeout(() => {
+                    generateBtn.disabled = false;
+                    generateBtn.innerHTML = '<span>🚀 Generate Business Plan</span>';
+                    progressBar.style.display = 'none';
+                    progressFill.style.width = '0%';
+
+                    // Hide status message after 3 seconds
+                    setTimeout(() => {
+                        statusMessage.style.display = 'none';
+                    }, 3000);
+
+                    generationInProgress = false;
+                }, 2000);
+            }
+        }
+
+        // Collect configuration parameters
+        function collectConfiguration() {
+            const config = {
+                template: currentTemplate,
+                colorScheme: currentColorScheme,
+                sections: [],
+                parameters: {
+                    investment: document.getElementById('paramInvestment')?.textContent || '2.8 Billion RMB',
+                    stations: document.getElementById('paramStations')?.textContent || '1000座',
+                    irr: document.getElementById('paramIRR')?.textContent || '42.8%',
+                    payback: document.getElementById('paramPayback')?.textContent || '4.5年'
+                }
+            };
+
+            // Collect selected sections
+            const checkboxes = document.querySelectorAll('.checkbox-item input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    config.sections.push(checkbox.id);
+                }
+            });
+
+            return config;
+        }
+
+        // Generate content
+        async function generateContent(config) {
+            // Simulate content generation process here
+            // In actual projects, content can be obtained from database or API
+            const content = {
+                title: 'Thousand-Station Liquid-Cooled Ultra-Fast Charging Project',
+                subtitle: getTemplateSubtitle(config.template),
+                sections: {}
+            };
+
+            // Generate content based on selected sections
+            if (config.sections.includes('execSummary')) {
+                content.sections.execSummary = generateExecutiveSummary(config);
+            }
+
+            if (config.sections.includes('marketAnalysis')) {
+                content.sections.marketAnalysis = generateMarketAnalysis(config);
+            }
+
+            if (config.sections.includes('financialModel')) {
+                content.sections.financialModel = generateFinancialModel(config);
+            }
+
+            return content;
+        }
+
+        // 获取模板副标题
+        function getTemplateSubtitle(template) {
+            const subtitles = {
+                investor: 'Business Plan (Investor Version)',
+                bank: 'Financing Application Report (Bank Version)',
+                government: 'Policy Fund Application Report',
+                partner: 'Business Cooperation Plan'
+            };
+            return subtitles[template] || 'Business Plan';
+        }
+
+        // Generate executive summary
+        function generateExecutiveSummary(config) {
+            return {
+                title: 'Executive Summary',
+                content: `The Thousand-Station Liquid-Cooled Ultra-Fast Charging Project plans to invest ${config.parameters.investment} to build ${config.parameters.stations} Huawei liquid-cooled ultra-fast charging stations. Project IRR reaches ${config.parameters.irr}, with investment payback period of ${config.parameters.payback}.`
+            };
+        }
+
+        // Generate market analysis
+        function generateMarketAnalysis(config) {
+            return {
+                title: 'Market Analysis',
+                content: '中国新能源汽车市场快速增长，充电基础设施需求旺盛，政策大力支持新能源产业发展。'
+            };
+        }
+
+        // 生成财务模型
+        function generateFinancialModel(config) {
+            return {
+                title: 'Financial Analysis',
+                content: '项目财务模型显示具有良好的投资回报，符合投资者预期。'
+            };
+        }
+
+        // Update preview
+        function updatePreview(content) {
+            // Update preview area based on generated content here
+            // 目前只是模拟更新
+            console.log('Update preview:', content);
+        }
+
+        // Update progress bar
+        function updateProgress(percentage) {
+            const progressFill = document.getElementById('progressFill');
+            progressFill.style.width = percentage + '%';
+        }
+
+        // 更新工作流程步骤
+        function updateWorkflowStep(stepNumber) {
+            // Mark previous steps as completed
+            for (let i = 1; i < stepNumber; i++) {
+                const step = document.getElementById(`step${i}`);
+                step.classList.remove('active');
+                step.classList.add('completed');
+            }
+
+            // Activate current step
+            const currentStep = document.getElementById(`step${stepNumber}`);
+            currentStep.classList.add('active');
+            currentStep.classList.remove('completed');
+        }
+
+        // Export functions
+        function exportPDF() {
+            if (!businessPlanData.generatedAt) {
+                alert('Please generate the business plan first');
+                return;
+            }
+
+            updateWorkflowStep(4);
+
+            // Simulate PDF export
+            showStatus('Exporting PDF file...', 'info');
+
+            setTimeout(() => {
+                // In actual projects, real PDF generation API would be called here
+                const pdfContent = generatePDFContent();
+                downloadFile(pdfContent, '千站液冷超充项目_商业计划书.pdf', 'application/pdf');
+                showStatus('✅ PDF export successful!', 'success');
+            }, 2000);
+        }
+
+        function exportWord() {
+            if (!businessPlanData.generatedAt) {
+                alert('Please generate the business plan first');
+                return;
+            }
+
+            showStatus('Exporting Word file...', 'info');
+
+            setTimeout(() => {
+                const wordContent = generateWordContent();
+                downloadFile(wordContent, '千站液冷超充项目_商业计划书.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+                showStatus('✅ Word export successful!', 'success');
+            }, 2000);
+        }
+
+        function exportExcel() {
+            if (!businessPlanData.generatedAt) {
+                alert('Please generate the business plan first');
+                return;
+            }
+
+            showStatus('Exporting Excel file...', 'info');
+
+            setTimeout(() => {
+                const excelContent = generateExcelContent();
+                downloadFile(excelContent, 'Thousand-Station_Liquid-Cooled_Ultra-Fast_Charging_Project_Financial_Data.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                showStatus('✅ Excel export successful!', 'success');
+            }, 2000);
+        }
+
+        // 生成PDF内容（模拟）
+        function generatePDFContent() {
+            // 实际项目中会使用PDF生成库
+            return 'PDF content here';
+        }
+
+        // 生成Word内容（模拟）
+        function generateWordContent() {
+            // 实际项目中会使用Word生成库
+            return 'Word content here';
+        }
+
+        // 生成Excel内容（模拟）
+        function generateExcelContent() {
+            // 实际项目中会使用Excel生成库
+            return 'Excel content here';
+        }
+
+        // Download file
+        function downloadFile(content, filename, contentType) {
+            // 实际项目中这里会生成真实的文件并触发下载
+            console.log(`Download file: ${filename}`);
+
+            // 创建下载提示
+            const downloadLink = document.createElement('a');
+            downloadLink.href = '#';
+            downloadLink.download = filename;
+            downloadLink.textContent = `点击下载 ${filename}`;
+            downloadLink.style.display = 'block';
+            downloadLink.style.textAlign = 'center';
+            downloadLink.style.marginTop = '20px';
+            downloadLink.style.padding = '10px';
+            downloadLink.style.background = 'rgba(76, 175, 80, 0.1)';
+            downloadLink.style.border = '1px solid rgba(76, 175, 80, 0.3)';
+            downloadLink.style.borderRadius = '8px';
+            downloadLink.style.color = '#4CAF50';
+            downloadLink.style.textDecoration = 'none';
+
+            // 移除旧的下载链接
+            const oldLink = document.querySelector('.download-link');
+            if (oldLink) {
+                oldLink.remove();
+            }
+
+            downloadLink.className = 'download-link';
+            document.querySelector('.preview-panel').appendChild(downloadLink);
+        }
+
+        // Show status message
+        function showStatus(message, type) {
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.textContent = message;
+            statusMessage.className = `status-message status-${type}`;
+            statusMessage.style.display = 'block';
+
+            setTimeout(() => {
+                statusMessage.style.display = 'none';
+            }, 3000);
+        }
+
+        // 辅助函数：延迟
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // MD文件路径映射
+        const mdFilePaths = {
+            'execSummary': '生成式商业计划书内容/Executive_Summary.md',
+            'marketAnalysis': '生成式商业计划书内容/Market_Analysis.md',
+            'technicalPlan': '生成式商业计划书内容/Technical_Plan.md',
+            'financialModel': '生成式商业计划书内容/Financial_Analysis.md',
+            'riskAssessment': '生成式商业计划书内容/Risk_Assessment.md',
+            'implementationPlan': '生成式商业计划书内容/Implementation_Execution.md',
+            'teamIntro': '生成式商业计划书内容/Team_Introduction.md',
+            'financingPlan': '生成式商业计划书内容/Financing_Plan.md'
+        };
+
+        // Markdown解析器
+        function parseMarkdown(markdown) {
+            let html = markdown
+                // 标题转换（支持所有级别）
+                .replace(/^##### (.*)$/gm, '<h6>$1</h6>')
+                .replace(/^#### (.*)$/gm, '<h5>$1</h5>')
+                .replace(/^### (.*)$/gm, '<h4>$1</h4>')
+                .replace(/^## (.*)$/gm, '<h3>$1</h3>')
+                .replace(/^# (.*)$/gm, '<h2>$1</h2>')
+
+                // 粗体转换
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+
+                // 斜体转换
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+
+                // 代码块转换
+                .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+
+                // 行内代码转换
+                .replace(/`([^`]+)`/g, '<code>$1</code>')
+
+                // 链接转换
+                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+
+                // 分隔线转换
+                .replace(/^---$/gm, '<hr>')
+                .replace(/^\*\*\*$/gm, '<hr>')
+
+                // 列表转换（有序）- 先匹配有序列表
+                .replace(/^(\s*\d+\.\s+)(.+)$/gm, '<li>$2</li>')
+
+                // 列表转换（无序）
+                .replace(/^(\s*[-*+]\s+)(.+)$/gm, '<li>$2</li>')
+
+                // 将连续的列表项包装在列表标签中
+                .replace(/(<li>.*<\/li>)(\s*<li>.*<\/li>)*/g, function(match) {
+                    // 检查是否是有序列表
+                    if (match.match(/^\d+\./)) {
+                        return '<ol>' + match + '</ol>';
+                    } else {
+                        return '<ul>' + match + '</ul>';
+                    }
+                })
+
+                // 表格转换（改进版本）
+                .replace(/\|(.+)\|/g, function(match, content) {
+                    const cells = content.split('|').map(cell => cell.trim()).filter(cell => cell !== '');
+                    const cellTags = cells.map(cell => {
+                        // 检查是否是表头（包含---或===）
+                        if (cell.match(/^[-=]{3,}$/)) {
+                            return '';
+                        }
+                        return `<td>${cell}</td>`;
+                    }).join('');
+                    return cellTags ? `<tr>${cellTags}</tr>` : '';
+                })
+
+                // 将表格行包装在table标签中
+                .replace(/(<tr>.*<\/tr>)/gs, function(match) {
+                    if (match.includes('</td>')) {
+                        return '<table>' + match + '</table>';
+                    }
+                    return match;
+                })
+
+                // 段落转换（在最后处理）
+                .replace(/\n\n+/g, '</p><p>')
+                .replace(/^/, '<p>')
+                .replace(/$/, '</p>')
+
+                // 清理嵌套在列表和其他块元素中的段落标签
+                .replace(/<(ul|ol|li|h[1-6]|pre|code|table|tr|td|th|hr)> *<\/p>/g, '<$1>')
+                .replace(/<p> *<\/(ul|ol|li|h[1-6]|pre|code|table|tr|td|th|hr)>/g, '</$1>')
+                .replace(/<(ul|ol|li|h[1-6]|pre|code|table|tr|td|th|hr)> *<\/p>/g, '<$1>')
+
+                // 清理空段落
+                .replace(/<p>\s*<\/p>/g, '')
+                .replace(/<p><h/g, '<h')
+                .replace(/<\/h[1-6]><\/p>/g, '</h')
+                .replace(/<p><(ul|ol|pre|table|hr)/g, '<$1')
+                .replace(/<\/(ul|ol|pre|table|hr)><\/p>/g, '</$1>');
+
+            return html;
+        }
+
+        // 加载MD文件内容
+        async function loadMDContent(sectionId) {
+            const filePath = mdFilePaths[sectionId];
+            if (!filePath) {
+                console.warn(`⚠️ 未找到${sectionId}对应的MD文件路径`);
+                console.log(`🔍 可用的MD文件路径:`, Object.keys(mdFilePaths));
+                return null;
+            }
+
+            console.log(`🔄 开始加载MD文件: ${sectionId} -> ${filePath}`);
+
+            try {
+                const response = await fetch(filePath);
+                console.log(`📡 响应状态: ${response.status} ${response.statusText}`);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const content = await response.text();
+                console.log(`📄 文件内容长度: ${content.length} 字符`);
+
+                // 缓存内容
+                mdContentCache[sectionId] = {
+                    content: content,
+                    timestamp: new Date().getTime()
+                };
+
+                console.log(`✅ 成功加载MD文件: ${sectionId}`);
+                return content;
+            } catch (error) {
+                console.error(`❌ 加载MD文件失败: ${filePath}`, error);
+                console.log(`🔧 错误详情:`, error.message);
+                return null;
+            }
+        }
+
+        // Update preview区域内容
+        async function updateSectionFromMD(sectionId, mdOnlyMode = false) {
+            console.log(`🎯 开始更新章节: ${sectionId} (模式: ${mdOnlyMode ? '仅MD' : 'MD增强'})`);
+
+            const mdContent = await loadMDContent(sectionId);
+            if (!mdContent) {
+                console.log(`⚠️ ${sectionId} 没有加载到MD内容，跳过更新`);
+                return;
+            }
+
+            const htmlContent = parseMarkdown(mdContent);
+            console.log(`📝 解析后的HTML内容长度: ${htmlContent.length} 字符`);
+
+            const sectionElement = document.getElementById(sectionId + 'Section');
+            console.log(`🔍 找到章节元素: ${sectionElement ? '是' : '否'}`);
+
+            if (!sectionElement) {
+                console.error(`❌ 找不到章节元素: ${sectionId}Section`);
+                return;
+            }
+
+            try {
+                if (mdOnlyMode) {
+                    // 仅MD内容模式：只保留标题，清空其他所有内容
+                    const titleElement = sectionElement.querySelector('.preview-section-title');
+                    sectionElement.innerHTML = '';
+
+                    if (titleElement) {
+                        sectionElement.appendChild(titleElement);
+                    }
+
+                    // 添加MD内容
+                    const mdContentDiv = document.createElement('div');
+                    mdContentDiv.className = 'md-content md-only-mode';
+                    mdContentDiv.innerHTML = htmlContent;
+                    sectionElement.appendChild(mdContentDiv);
+
+                    console.log(`✅ 已更新 ${sectionId} 的内容（仅MD模式）`);
+                } else {
+                    // MD增强模式：保留原有的非文字内容元素
+                    const elementsToPreserve = [];
+                    const childNodes = Array.from(sectionElement.children);
+
+                    // 需要保留的元素选择器
+                    const preserveSelectors = [
+                        '.preview-section',
+                        '.preview-section-title',
+                        '.preview-section h4',
+                        '.preview-data-grid',
+                        '.preview-data-card',
+                        '.chart-container',
+                        '.image-container',
+                        '.chart-title',
+                        '.image-title',
+                        '.tech-images-grid'
+                    ];
+
+                    childNodes.forEach(node => {
+                        const shouldPreserve = preserveSelectors.some(selector =>
+                            node.matches && node.matches(selector)
+                        );
+                        if (shouldPreserve) {
+                            elementsToPreserve.push(node);
+                        }
+                    });
+
+                    // 清空section并重新构建内容
+                    sectionElement.innerHTML = '';
+
+                    // 重新添加保留的元素
+                    elementsToPreserve.forEach(element => {
+                        sectionElement.appendChild(element);
+                    });
+
+                    // 创建MD内容容器
+                    const mdContentDiv = document.createElement('div');
+                    mdContentDiv.className = 'md-content md-enhanced-mode';
+                    mdContentDiv.innerHTML = htmlContent;
+
+                    // 找到合适的插入位置（标题后，但在数据卡片或图表前）
+                    const titleElement = sectionElement.querySelector('.preview-section-title');
+
+                    if (titleElement) {
+                        // 在标题后插入MD内容
+                        titleElement.insertAdjacentElement('afterend', mdContentDiv);
+                        console.log(`📝 ${sectionId}: MD内容已插入到标题后面`);
+                    } else {
+                        // 如果没有标题，作为第一个元素插入
+                        sectionElement.insertBefore(mdContentDiv, sectionElement.firstChild);
+                        console.log(`📝 ${sectionId}: MD内容已插入到section开头`);
+                    }
+
+                    console.log(`✅ 已更新 ${sectionId} 的内容，同时保留了图表和数据展示`);
+                }
+
+                // 添加最后更新时间
+                const updateDiv = document.createElement('div');
+                updateDiv.className = 'content-update-info';
+                updateDiv.innerHTML = `<small><em>内容更新时间: ${new Date().toLocaleString()}</em></small>`;
+                sectionElement.appendChild(updateDiv);
+
+                // 重新初始化图表（如果存在）
+                if (!mdOnlyMode) {
+                    setTimeout(() => {
+                        initializeCharts();
+                    }, 100);
+                }
+
+                console.log(`🎉 ${sectionId} 章节更新完成`);
+
+            } catch (error) {
+                console.error(`❌ 更新章节 ${sectionId} 时发生错误:`, error);
+                console.error('错误详情:', error.message, error.stack);
+
+                // 显示错误信息给用户
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'content-error';
+                errorDiv.style.cssText = `
+                    background: #f8d7da;
+                    border: 1px solid #f5c6cb;
+                    color: #721c24;
+                    padding: 10px;
+                    margin: 10px 0;
+                    border-radius: 5px;
+                `;
+                errorDiv.innerHTML = `⚠️ Error loading content: ${error.message}`;
+                sectionElement.appendChild(errorDiv);
+            }
+        }
+
+        // 批量加载所有MD内容
+        async function loadAllMDContent(mdOnlyMode = false) {
+            console.log(`🚀 开始批量加载所有MD内容 (模式: ${mdOnlyMode ? '仅MD' : 'MD增强'})`);
+            console.log(`📋 需要加载的章节:`, Object.keys(mdFilePaths));
+
+            const loadingPromises = Object.keys(mdFilePaths).map(sectionId =>
+                loadMDContent(sectionId)
+            );
+
+            try {
+                await Promise.all(loadingPromises);
+                console.log('✅ 所有MD文件加载完成');
+
+                // Auto update preview
+                console.log('🔄 Starting preview area update...');
+                let successCount = 0;
+                let errorCount = 0;
+
+                for (const sectionId of Object.keys(mdFilePaths)) {
+                    try {
+                        await updateSectionFromMD(sectionId, mdOnlyMode);
+                        successCount++;
+                    } catch (error) {
+                        console.error(`❌ 更新章节 ${sectionId} 失败:`, error);
+                        errorCount++;
+                    }
+                }
+
+                console.log(`🎉 预览区域更新完成: ${successCount} 成功, ${errorCount} 失败`);
+
+                // 在MD增强模式下启动自动刷新
+                if (!mdOnlyMode) {
+                    startAutoRefresh();
+                    console.log('⏰ 已启动自动刷新机制');
+                } else {
+                    stopAutoRefresh(); // 仅MD模式下不需要自动刷新
+                    console.log('⏹️ 已停止自动刷新机制');
+                }
+
+                return { successCount, errorCount };
+
+            } catch (error) {
+                console.error('❌ 批量加载MD文件失败:', error);
+                throw error;
+            }
+        }
+
+        // 检查文件是否有更新
+        async function checkFileUpdates() {
+            for (const [sectionId, filePath] of Object.entries(mdFilePaths)) {
+                try {
+                    const response = await fetch(filePath, { method: 'HEAD' });
+                    const lastModified = response.headers.get('last-modified');
+
+                    if (lastModified && mdContentCache[sectionId]) {
+                        const cachedTime = mdContentCache[sectionId].timestamp;
+                        const fileTime = new Date(lastModified).getTime();
+
+                        if (fileTime > cachedTime) {
+                            console.log(`检测到文件更新: ${filePath}`);
+                            await updateSectionFromMD(sectionId);
+                        }
+                    }
+                } catch (error) {
+                    console.warn(`检查文件更新失败: ${filePath}`, error);
+                }
+            }
+        }
+
+        // 手动刷新内容按钮
+        function addRefreshButton() {
+            const configPanel = document.querySelector('.config-panel');
+            const generateBtn = document.querySelector('.generate-btn');
+
+            // 创建刷新按钮容器
+            const refreshContainer = document.createElement('div');
+            refreshContainer.className = 'refresh-container';
+
+            // 刷新按钮
+            const refreshBtn = document.createElement('button');
+            refreshBtn.className = 'refresh-btn';
+            refreshBtn.innerHTML = '🔄 Refresh MD Docs';
+            refreshBtn.onclick = async function() {
+                this.disabled = true;
+                this.innerHTML = '⏳ Refresh...';
+
+                try {
+                    const result = await loadAllMDContent();
+
+                    if (result && result.errorCount > 0) {
+                        // 部分章节加载失败
+                        this.innerHTML = `⚠️ ${result.successCount}/${Object.keys(mdFilePaths).length} 成功`;
+                        setTimeout(() => {
+                            this.innerHTML = '🔄 Refresh MD Docs';
+                        }, 3000);
+                    } else {
+                        // 全部成功
+                        this.innerHTML = '✅ 刷新成功';
+                        setTimeout(() => {
+                            this.innerHTML = '🔄 Refresh MD Docs';
+                        }, 2000);
+                    }
+                } catch (error) {
+                    console.error('刷新失败:', error);
+                    this.innerHTML = '❌ 刷新失败';
+                    setTimeout(() => {
+                        this.innerHTML = '🔄 Refresh MD Docs';
+                    }, 3000);
+                }
+
+                this.disabled = false;
+            };
+
+            // 内容模式切换
+            const modeToggle = document.createElement('div');
+            modeToggle.className = 'content-mode-toggle';
+            modeToggle.innerHTML = `
+                <div class="mode-label">
+                    <span>📝 Docs Mode:</span>
+                </div>
+                <div class="mode-options">
+                    <label class="mode-option">
+                        <input type="radio" name="contentMode" value="original" checked>
+                        <span>Initial Docs</span>
+                    </label>
+                    <label class="mode-option">
+                        <input type="radio" name="contentMode" value="md-enhanced">
+                        <span>MD Enhanced</span>
+                    </label>
+                    <label class="mode-option">
+                        <input type="radio" name="contentMode" value="md-only">
+                        <span>Only MD Docs</span>
+                    </label>
+                </div>
+            `;
+
+            // 监听模式切换
+            modeToggle.querySelectorAll('input[name="contentMode"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    handleContentModeChange(this.value);
+                });
+            });
+
+            refreshContainer.appendChild(refreshBtn);
+            refreshContainer.appendChild(modeToggle);
+            configPanel.insertBefore(refreshContainer, generateBtn);
+        }
+
+        // 处理内容模式切换
+        async function handleContentModeChange(mode) {
+            console.log(`🔄 切换到内容模式: ${mode}`);
+
+            switch(mode) {
+                case 'original':
+                    // 恢复原始内容
+                    restoreOriginalContent();
+                    break;
+                case 'md-enhanced':
+                    // MD内容 + 原始图表数据
+                    await loadAllMDContent();
+                    break;
+                case 'md-only':
+                    // 仅显示MD内容
+                    await loadAllMDContent(true);
+                    break;
+            }
+        }
+
+        // 保存原始内容
+        let originalContentBackup = {};
+
+        function backupOriginalContent() {
+            const sections = ['execSummary', 'marketAnalysis', 'technicalPlan', 'financialModel', 'riskAssessment', 'implementationPlan', 'teamIntro', 'financingPlan'];
+
+            sections.forEach(sectionId => {
+                const sectionElement = document.getElementById(sectionId + 'Section');
+                if (sectionElement) {
+                    originalContentBackup[sectionId] = sectionElement.innerHTML;
+                }
+            });
+
+            console.log('✅ 原始内容已备份');
+        }
+
+        // 恢复原始内容
+        function restoreOriginalContent() {
+            Object.keys(originalContentBackup).forEach(sectionId => {
+                const sectionElement = document.getElementById(sectionId + 'Section');
+                if (sectionElement && originalContentBackup[sectionId]) {
+                    sectionElement.innerHTML = originalContentBackup[sectionId];
+                }
+            });
+
+            // 重新初始化图表
+            setTimeout(() => {
+                initializeCharts();
+            }, 100);
+
+            console.log('✅ 已恢复原始内容');
+        }
+
+        // 自动刷新定时器
+        let autoRefreshInterval;
+        function startAutoRefresh(intervalMs = 30000) { // 30秒检查一次
+            autoRefreshInterval = setInterval(checkFileUpdates, intervalMs);
+        }
+
+        function stopAutoRefresh() {
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+            }
+        }
+
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化工作流程
+            updateWorkflowStep(1);
+
+            // 初始化图表
+            initializeCharts();
+
+            // 备份原始内容
+            backupOriginalContent();
+
+            // 添加刷新按钮
+            addRefreshButton();
+
+            // 不自动加载MD内容，让用户选择模式
+            console.log('🎯 页面初始化完成，已备份原始内容');
+
+            // 监听复选框变化
+            const checkboxes = document.querySelectorAll('.checkbox-item input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const sectionId = this.id + 'Section';
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.style.display = this.checked ? 'block' : 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

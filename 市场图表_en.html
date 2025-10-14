@@ -1,0 +1,936 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="库里蓝暗夜主题.css">
+    <script src="js/terminology_translations.js"></script>
+    <script src="js/content_translations.js"></script>
+    <script src="js/language_switch.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Analysis Charts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            /* 移除自定义背景，使用库里蓝暗夜主题背景 */
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            /* 使用主题卡片样式 */
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            /* 使用主题标题样式 */
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            /* 使用主题副标题样式 */
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .chart-container {
+            /* 使用主题卡片样式，覆盖默认样式 */
+            background: rgba(26, 35, 71, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 119, 192, 0.3);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 119, 192, 0.4);
+            border-color: rgba(255, 199, 44, 0.5);
+            background: rgba(29, 66, 138, 0.95);
+        }
+
+        .chart-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .growth-chart {
+            position: relative;
+            height: 250px;
+            margin: 20px 0;
+        }
+
+        .growth-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #FFC72C;
+        }
+
+        .growth-area {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(255, 199, 44, 0.3), rgba(255, 199, 44, 0.1));
+            border-radius: 10px 10px 0 0;
+        }
+
+        .year-marker {
+            position: absolute;
+            bottom: -30px;
+            font-size: 12px;
+            color: #B8C5D6;
+            transform: translateX(-50%);
+        }
+
+        .value-marker {
+            position: absolute;
+            font-size: 11px;
+            font-weight: bold;
+            color: #FFC72C;
+            transform: translate(-50%, -150%);
+        }
+
+        .pie-chart {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 50%;
+            background: conic-gradient(
+                #3b82f6 0deg 126deg,
+                #10b981 126deg 234deg,
+                #f59e0b 234deg 288deg,
+                #ef4444 288deg 324deg,
+                #8b5cf6 324deg 360deg
+            );
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .pie-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: rgba(26, 35, 71, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+
+        .competitor-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .competitor {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .competitor-name {
+            width: 120px;
+            font-size: 14px;
+            color: #B8C5D6;
+            text-align: right;
+        }
+
+        .competitor-bar {
+            flex: 1;
+            height: 30px;
+            border-radius: 15px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .competitor-fill {
+            height: 100%;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            transition: width 1s ease;
+        }
+
+        .market-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .market-table th,
+        .market-table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 119, 192, 0.2);
+        }
+
+        .market-table th {
+            background: rgba(29, 66, 138, 0.9);
+            font-weight: bold;
+            color: #FFFFFF;
+            border-bottom: 2px solid rgba(0, 119, 192, 0.5);
+        }
+
+        .market-table td {
+            color: #B8C5D6;
+        }
+
+        .market-table tr:hover {
+            background: rgba(29, 66, 138, 0.5);
+        }
+
+        .highlight {
+            background: rgba(255, 199, 44, 0.1) !important;
+            font-weight: bold;
+            border: 1px solid rgba(255, 199, 44, 0.3);
+        }
+
+        .trend-indicator {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .trend-up {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .trend-down {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #B8C5D6;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+        }
+
+        /* 市场分析内容区域样式 */
+        .market-content-section {
+            margin-top: 40px;
+            background: rgba(26, 35, 71, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 119, 192, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .market-content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 119, 192, 0.4);
+            border-color: rgba(255, 199, 44, 0.5);
+            background: rgba(29, 66, 138, 0.95);
+        }
+
+        .market-content-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .market-content {
+            color: #B8C5D6;
+            line-height: 1.6;
+        }
+
+        .market-content h1 {
+            font-size: 28px;
+            color: #FFFFFF;
+            font-weight: bold;
+            margin: 25px 0 15px 0;
+            border-bottom: 2px solid #0077C0;
+            padding-bottom: 10px;
+        }
+
+        .market-content h2 {
+            font-size: 22px;
+            color: #FFC72C;
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+        }
+
+        .market-content h3 {
+            font-size: 18px;
+            color: #FFFFFF;
+            font-weight: bold;
+            margin: 15px 0 8px 0;
+        }
+
+        .market-content p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .market-content ul, .market-content ol {
+            margin: 15px 0 15px 25px;
+        }
+
+        .market-content li {
+            margin-bottom: 8px;
+        }
+
+        .market-content strong {
+            color: #FFC72C;
+            font-weight: bold;
+        }
+
+        .market-content em {
+            color: #0077C0;
+            font-style: italic;
+        }
+
+        .loading-indicator {
+            text-align: center;
+            padding: 40px;
+            color: #B8C5D6;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(26, 35, 71, 0.3);
+            border-top: 4px solid #FFC72C;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .refresh-btn {
+            background: linear-gradient(135deg, #1D428A 0%, #0077C0 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 199, 44, 0.4);
+            background: linear-gradient(135deg, #0077C0 0%, #1D428A 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Market Analysis Charts</h1>
+            <p class="subtitle">EV Market Growth and Charging Infrastructure Demand Forecast</p>
+        </div>
+
+        <div class="charts-grid">
+            <!-- EV Growth Trend -->
+            <div class="chart-container">
+                <h3 class="chart-title">🚗 China EV Ownership Growth Forecast (10,000 units)</h3>
+                <div class="growth-chart">
+                    <div class="growth-area" style="height: 20%"></div>
+                    <div class="growth-line"></div>
+
+                    <div class="year-marker" style="left: 10%;">2023</div>
+                    <div class="value-marker" style="left: 10%; bottom: 20%;">1500</div>
+
+                    <div class="year-marker" style="left: 28%;">2024</div>
+                    <div class="value-marker" style="left: 28%; bottom: 35%;">2000</div>
+
+                    <div class="year-marker" style="left: 46%;">2025</div>
+                    <div class="value-marker" style="left: 46%; bottom: 50%;">2800</div>
+
+                    <div class="year-marker" style="left: 64%;">2026</div>
+                    <div class="value-marker" style="left: 64%; bottom: 65%;">3800</div>
+
+                    <div class="year-marker" style="left: 82%;">2027</div>
+                    <div class="value-marker" style="left: 82%; bottom: 80%;">5200</div>
+
+                    <div class="year-marker" style="left: 100%;">2028</div>
+                    <div class="value-marker" style="left: 100%; bottom: 95%;">7000</div>
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="trend-indicator trend-up">CAGR 35%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charging Pile Demand Forecast -->
+            <div class="chart-container">
+                <h3 class="chart-title">⚡ Charging Pile Demand Forecast (10,000 units)</h3>
+                <div class="growth-chart">
+                    <div class="growth-area" style="height: 15%; background: linear-gradient(to top, rgba(0, 119, 192, 0.3), rgba(0, 119, 192, 0.1));"></div>
+                    <div class="growth-line" style="background: #0077C0;"></div>
+
+                    <div class="year-marker" style="left: 10%;">2023</div>
+                    <div class="value-marker" style="left: 10%; bottom: 15%;">520</div>
+
+                    <div class="year-marker" style="left: 28%;">2024</div>
+                    <div class="value-marker" style="left: 28%; bottom: 25%;">800</div>
+
+                    <div class="year-marker" style="left: 46%;">2025</div>
+                    <div class="value-marker" style="left: 46%; bottom: 40%;">1200</div>
+
+                    <div class="year-marker" style="left: 64%;">2026</div>
+                    <div class="value-marker" style="left: 64%; bottom: 60%;">1800</div>
+
+                    <div class="year-marker" style="left: 82%;">2027</div>
+                    <div class="value-marker" style="left: 82%; bottom: 80%;">2600</div>
+
+                    <div class="year-marker" style="left: 100%;">2028</div>
+                    <div class="value-marker" style="left: 100%; bottom: 95%;">3800</div>
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="trend-indicator trend-up">CAGR 42%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Market Share Distribution -->
+        <div class="chart-container">
+            <h3 class="chart-title">📊 Charging Operator Market Share Distribution</h3>
+            <div class="pie-chart">
+                <div class="pie-center">Market Share</div>
+            </div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #FFC72C;"></div>
+                    <span>Teld 35%</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #0077C0;"></div>
+                    <span>Star Charge 30%</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #1D428A;"></div>
+                    <span>State Grid 15%</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #FF6B6B;"></div>
+                    <span>Others 10%</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #10b981;"></div>
+                    <span>Our Project 10%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Competitor Analysis -->
+        <div class="chart-container">
+            <h3 class="chart-title">🏆 Major Competitor Technology Comparison</h3>
+            <div class="competitor-chart">
+                <div class="competitor">
+                    <div class="competitor-name">Huawei Liquid-Cooled Ultra-Fast</div>
+                    <div class="competitor-bar">
+                        <div class="competitor-fill" style="width: 100%; background: #10b981;">600kW</div>
+                    </div>
+                </div>
+                <div class="competitor">
+                    <div class="competitor-name">Tesla V3</div>
+                    <div class="competitor-bar">
+                        <div class="competitor-fill" style="width: 42%; background: #ef4444;">250kW</div>
+                    </div>
+                </div>
+                <div class="competitor">
+                    <div class="competitor-name">ABB Terra 360</div>
+                    <div class="competitor-bar">
+                        <div class="competitor-fill" style="width: 60%; background: #f59e0b;">360kW</div>
+                    </div>
+                </div>
+                <div class="competitor">
+                    <div class="competitor-name">Teld</div>
+                    <div class="competitor-bar">
+                        <div class="competitor-fill" style="width: 30%; background: #FFC72C;">180kW</div>
+                    </div>
+                </div>
+                <div class="competitor">
+                    <div class="competitor-name">Star Charge</div>
+                    <div class="competitor-bar">
+                        <div class="competitor-fill" style="width: 27%; background: #0077C0;">160kW</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Regional Market Analysis Table -->
+        <div class="chart-container">
+            <h3 class="chart-title">🌍 Key Regional Market Analysis</h3>
+            <table class="market-table">
+                <thead>
+                    <tr>
+                        <th>City</th>
+                        <th>EV Ownership</th>
+                        <th>Charging Piles</th>
+                        <th>Market Potential</th>
+                        <th>Competition Intensity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight">
+                        <td>Shenzhen</td>
+                        <td>450k <span class="trend-indicator trend-up">+25%</span></td>
+                        <td>85k <span class="trend-indicator trend-up">+30%</span></td>
+                        <td>Very High</td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td>Shanghai</td>
+                        <td>520k <span class="trend-indicator trend-up">+22%</span></td>
+                        <td>92k <span class="trend-indicator trend-up">+28%</span></td>
+                        <td>Very High</td>
+                        <td>Very High</td>
+                    </tr>
+                    <tr>
+                        <td>Beijing</td>
+                        <td>380k <span class="trend-indicator trend-up">+20%</span></td>
+                        <td>78k <span class="trend-indicator trend-up">+25%</span></td>
+                        <td>High</td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td>Guangzhou</td>
+                        <td>350k <span class="trend-indicator trend-up">+28%</span></td>
+                        <td>65k <span class="trend-indicator trend-up">+32%</span></td>
+                        <td>High</td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td>Hangzhou</td>
+                        <td>280k <span class="trend-indicator trend-up">+35%</span></td>
+                        <td>48k <span class="trend-indicator trend-up">+40%</span></td>
+                        <td>High</td>
+                        <td>Medium</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Market Analysis Content Section -->
+        <div class="market-content-section">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h3 class="market-content-title">📋 Detailed Market Analysis Report</h3>
+                <button class="refresh-btn" onclick="startServerAndRefresh()">🔄 Refresh Content</button>
+            </div>
+
+            <div id="marketContentArea">
+                <div class="loading-indicator">
+                    <div class="loading-spinner"></div>
+                    <p>Loading market analysis content...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced MD content rendering function
+        function parseMarkdown(text) {
+            return text
+                // Headers
+                .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
+                .replace(/^##### (.*$)/gim, '<h5>$1</h5>')
+                .replace(/^###### (.*$)/gim, '<h6>$1</h6>')
+                // Bold and italic
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/__(.*?)__/g, '<strong>$1</strong>')
+                .replace(/_(.*?)_/g, '<em>$1</em>')
+                // Lists
+                .replace(/^\d+\. (.*$)/gim, '<li>$1</li>')
+                .replace(/^- (.*$)/gim, '<li>$1</li>')
+                .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+                // Links
+                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+                // Paragraphs
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/^(?!<[h|u|l])(.*$)/gim, '<p>$1</p>');
+        }
+
+        // Direct content refresh (read local MD file)
+        function startServerAndRefresh() {
+            console.log('🔄 Manual content refresh...');
+            loadMarketContent();
+        }
+
+        // Load market analysis content
+        function loadMarketContent() {
+            const contentArea = document.getElementById('marketContentArea');
+
+            console.log('🔍 Starting to load market analysis content...');
+            console.log('📋 Checking MARKET_ANALYSIS_CONTENT variable:', typeof MARKET_ANALYSIS_CONTENT);
+
+            // Check if preloaded content is available
+            if (typeof MARKET_ANALYSIS_CONTENT !== 'undefined') {
+                console.log('✅ Using preloaded market analysis content');
+                console.log('📄 MD content length:', MARKET_ANALYSIS_CONTENT.length);
+
+                try {
+                    const htmlContent = parseMarkdown(MARKET_ANALYSIS_CONTENT);
+                    console.log('🔄 Parsed HTML content length:', htmlContent.length);
+
+                    contentArea.innerHTML = `
+                        <div class="market-content">
+                            ${htmlContent}
+                        </div>
+                    `;
+
+                    // Display content update time
+                    if (typeof MARKET_ANALYSIS_MODIFIED !== 'undefined') {
+                        const updateTime = new Date(MARKET_ANALYSIS_MODIFIED * 1000).toLocaleString();
+                        contentArea.innerHTML += `
+                            <div style="text-align: center; margin-top: 20px; color: #B8C5D6; font-size: 12px;">
+                                📄 Content updated: ${updateTime}
+                            </div>
+                        `;
+                    }
+
+                    console.log('✅ Preloaded content display completed');
+                    return;
+                } catch (error) {
+                    console.error('❌ Failed to parse MD content:', error);
+                }
+            }
+
+            console.log('⚠️ MARKET_ANALYSIS_CONTENT undefined or parsing failed, using default content');
+            // Use default content
+            loadDefaultContent();
+        }
+
+        // Load default content
+        function loadDefaultContent() {
+            const contentArea = document.getElementById('marketContentArea');
+
+            const defaultContent = `
+                <div class="market-content">
+                    <h1>Market Analysis</h1>
+                    <h2>Industry Background</h2>
+                    <p>China's New Energy Vehicle (NEV) industry is experiencing explosive growth. In 2023, NEV sales in China reached 9.5 million units, with a penetration rate exceeding 35%. It is projected that by 2028, China's EV ownership will reach 70 million units, with charging pile demand exceeding 38 million.</p>
+
+                    <h2>Market Size and Growth Trends</h2>
+                    <h3>📊 Market Data</h3>
+                    <ul>
+                        <li><strong>Current Ownership</strong>: 21 million units (2023)</li>
+                        <li><strong>Projected Ownership</strong>: 70 million units (2028)</li>
+                        <li><strong>Annual Growth Rate</strong>: 35%</li>
+                        <li><strong>Market Space</strong>: $125.39 billion (2030 forecast)</li>
+                    </ul>
+
+                    <h3>📈 Growth Drivers</h3>
+                    <ol>
+                        <li><strong>Policy Promotion</strong>: Strong policy support under carbon neutrality goals</li>
+                        <li><strong>Technological Progress</strong>: Continuous breakthroughs in battery technology, improving driving range</li>
+                        <li><strong>Infrastructure</strong>: Increasingly complete charging network</li>
+                        <li><strong>Consumption Upgrade</strong>: Enhanced environmental awareness, shifting consumer preferences</li>
+                    </ol>
+
+                    <h2>Competitive Landscape Analysis</h2>
+                    <h3>🏆 Major Players</h3>
+                    <ul>
+                        <li><strong>Teld</strong>: Market share approximately 28%</li>
+                        <li><strong>Star Charge</strong>: Market share approximately 22%</li>
+                        <li><strong>State Grid</strong>: Market share approximately 18%</li>
+                        <li><strong>Other Brands</strong>: Combined 32%</li>
+                    </ul>
+
+                    <h3>💡 Our Competitive Advantages</h3>
+                    <ul>
+                        <li><strong>Technology Leadership</strong>: 600kW liquid-cooled ultra-fast charging technology</li>
+                        <li><strong>Charging Speed</strong>: Industry's fastest "one second, one kilometer" charging speed</li>
+                        <li><strong>Layout Strategy</strong>: Focus on highways and urban core areas</li>
+                        <li><strong>Service Quality</strong>: Intelligent operations, 24-hour customer service</li>
+                    </ul>
+
+                    <h2>Target Market Segmentation</h2>
+                    <h3>🎯 Core Target Customers</h3>
+                    <ul>
+                        <li><strong>Long-distance Transportation</strong>: Highway service areas</li>
+                        <li><strong>Urban Operations</strong>: Taxis, ride-hailing services</li>
+                        <li><strong>Logistics Parks</strong>: Electric logistics vehicles</li>
+                        <li><strong>Commercial Centers</strong>: Shopping malls, office buildings</li>
+                    </ul>
+
+                    <p><em>Note: This is default content. If you don't see the latest content, please regenerate the market_analysis_content.js file.</em></p>
+                </div>
+            `;
+
+            contentArea.innerHTML = defaultContent;
+            console.log('✅ Default content display completed');
+        }
+
+        // Load content from server (backup method)
+        async function loadFromServer() {
+            const contentArea = document.getElementById('marketContentArea');
+
+            try {
+                // Try loading from multiple possible server ports
+                const ports = [8080, 8081, 8082, 8083, 8084];
+                let mdContent = null;
+                let serverFound = false;
+
+                for (const port of ports) {
+                    try {
+                        const response = await fetch(`Generative Business Plan Content/Market Analysis.md?t=${Date.now()}`);
+                        if (response.ok) {
+                            mdContent = await response.text();
+                            serverFound = true;
+                            console.log(`✅ Content loaded successfully from port ${port}`);
+                            break;
+                        }
+                    } catch (e) {
+                        continue;
+                    }
+                }
+
+                if (mdContent && serverFound) {
+                    const htmlContent = parseMarkdown(mdContent);
+                    contentArea.innerHTML = `
+                        <div class="market-content">
+                            ${htmlContent}
+                        </div>
+                    `;
+                    console.log('✅ Market analysis content loaded successfully');
+                } else {
+                    // Final backup method: file selection
+                    await loadFromFileSystem();
+                }
+
+            } catch (error) {
+                console.log('⚠️ Server loading failed, using file selection');
+                await loadFromFileSystem();
+            }
+        }
+
+        // Load MD content from file system
+        async function loadFromFileSystem() {
+            const contentArea = document.getElementById('marketContentArea');
+
+            contentArea.innerHTML = `
+                <div class="market-content">
+                    <h3>📁 Select Market Analysis File</h3>
+                    <p><strong>Please select the market analysis MD file to view the latest content:</strong></p>
+                    <div style="margin: 20px 0;">
+                        <input type="file" id="mdFileInput" accept=".md" style="display: none;">
+                        <button onclick="document.getElementById('mdFileInput').click()"
+                                style="background: #FFC72C; color: #1D428A; border: none; padding: 10px 20px;
+                                       border-radius: 5px; cursor: pointer; font-weight: bold;">
+                            📂 Select Market Analysis.md File
+                        </button>
+                    </div>
+                    <p style="color: #B8C5D6; font-size: 14px;">
+                        File path: <code>Generative Business Plan Content/Market Analysis.md</code>
+                    </p>
+                    <hr>
+                    <div id="fileContentPreview">
+                        <h4>📋 Default Market Analysis Content</h4>
+                        <p>After selecting a file, the latest market analysis content will be displayed here</p>
+                    </div>
+                </div>
+            `;
+
+            // Set up file selection event listener
+            const fileInput = document.getElementById('mdFileInput');
+            fileInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file && file.name.endsWith('.md')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const mdContent = e.target.result;
+                        const htmlContent = parseMarkdown(mdContent);
+                        document.getElementById('fileContentPreview').innerHTML = `
+                            <div class="market-content" style="margin-top: 20px;">
+                                ${htmlContent}
+                            </div>
+                        `;
+                        console.log('✅ File content loaded successfully');
+                    };
+                    reader.readAsText(file, 'UTF-8');
+                } else {
+                    document.getElementById('fileContentPreview').innerHTML = `
+                        <p style="color: #ff6b6b;">❌ Please select a valid .md file</p>
+                    `;
+                }
+            });
+        }
+
+  
+        // Global variable to store last modification time
+        let lastModifiedTime = null;
+
+        // Check if file has been updated (via simple HEAD request check)
+        async function checkFileUpdate() {
+            try {
+                const response = await fetch('Generative Business Plan Content/Market Analysis.md?' + Date.now(), {
+                    method: 'HEAD'
+                });
+
+                if (response.ok) {
+                    const lastModified = response.headers.get('Last-Modified');
+
+                    if (lastModifiedTime === null || lastModified !== lastModifiedTime) {
+                        console.log('📝 File update detected, reloading content...');
+                        lastModifiedTime = lastModified;
+                        return true; // Update needed
+                    }
+                } else {
+                    // If HEAD request fails, file might be updated, need to reload
+                    return true;
+                }
+                return false; // No update needed
+            } catch (error) {
+                console.log('⚠️ Unable to check file status, attempting reload:', error);
+                return true; // Reload on error
+            }
+        }
+
+        // Smart refresh function for file updates
+        async function smartRefresh() {
+            const shouldUpdate = await checkFileUpdate();
+            if (shouldUpdate) {
+                await loadMarketContent();
+            }
+        }
+
+        // Check if JavaScript file has been updated
+        async function checkContentUpdate() {
+            try {
+                // Reload JavaScript file to get latest content
+                const script = document.createElement('script');
+                script.src = `market_analysis_content.js?t=${Date.now()}`;
+                script.onload = async function() {
+                    // Check if there is new content
+                    if (typeof MARKET_ANALYSIS_CONTENT !== 'undefined') {
+                        const currentContent = document.getElementById('marketContentArea').querySelector('.market-content');
+                        const newHtmlContent = parseMarkdown(MARKET_ANALYSIS_CONTENT);
+
+                        // If content has changed, update display
+                        if (!currentContent || !currentContent.innerHTML.includes(newHtmlContent.substring(0, 100))) {
+                            console.log('🔄 Content update detected, refreshing display...');
+                            await loadMarketContent();
+                        }
+                    }
+                };
+                document.head.appendChild(script);
+            } catch (error) {
+                console.log('⚠️ Update check failed:', error);
+            }
+        }
+
+        // Smart refresh function for preloaded content
+        async function smartRefreshPreloaded() {
+            await checkContentUpdate();
+        }
+
+        // Automatically load content after page fully loads
+        window.addEventListener('load', function() {
+            console.log('📱 Page fully loaded, starting content loading...');
+            loadMarketContent();
+
+            // Check every 30 seconds if content has been updated
+            setInterval(async function() {
+                await smartRefreshPreloaded();
+            }, 30000); // Check every 30 seconds
+
+            // Add page visibility change listener, check for updates when page regains focus
+            document.addEventListener('visibilitychange', async function() {
+                if (!document.hidden) {
+                    console.log('📱 Page regained focus, checking for updates...');
+                    await smartRefreshPreloaded();
+                }
+            });
+
+            // Add window focus listener
+            window.addEventListener('focus', async function() {
+                console.log('🖥️ Window gained focus, checking for updates...');
+                await smartRefreshPreloaded();
+            });
+
+            // Add keyboard shortcut support
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+R or F5 to refresh content
+                if ((e.ctrlKey && e.key === 'r') || e.key === 'F5') {
+                    e.preventDefault();
+                    console.log('⌨️ Manual content refresh...');
+                    loadMarketContent();
+                }
+            });
+        });
+    </script>
+    <script src="market_analysis_content.js"></script>
+</body>
+</html>
