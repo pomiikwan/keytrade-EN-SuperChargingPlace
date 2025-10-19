@@ -1,834 +1,905 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="库里蓝暗夜主题.css">
-    <script src="executive_summary_content.js"></script>
+<link href="库里蓝暗夜主题.css" rel="stylesheet"/>
+<script src="translate_js/terminology_translations.js"></script>
+<script src="translate_js/currency_conversion.js"></script>
+<script src="translate_js/content_translations.js"></script>
+<script src="translate_js/professional_translation_engine.js"></script>
+<script src="js/executive_summary_content_en.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Executive Summary - Thousand-Station Ultra-Fast Charging</title>
+<meta name="description" content="Professional investment summary for Thousand-Station Liquid-Cooled Ultra-Fast Charging project with Huawei 600kW technology. IRR 24.2%, 4.2-year payback period, 2.8 Billion CNY investment opportunity for global institutional investors.">
+<meta name="keywords" content="EV charging investment, liquid-cooled charging, Huawei technology, infrastructure investment, renewable energy, clean energy, IRR 24.2%, ROI, payback period, institutional investment">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Executive Summary</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    body {
+        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        background: #0A0E27;
+        min-height: 100vh;
+        color: #FFFFFF;
+    }
 
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #0A0E27;
-            min-height: 100vh;
-            color: #FFFFFF;
-        }
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        pointer-events: none;
+    }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            pointer-events: none;
-        }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
+    .hero-content {
+        background: rgba(26, 35, 71, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 60px 40px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        max-width: 800px;
+        margin: 0 auto;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
+    .logo {
+        font-size: 64px;
+        margin-bottom: 20px;
+    }
+
+    .title {
+        font-size: 48px;
+        font-weight: bold;
+        color: #FFFFFF;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .subtitle {
+        font-size: 24px;
+        color: #B8C5E0;
+        margin-bottom: 40px;
+        line-height: 1.4;
+    }
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+        margin: 40px 0;
+    }
+
+    .stat-card {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        border-color: #FFC72C;
+        box-shadow: 0 10px 25px rgba(255, 199, 44, 0.2);
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    .stat-value {
+        font-size: 32px;
+        font-weight: bold;
+        color: #FFC72C;
+        margin-bottom: 5px;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        min-width: 120px;
+        white-space: nowrap;
+        overflow: visible;
+    }
+
+    .stat-label {
+        font-size: 14px;
+        color: #B8C5E0;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 40px;
+    }
+
+    .btn {
+        padding: 15px 30px;
+        border: none;
+        border-radius: 30px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #1D428A 0%, #0077C0 100%);
+        color: white;
+        box-shadow: 0 10px 25px rgba(29, 66, 138, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(29, 66, 138, 0.4);
+        background: linear-gradient(135deg, #0077C0 0%, #1D428A 100%);
+    }
+
+    .btn-secondary {
+        background: rgba(255, 255, 255, 0.08);
+        color: #FFC72C;
+        border: 2px solid #FFC72C;
+    }
+
+    .btn-secondary:hover {
+        background: #FFC72C;
+        color: #1D428A;
+        transform: translateY(-3px);
+    }
+
+    .features {
+        margin-top: 60px;
+    }
+
+    .features-title {
+        font-size: 28px;
+        font-weight: bold;
+        color: #FFFFFF;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+
+    .feature-card {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: #FFC72C;
+        box-shadow: 0 10px 25px rgba(255, 199, 44, 0.2);
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    .feature-icon {
+        font-size: 48px;
+        margin-bottom: 15px;
+    }
+
+    .feature-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #FFFFFF;
+        margin-bottom: 10px;
+    }
+
+    .feature-description {
+        font-size: 14px;
+        color: #B8C5E0;
+        line-height: 1.5;
+    }
+
+    .tech-specs {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 30px;
+        margin-top: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .tech-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #FFFFFF;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .tech-item {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .tech-value {
+        font-size: 24px;
+        font-weight: bold;
+        color: #FFC72C;
+        margin-bottom: 5px;
+    }
+
+    .tech-label {
+        font-size: 12px;
+        color: #B8C5E0;
+    }
+
+    .contact {
+        text-align: center;
+        margin-top: 60px;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #FFFFFF;
+        margin-bottom: 15px;
+    }
+
+    .contact-info {
+        font-size: 16px;
+        color: #B8C5E0;
+        line-height: 1.8;
+    }
+
+    .highlight {
+        color: #FFC72C;
+        font-weight: bold;
+    }
+
+    /* Executive summary content area styling */
+    .executive-summary-section {
+        margin-top: 60px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .section-title {
+        font-size: 32px;
+        font-weight: bold;
+        color: #FFFFFF;
+        margin: 0;
+    }
+
+    .refresh-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid #FFC72C;
+        color: #FFC72C;
+        padding: 10px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .refresh-btn:hover {
+        background: #FFC72C;
+        color: #1D428A;
+    }
+
+    .loading-indicator {
+        text-align: center;
+        color: #B8C5E0;
+        padding: 40px;
+        font-size: 16px;
+    }
+
+    .loading-spinner {
+        border: 3px solid rgba(255, 199, 44, 0.3);
+        border-top: 3px solid #FFC72C;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .content-area {
+        color: #FFFFFF;
+        line-height: 1.8;
+        text-align: left;
+    }
+
+    .content-area h1 {
+        color: #FFFFFF;
+        font-size: 28px;
+        margin: 30px 0 20px 0;
+        border-bottom: 2px solid #FFC72C;
+        padding-bottom: 10px;
+    }
+
+    .content-area h2 {
+        color: #FFFFFF;
+        font-size: 24px;
+        margin: 25px 0 15px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 8px;
+    }
+
+    .content-area h3 {
+        color: #FFFFFF;
+        font-size: 20px;
+        margin: 20px 0 10px 0;
+    }
+
+    .content-area h4 {
+        color: #FFFFFF;
+        font-size: 18px;
+        margin: 15px 0 8px 0;
+    }
+
+    .content-area h5 {
+        color: #FFFFFF;
+        font-size: 16px;
+        margin: 12px 0 6px 0;
+    }
+
+    .content-area h6 {
+        color: #FFFFFF;
+        font-size: 14px;
+        margin: 10px 0 5px 0;
+    }
+
+    .content-area p {
+        margin-bottom: 15px;
+        color: #B8C5E0;
+        text-align: left;
+        text-indent: 2em;
+        line-height: 1.8;
+    }
+
+    /* Special paragraph styling - no first-line indentation */
+    .content-area p.no-indent {
+        text-indent: 0;
+    }
+
+    /* Paragraphs after list items */
+    .content-area ul + p,
+    .content-area ol + p {
+        text-indent: 2em;
+    }
+
+    /* Paragraphs after blockquotes */
+    .content-area blockquote + p {
+        text-indent: 2em;
+    }
+
+    /* Paragraphs before/after tables */
+    .content-area table + p,
+    .content-area p + table {
+        text-indent: 2em;
+    }
+
+    /* Paragraphs before/after code blocks */
+    .content-area pre + p,
+    .content-area p + pre {
+        text-indent: 2em;
+    }
+
+    .content-area ul, .content-area ol {
+        margin: 15px 0;
+        padding-left: 25px;
+    }
+
+    .content-area li {
+        margin-bottom: 8px;
+        color: #B8C5E0;
+    }
+
+    .content-area table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .content-area th, .content-area td {
+        padding: 12px 15px;
+        text-align: left;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .content-area th {
+        background: rgba(255, 199, 44, 0.2);
+        color: #FFFFFF;
+        font-weight: bold;
+    }
+
+    .content-area td {
+        color: #B8C5E0;
+    }
+
+    .content-area blockquote {
+        border-left: 4px solid #FFC72C;
+        padding-left: 20px;
+        margin: 20px 0;
+        color: #B8C5E0;
+        font-style: italic;
+    }
+
+    .content-area code {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: #FFC72C;
+        font-family: 'Courier New', monospace;
+    }
+
+    .content-area pre {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 10px;
+        overflow-x: auto;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .content-area pre code {
+        background: none;
+        padding: 0;
+        color: #FFFFFF;
+    }
+
+    .content-area a {
+        color: #FFC72C;
+        text-decoration: none;
+    }
+
+    .content-area a:hover {
+        text-decoration: underline;
+    }
+
+    .error-message {
+        text-align: center;
+        color: #ff6b6b;
+        padding: 40px;
+        background: rgba(255, 107, 107, 0.1);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 107, 107, 0.3);
+    }
+
+    @media (max-width: 768px) {
         .hero-content {
-            background: rgba(26, 35, 71, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 60px 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 800px;
-            margin: 0 auto;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .logo {
-            font-size: 64px;
-            margin-bottom: 20px;
+            padding: 40px 20px;
         }
 
         .title {
-            font-size: 48px;
-            font-weight: bold;
-            color: #FFFFFF;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            font-size: 36px;
         }
 
         .subtitle {
-            font-size: 24px;
-            color: #B8C5E0;
-            margin-bottom: 40px;
-            line-height: 1.4;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: #FFC72C;
-            box-shadow: 0 10px 25px rgba(255, 199, 44, 0.2);
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        .stat-value {
-            font-size: 32px;
-            font-weight: bold;
-            color: #FFC72C;
-            margin-bottom: 5px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: #B8C5E0;
+            font-size: 20px;
         }
 
         .action-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 40px;
+            flex-direction: column;
+            align-items: center;
         }
 
         .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #1D428A 0%, #0077C0 100%);
-            color: white;
-            box-shadow: 0 10px 25px rgba(29, 66, 138, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(29, 66, 138, 0.4);
-            background: linear-gradient(135deg, #0077C0 0%, #1D428A 100%);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.08);
-            color: #FFC72C;
-            border: 2px solid #FFC72C;
-        }
-
-        .btn-secondary:hover {
-            background: #FFC72C;
-            color: #1D428A;
-            transform: translateY(-3px);
-        }
-
-        .features {
-            margin-top: 60px;
-        }
-
-        .features-title {
-            font-size: 28px;
-            font-weight: bold;
-            color: #FFFFFF;
-            margin-bottom: 30px;
-            text-align: center;
+            width: 100%;
+            max-width: 300px;
         }
 
         .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
+            grid-template-columns: 1fr;
         }
 
-        .feature-card {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: #FFC72C;
-            box-shadow: 0 10px 25px rgba(255, 199, 44, 0.2);
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        .feature-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .feature-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #FFFFFF;
-            margin-bottom: 10px;
-        }
-
-        .feature-description {
-            font-size: 14px;
-            color: #B8C5E0;
-            line-height: 1.5;
-        }
-
-        .tech-specs {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 30px;
-            margin-top: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .tech-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #FFFFFF;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .tech-item {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .tech-value {
-            font-size: 24px;
-            font-weight: bold;
-            color: #FFC72C;
-            margin-bottom: 5px;
-        }
-
-        .tech-label {
-            font-size: 12px;
-            color: #B8C5E0;
-        }
-
-        .contact {
-            text-align: center;
-            margin-top: 60px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .contact-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #FFFFFF;
-            margin-bottom: 15px;
-        }
-
-        .contact-info {
-            font-size: 16px;
-            color: #B8C5E0;
-            line-height: 1.8;
-        }
-
-        .highlight {
-            color: #FFC72C;
-            font-weight: bold;
-        }
-
-        /* Executive summary content area styles */
+        /* Executive summary area mobile adaptation */
         .executive-summary-section {
-            margin-top: 60px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin-top: 40px;
         }
 
         .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
         }
 
         .section-title {
-            font-size: 32px;
-            font-weight: bold;
-            color: #FFFFFF;
-            margin: 0;
+            font-size: 24px;
         }
 
         .refresh-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #FFC72C;
-            color: #FFC72C;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .refresh-btn:hover {
-            background: #FFC72C;
-            color: #1D428A;
-        }
-
-        .loading-indicator {
-            text-align: center;
-            color: #B8C5E0;
-            padding: 40px;
-            font-size: 16px;
-        }
-
-        .loading-spinner {
-            border: 3px solid rgba(255, 199, 44, 0.3);
-            border-top: 3px solid #FFC72C;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .content-area {
-            color: #FFFFFF;
-            line-height: 1.8;
+            font-size: 12px;
+            padding: 8px 16px;
         }
 
         .content-area h1 {
-            color: #FFFFFF;
-            font-size: 28px;
-            margin: 30px 0 20px 0;
-            border-bottom: 2px solid #FFC72C;
-            padding-bottom: 10px;
+            font-size: 22px;
+            margin: 20px 0 15px 0;
         }
 
         .content-area h2 {
-            color: #FFFFFF;
-            font-size: 24px;
-            margin: 25px 0 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding-bottom: 8px;
+            font-size: 20px;
+            margin: 18px 0 12px 0;
         }
 
         .content-area h3 {
-            color: #FFFFFF;
-            font-size: 20px;
-            margin: 20px 0 10px 0;
-        }
-
-        .content-area h4 {
-            color: #FFFFFF;
             font-size: 18px;
             margin: 15px 0 8px 0;
         }
 
-        .content-area h5 {
-            color: #FFFFFF;
+        .content-area h4 {
             font-size: 16px;
             margin: 12px 0 6px 0;
         }
 
-        .content-area h6 {
-            color: #FFFFFF;
+        .content-area h5 {
             font-size: 14px;
             margin: 10px 0 5px 0;
         }
 
-        .content-area p {
-            margin-bottom: 15px;
-            color: #B8C5E0;
-            text-align: left;
-            text-indent: 2em;
-            line-height: 1.8;
-        }
-
-        /* Special paragraph styles - no first-line indentation */
-        .content-area p.no-indent {
-            text-indent: 0;
-        }
-
-        /* Paragraphs after list items */
-        .content-area ul + p,
-        .content-area ol + p {
-            text-indent: 2em;
-        }
-
-        /* Paragraphs after blockquotes */
-        .content-area blockquote + p {
-            text-indent: 2em;
-        }
-
-        /* Paragraphs before and after tables */
-        .content-area table + p,
-        .content-area p + table {
-            text-indent: 2em;
-        }
-
-        /* Paragraphs before and after code blocks */
-        .content-area pre + p,
-        .content-area p + pre {
-            text-indent: 2em;
-        }
-
-        .content-area ul, .content-area ol {
-            margin: 15px 0;
-            padding-left: 25px;
-        }
-
-        .content-area li {
-            margin-bottom: 8px;
-            color: #B8C5E0;
+        .content-area h6 {
+            font-size: 13px;
+            margin: 8px 0 4px 0;
         }
 
         .content-area table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            overflow: hidden;
+            font-size: 12px;
         }
 
         .content-area th, .content-area td {
-            padding: 12px 15px;
-            text-align: left;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .content-area th {
-            background: rgba(255, 199, 44, 0.2);
-            color: #FFFFFF;
-            font-weight: bold;
-        }
-
-        .content-area td {
-            color: #B8C5E0;
-        }
-
-        .content-area blockquote {
-            border-left: 4px solid #FFC72C;
-            padding-left: 20px;
-            margin: 20px 0;
-            color: #B8C5E0;
-            font-style: italic;
-        }
-
-        .content-area code {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: #FFC72C;
-            font-family: 'Courier New', monospace;
+            padding: 8px 10px;
         }
 
         .content-area pre {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 10px;
+            padding: 15px;
+            font-size: 12px;
             overflow-x: auto;
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .content-area pre code {
-            background: none;
-            padding: 0;
-            color: #FFFFFF;
+        .content-area p {
+            text-indent: 1.5em; /* Mobile slightly reduce indentation */
+            font-size: 14px;
+            text-align: left;
         }
 
-        .content-area a {
-            color: #FFC72C;
-            text-decoration: none;
+        .tech-grid {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
         }
 
-        .content-area a:hover {
-            text-decoration: underline;
+        .stats {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+    }
+
+    /* Extra small screen adaptation */
+    @media (max-width: 480px) {
+        .hero-content {
+            padding: 30px 15px;
         }
 
-        .error-message {
-            text-align: center;
-            color: #ff6b6b;
-            padding: 40px;
-            background: rgba(255, 107, 107, 0.1);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 107, 107, 0.3);
+        .title {
+            font-size: 28px;
         }
 
-        @media (max-width: 768px) {
-            .hero-content {
-                padding: 40px 20px;
-            }
-
-            .title {
-                font-size: 36px;
-            }
-
-            .subtitle {
-                font-size: 20px;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            /* Executive summary area mobile adaptation */
-            .executive-summary-section {
-                padding: 20px;
-                margin-top: 40px;
-            }
-
-            .section-header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-
-            .section-title {
-                font-size: 24px;
-            }
-
-            .refresh-btn {
-                font-size: 12px;
-                padding: 8px 16px;
-            }
-
-            .content-area h1 {
-                font-size: 22px;
-                margin: 20px 0 15px 0;
-            }
-
-            .content-area h2 {
-                font-size: 20px;
-                margin: 18px 0 12px 0;
-            }
-
-            .content-area h3 {
-                font-size: 18px;
-                margin: 15px 0 8px 0;
-            }
-
-            .content-area h4 {
-                font-size: 16px;
-                margin: 12px 0 6px 0;
-            }
-
-            .content-area h5 {
-                font-size: 14px;
-                margin: 10px 0 5px 0;
-            }
-
-            .content-area h6 {
-                font-size: 13px;
-                margin: 8px 0 4px 0;
-            }
-
-            .content-area table {
-                font-size: 12px;
-            }
-
-            .content-area th, .content-area td {
-                padding: 8px 10px;
-            }
-
-            .content-area pre {
-                padding: 15px;
-                font-size: 12px;
-                overflow-x: auto;
-            }
-
-            .content-area p {
-                text-indent: 1.5em; /* Slightly reduce indentation on mobile */
-                font-size: 14px;
-            }
-
-            .tech-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 15px;
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
+        .subtitle {
+            font-size: 18px;
         }
 
-        /* Extra small screen adaptation */
-        @media (max-width: 480px) {
-            .hero-content {
-                padding: 30px 15px;
-            }
-
-            .title {
-                font-size: 28px;
-            }
-
-            .subtitle {
-                font-size: 18px;
-            }
-
-            .section-title {
-                font-size: 20px;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-
-            .stat-value {
-                font-size: 24px;
-            }
-
-            .tech-grid {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-
-            .executive-summary-section {
-                padding: 15px;
-            }
-
-            .content-area p {
-                text-indent: 1em; /* Further reduce indentation on extra small screens */
-                font-size: 13px;
-            }
+        .section-title {
+            font-size: 20px;
         }
 
-        .floating-action {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
+        .stats {
+            grid-template-columns: 1fr;
+            gap: 10px;
         }
 
-        .floating-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            border: none;
+        .stat-value {
             font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(16,185,129,0.3);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .floating-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(16,185,129,0.4);
+        .tech-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
         }
-    </style>
+
+        .executive-summary-section {
+            padding: 15px;
+        }
+
+        .content-area p {
+            text-indent: 1em; /* Extra small screen further reduce indentation */
+            font-size: 13px;
+            text-align: left;
+        }
+    }
+
+    .floating-action {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+    }
+
+    .floating-btn {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 10px 25px rgba(16,185,129,0.3);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .floating-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 15px 35px rgba(16,185,129,0.4);
+    }
+
+    /* Auto-generated content styling */
+    .refreshed-content {
+        font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    .refreshed-content h1,
+    .refreshed-content h2,
+    .refreshed-content h3,
+    .refreshed-content h4,
+    .refreshed-content h5,
+    .refreshed-content h6 {
+        color: #2c3e50;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .refreshed-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .refreshed-content th,
+    .refreshed-content td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .refreshed-content th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+        color: #495057;
+    }
+
+    .refreshed-content pre {
+        background-color: #f8f9fa;
+        padding: 1rem;
+        border-radius: 4px;
+        overflow-x: auto;
+        border-left: 4px solid #007bff;
+    }
+
+    .refreshed-content code {
+        background-color: #e9ecef;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-family: 'Consolas', 'Monaco', monospace;
+    }
+
+    .refreshed-content ul,
+    .refreshed-content ol {
+        padding-left: 2rem;
+        margin: 1rem 0;
+    }
+
+    .refreshed-content li {
+        margin: 0.5rem 0;
+    }
+
+    .refreshed-content blockquote {
+        border-left: 4px solid #007bff;
+        padding-left: 1rem;
+        margin: 1rem 0;
+        color: #6c757d;
+        font-style: italic;
+    }
+
+    .refreshed-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 1rem 0;
+        border-radius: 4px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+        .refreshed-content {
+            font-size: 14px;
+        }
+
+        .refreshed-content th,
+        .refreshed-content td {
+            padding: 8px 10px;
+        }
+    }
+</style>
 </head>
 <body>
-    <div class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="logo">⚡</div>
-                <h1 class="title">Project Executive Summary</h1>
-                <p class="subtitle">Huawei 600kW Liquid-Cooled Ultra-Fast Charging Technology • 1km/Second Charging Speed • Total Investment ¥2.8B for 1000 Ultra-Fast Charging Stations</p>
-
-                <div class="stats">
-                    <div class="stat-card">
-                        <div class="stat-value">42.8%</div>
-                        <div class="stat-label">Project IRR</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">4.5 Years</div>
-                        <div class="stat-label">Payback Period</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">¥1.24B</div>
-                        <div class="stat-label">NPV@12%</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">435%</div>
-                        <div class="stat-label">10-Year ROI</div>
-                    </div>
-                </div>
-
-                <div class="action-buttons">
-                    <a href="商业计划书投资者版_en.html" class="btn btn-primary">
-                        🚀 Enter Official Business Plan
-                    </a>
-                    <a href="交互式计算器_en.html" class="btn btn-secondary">
-                        🧮 Use Financial Calculator
-                    </a>
-                </div>
-
-                <div class="tech-specs">
-                    <h3 class="tech-title">⚡ Key Technical Specifications</h3>
-                    <div class="tech-grid">
-                        <div class="tech-item">
-                            <div class="tech-value"> 600kW </div>
-                            <div class="tech-label">Max Single-Gun Power </div>
-                        </div>
-                        <div class="tech-item">
-                            <div class="tech-value">96%</div>
-                            <div class="tech-label">Conversion Efficiency</div>
-                        </div>
-                        <div class="tech-item">
-                            <div class="tech-value">15 Years</div>
-                            <div class="tech-label">Design Life</div>
-                        </div>
-                        <div class="tech-item">
-                            <div class="tech-value">< 60dB</div>
-                            <div class="tech-label">Operating Noise</div>
-                        </div>
-                        <div class="tech-item">
-                            <div class="tech-value">300W/°C</div>
-                            <div class="tech-label">Cooling Efficiency</div>
-                        </div>
-                        <div class="tech-item">
-                            <div class="tech-value">1000 Stations</div>
-                            <div class="tech-label">Planned Construction</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="features">
-                    <h3 class="features-title">🎯 Project Highlights</h3>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <div class="feature-icon">🔬</div>
-                            <div class="feature-title">Technology Leadership</div>
-                            <div class="feature-description">Huawei liquid-cooled ultra-fast charging technology, industry-leading power density, 60x faster charging speed</div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">📈</div>
-                            <div class="feature-title">Massive Market</div>
-                            <div class="feature-description">Charging pile market CAGR of 35%, projected to reach $125.39B by 2030</div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">💰</div>
-                            <div class="feature-title">Excellent Returns</div>
-                            <div class="feature-description">Project IRR 42.8%, 10-year ROI 435%, 4.5-year payback period</div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🛡️</div>
-                            <div class="feature-title">Controlled Risks</div>
-                            <div class="feature-description">Multiple exit mechanisms, high technological barriers, strong policy support</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact">
-                    <h3 class="contact-title">📞 Contact Us</h3>
-                    <div class="contact-info">
-                        <div><strong>Project Company:</strong> Shenzhen Supercomputing Power Technology Co., Ltd.</div>
-                        <div><strong>Contact Email:</strong><a href="mailto:invest@supercharging.com" style="color: #3b82f6;">invest@supercharging.com</a></div>
-                        <div><strong>Project Location:</strong> Nanshan District, Shenzhen</div>
-                        <div style="margin-top: 15px;">
-                            <span class="highlight">Strongly Recommended</span> •
-                            <span class="highlight">Investment Rating</span> •
-                            <span class="highlight">Expected Returns 15-25x</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 执行摘要内容区域 -->
-                <div class="executive-summary-section">
-                    <div class="section-header">
-                        <h2 class="section-title">📋 Executive Summary</h2>
-                        <button class="refresh-btn" onclick="loadExecutiveSummary()">
-                            <span>🔄</span>
-                            <span>Refresh Content</span>
-                        </button>
-                    </div>
-
-                    <div id="executive-summary-content">
-                        <div class="loading-indicator">
-                            <div class="loading-spinner"></div>
-                            <div>Loading executive summary content...</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="floating-action">
-    </div>
-
-    <script>
+<div class="hero">
+<div class="container">
+<div class="hero-content">
+<div class="logo">⚡</div>
+<h1 class="title">Project Executive Summary</h1>
+<p class="subtitle">Huawei 600kW Liquid-Cooled Ultra-Fast Charging Technology • 1km/s Charging Speed • 2.8 Billion CNY Investment for 1000 Supercharging Stations</p>
+<div class="stats">
+<div class="stat-card">
+<div class="stat-value">24.2%</div>
+<div class="stat-label">Project IRR</div>
+</div>
+<div class="stat-card">
+<div class="stat-value">4.2 Years</div>
+<div class="stat-label">Payback Period</div>
+</div>
+<div class="stat-card">
+<div class="stat-value">0.87</div>
+<div class="stat-label">(Billion)NPV@10%</div>
+</div>
+<div class="stat-card">
+<div class="stat-value">310%</div>
+<div class="stat-label">10-Year ROI</div>
+</div>
+</div>
+<div class="action-buttons">
+</div>
+<div class="tech-specs">
+<h3 class="tech-title">⚡ Core Technical Specifications</h3>
+<div class="tech-grid">
+<div class="tech-item">
+<div class="tech-value">600kW</div>
+<div class="tech-label">Max Power per Gun</div>
+</div>
+<div class="tech-item">
+<div class="tech-value">96%</div>
+<div class="tech-label">Conversion Efficiency</div>
+</div>
+<div class="tech-item">
+<div class="tech-value">15 Years</div>
+<div class="tech-label">Design Lifespan</div>
+</div>
+<div class="tech-item">
+<div class="tech-value">&lt; 60dB</div>
+<div class="tech-label">Operating Noise</div>
+</div>
+<div class="tech-item">
+<div class="tech-value">300W/°C</div>
+<div class="tech-label">Cooling Efficiency</div>
+</div>
+<div class="tech-item">
+<div class="tech-value">1000 Stations</div>
+<div class="tech-label">Planned Construction</div>
+</div>
+</div>
+</div>
+<div class="features">
+<h3 class="features-title">🎯 Project Highlights</h3>
+<div class="features-grid">
+<div class="feature-card">
+<div class="feature-icon">🔬</div>
+<div class="feature-title">Technology Leadership</div>
+<div class="feature-description">Huawei's complete liquid-cooled ultra-fast charging technology, industry-leading power density, 60x faster charging speed</div>
+</div>
+<div class="feature-card">
+<div class="feature-icon">📈</div>
+<div class="feature-title">Massive Market</div>
+<div class="feature-description">Charging pile market CAGR of 35%, projected to reach $125.39 billion by 2030</div>
+</div>
+<div class="feature-card">
+<div class="feature-icon">💰</div>
+<div class="feature-title">Generous Returns</div>
+<div class="feature-description">Project IRR 24.2%, 10-year ROI 310%, investment recovery in 4.2 years</div>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🛡️</div>
+<div class="feature-title">Controlled Risk</div>
+<div class="feature-description">Multiple exit mechanisms, high technical barriers, strong policy support</div>
+</div>
+</div>
+</div>
+<!-- Executive summary content area -->
+<div class="executive-summary-section">
+<div class="section-header">
+<h2 class="section-title">📋 Executive Summary</h2>
+<button class="refresh-btn" onclick="loadExecutiveSummary()">
+<span>🔄</span>
+<span>Refresh Content</span>
+</button>
+</div>
+<div class="refreshed-content" id="executive-summary-content"><h1 id='\"-\"'>Executive Summary</h1><h2 id='\"_1\"'>Project Overview</h2><p class='\"mb-3\"'><br/>\n<strong>Project Name</strong>: Thousand-Station Liquid-Cooled Ultra-Fast Charging Project<br/>\n<strong>Investment Scale</strong>: 2.8 Billion Chinese Yuan<br/>\n<strong>Construction Content</strong>: 1000 Huawei 600kW liquid-cooled ultra-fast charging stations<br/>\n<strong>Technical Core</strong>: Huawei's complete liquid-cooled ultra-fast charging technology, "1km per second" charging speed<br/>\n<strong>Payback Period</strong>: 4.2 years<br/>\n<strong>Project IRR</strong>: 24.2%<br/>\n<strong>NPV@10%</strong>: 0.87 Billion CNY</p><h2 id='\"_2\"'>Core Investment Highlights</h2><h3 id='\"_3\"'>🚀 Technological Leadership Advantages</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Power Advantage</strong>: 600kW-1000kW+ megawatt-level power, exclusive technical dividend period</li>\n<li class='\"mb-2\"'><strong>Charging Speed</strong>: 2-3 minutes for full charge, achieving "coffee time, full charge departure" experience</li>\n<li class='\"mb-2\"'><strong>Conversion Efficiency</strong>: >96%, industry-leading energy utilization efficiency</li>\n<li class='\"mb-2\"'><strong>Cooling Technology</strong>: Huawei's fully self-developed liquid cooling, 300% improvement in cooling efficiency</li>\n<li class='\"mb-2\"'><strong>Equipment Reliability</strong>: <0.04% failure rate, industry's highest standard</li>\n<li class='\"mb-2\"'><strong>Megawatt Upgrade</strong>: Smooth upgrade to 1000kW+ megawatt level, 70% reduction in upgrade costs</li>\n<li class='\"mb-2\"'><strong>Technology Exclusivity</strong>: Huawei's exclusive megawatt technology, 3-5 year absolute leading window</li>\n</ul><h3 id='\"_4\"'>💡 Market Cognition Reconstruction Value</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Time Value Monetization</strong>: Save 37 minutes per charge, time value 48.6 CNY per session</li>\n<li class='\"mb-2\"'><strong>Benchmark Correction</strong>: Shift from traditional charging station standards to gas station-style service efficiency</li>\n<li class='\"mb-2\"'><strong>Experience Revolution</strong>: Transform from "waiting for charging" to "charging like refueling"</li>\n<li class='\"mb-2\"'><strong>Efficiency Leap</strong>: Daily average charge per gun 720 kWh, 150%+ improvement in service capacity</li>\n<li class='\"mb-2\"'><strong>Business Value Reassessment</strong>: Upgrade from infrastructure positioning to time value service platform</li>\n</ul><h3 id='\"_5\"'>📈 Massive Market Opportunities</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Market Growth</strong>: 2023 pure electric vehicle ownership 12.6 million units, CAGR 25%</li>\n<li class='\"mb-2\"'><strong>Market Capacity</strong>: 2027 effective site locations 504, market investment scale 1.41 Billion CNY</li>\n<li class='\"mb-2\"'><strong>Policy Support</strong>: County-level ultra-fast charging demonstration projects, construction subsidy 100,000 CNY per station</li>\n<li class='\"mb-2\"'><strong>Demand Explosion</strong>: New energy vehicle penetration rate continues to increase, rigid growth in charging demand</li>\n<li class='\"mb-2\"'><strong>Competitive Advantage</strong>: Huawei 600kW technology leads, exclusive megawatt technology dividend period</li>\n</ul><h3 id='\"_6\"'>💰 Generous Financial Returns</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Internal Rate of Return</strong>: 24.2% (Project IRR), significantly higher than infrastructure average</li>\n<li class='\"mb-2\"'><strong>Net Present Value</strong>: NPV@10% = 0.87 Billion CNY, clear value creation</li>\n<li class='\"mb-2\"'><strong>Payback Period</strong>: 4.2 years (based on EBITDA calculation), high capital turnover efficiency</li>\n<li class='\"mb-2\"'><strong>Annual Revenue per Station</strong>: 22.27 Million CNY, stable and diversified revenue structure</li>\n<li class='\"mb-2\"'><strong>Annual Profit per Station</strong>: 3.79 Million CNY, strong profitability</li>\n<li class='\"mb-2\"'><strong>EBITDA Margin</strong>: 28.6%, excellent operational efficiency</li>\n<li class='\"mb-2\"'><strong>Annual Project Cash Flow</strong>: 636 Million CNY, sufficient cash flow</li>\n</ul><h3 id='\"_7\"'>📊 Performance Attribution Analysis</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Technology Leadership Contribution</strong>: IRR contribution 5.49 percentage points, 19.6% proportion, largest positive driver</li>\n<li class='\"mb-2\"'><strong>Significant Efficiency Improvement</strong>: 600kW vs 180kW, 333.3% efficiency improvement</li>\n<li class='\"mb-2\"'><strong>Pricing Strategy Impact</strong>: 0.30 CNY/kWh vs 0.40 CNY/kWh benchmark, IRR impact -11.68 percentage points</li>\n<li class='\"mb-2\"'><strong>Effective Cost Control</strong>: 2.8 Million CNY per station construction cost, cost advantage</li>\n<li class='\"mb-2\"'><strong>Stable Policy Support</strong>: 100,000 CNY per station subsidy, 6-year continuous support period</li>\n</ul><h3 id='\"_8\"'>🛡️ Comprehensive Risk Control</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Extremely Low Technical Risk</strong>: Huawei's exclusive megawatt technology guarantee, 3-5 year technology dividend period, failure rate <0.04%</li>\n<li class='\"mb-2\"'><strong>Controllable Market Risk</strong>: Rigid demand for time value, gas station benchmarking logic, conservative scenario IRR 10.1% still higher than cost of capital</li>\n<li class='\"mb-2\"'><strong>Low Policy Risk</strong>: 6-year continuous support period, significantly better than photovoltaic industry, stable county-level ultra-fast charging demonstration policy</li>\n<li class='\"mb-2\"'><strong>Small Competition Risk</strong>: Megawatt technology absolute leadership, exclusive technological high ground, county-level exclusive cooperation protection</li>\n<li class='\"mb-2\"'><strong>Moderate Execution Risk</strong>: Modular prefabricated construction, Huawei supply chain guarantee, multi-supplier strategy</li>\n</ul><h3 id='\"_1000\"'>📊 Monte Carlo Risk Quantification (1000 Simulations)</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>IRR Mean</strong>: 29.3%, higher than baseline scenario</li>\n<li class='\"mb-2\"'><strong>Standard Deviation</strong>: 20%, moderate volatility</li>\n<li class='\"mb-2\"'><strong>95% Confidence Interval</strong>: 4.3% - 69.1%, limited downside risk</li>\n<li class='\"mb-2\"'><strong>Probability Above Cost of Capital</strong>: 84.2%, high success probability</li>\n<li class='\"mb-2\"'><strong>Risk Rating</strong>: Medium-high, technology advantage provides strong buffer</li>\n</ul><h2 id='\"_9\"'>Core Technical Specifications</h2><table class='\"table' table-hover\"="" table-striped="">\n<thead>\n<tr>\n<th>Technical Indicator</th>\n<th>Parameter Value</th>\n<th>Industry Comparison</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Max Power per Gun</td>\n<td>600kW</td>\n<td>Industry Highest</td>\n</tr>\n<tr>\n<td>Charging Speed</td>\n<td>"1km per second"</td>\n<td>60x faster than traditional charging</td>\n</tr>\n<tr>\n<td>Conversion Efficiency</td>\n<td>>96%</td>\n<td>Industry Leading</td>\n</tr>\n<tr>\n<td>Cooling Efficiency</td>\n<td>300W/°C</td>\n<td>300% improvement</td>\n</tr>\n<tr>\n<td>Design Lifespan</td>\n<td>15 years</td>\n<td>2x industry average</td>\n</tr>\n<tr>\n<td>Operating Noise</td>\n<td><60dB</td>\n<td>Silent operation</td>\n</tr>\n<tr>\n<td>Power Density</td>\n<td>Industry First</td>\n<td>Technology Leadership</td>\n</tr>\n</tbody>\n</table><h2 id='\"_10\"'>Market Prospect Analysis</h2><h3 id='\"_11\"'>Electric Vehicle Market Explosion</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Penetration Rate Increase</strong>: From 5% in 2020 to 35% in 2025</li>\n<li class='\"mb-2\"'><strong>Ownership Forecast</strong>: China's electric vehicle ownership will reach 80 million units by 2030</li>\n<li class='\"mb-2\"'><strong>Charging Demand</strong>: Corresponding need for 10 million+ charging piles, huge market space</li>\n</ul><h3 id='\"_12\"'>Strong Policy Drivers</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Dual Carbon Goals</strong>: Carbon peak by 2030, carbon neutrality by 2060</li>\n<li class='\"mb-2\"'><strong>New Energy Subsidies</strong>: Up to 30% construction subsidies</li>\n<li class='\"mb-2\"'><strong>Land Support</strong>: Preferential policies for charging facility construction land</li>\n<li class='\"mb-2\"'><strong>Electricity Price Preferences</strong>: Large industrial electricity price support</li>\n</ul><h3 id='\"_13\"'>Technology Development Trends</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Fast Charging Demand</strong>: Users continuously demand higher charging speeds</li>\n<li class='\"mb-2\"'><strong>Intelligent Operation</strong>: AI-powered maintenance, remote monitoring becomes standard</li>\n<li class='\"mb-2\"'><strong>Network Connectivity</strong>: V2G (Vehicle-to-Grid) technology popularization</li>\n<li class='\"mb-2\"'><strong>Liquid Cooling Technology</strong>: Becomes standard for high-power charging</li>\n</ul><h2 id='\"_14\"'>Competitive Advantage Analysis</h2><h3 id='\"_15\"'>Technical Barriers</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Huawei Technology</strong>: Deep cooperation with Huawei, technology exclusivity</li>\n<li class='\"mb-2\"'><strong>Patent Protection</strong>: Core patent technology protection</li>\n<li class='\"mb-2\"'><strong>R&D Investment</strong>: Continuous 5% revenue investment in R&D</li>\n<li class='\"mb-2\"'><strong>Technical Team</strong>: Huawei-background technical team</li>\n</ul><h3 id='\"_16\"'>Scale Advantages</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Thousand-Station Scale</strong>: Scale effect of 1000 stations</li>\n<li class='\"mb-2\"'><strong>Procurement Advantages</strong>: Large-scale procurement cost advantages</li>\n<li class='\"mb-2\"'><strong>Brand Effect</strong>: National brand influence</li>\n<li class='\"mb-2\"'><strong>Network Effect</strong>: Full-coverage charging network</li>\n</ul><h3 id='\"_17\"'>Operational Advantages</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Intelligent Operation</strong>: AI predictive maintenance</li>\n<li class='\"mb-2\"'><strong>Standardization</strong>: Standardized construction and operation processes</li>\n<li class='\"mb-2\"'><strong>Cost Control</strong>: Refined cost management system</li>\n<li class='\"mb-2\"'><strong>User Experience</strong>: High-quality charging service experience</li>\n</ul><h2 id='\"_18\"'>Financial Forecast Summary</h2><h3 id='\"_28\"'>Investment Composition (2.8 Billion CNY)</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Equipment Investment</strong>: 1.8 Billion CNY (64%)</li>\n<li class='\"mb-2\"'><strong>Site Investment</strong>: 400 Million CNY (14%)</li>\n<li class='\"mb-2\"'><strong>Working Capital</strong>: 300 Million CNY (11%)</li>\n<li class='\"mb-2\"'><strong>Technology R&D</strong>: 200 Million CNY (7%)</li>\n<li class='\"mb-2\"'><strong>Other Expenses</strong>: 100 Million CNY (4%)</li>\n</ul><h3 id='\"_10\"'>Revenue Forecast (10 Years)</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Charging Revenue</strong>: 28 Billion CNY (85%)</li>\n<li class='\"mb-2\"'><strong>Value-added Services</strong>: 3.5 Billion CNY (11%)</li>\n<li class='\"mb-2\"'><strong>Advertising Revenue</strong>: 1.4 Billion CNY (4%)</li>\n<li class='\"mb-2\"'><strong>Total Revenue</strong>: 32.9 Billion CNY</li>\n</ul><h3 id='\"_19\"'>Profit Forecast</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Cumulative Gross Profit</strong>: 18.96 Billion CNY</li>\n<li class='\"mb-2\"'><strong>Cumulative Net Profit</strong>: 12.19 Billion CNY</li>\n<li class='\"mb-2\"'><strong>Average Annual Net Profit</strong>: 1.22 Billion CNY</li>\n<li class='\"mb-2\"'><strong>Average Net Margin</strong>: 37%</li>\n</ul><h2 id='\"_20\"'>Risk Assessment</h2><h3 id='\"_21\"'>Market Risk (Medium)</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Intensifying Competition</strong>: Traditional automakers and internet companies entering the market</li>\n<li class='\"mb-2\"'><strong>Technology Iteration</strong>: New technologies may disrupt existing technology</li>\n<li class='\"mb-2\"'><strong>Coping Strategies</strong>: Technology leadership, scale advantages, brand building</li>\n</ul><h3 id='\"_22\"'>Technical Risk (Low)</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Technology Maturity</strong>: Huawei technology has been verified</li>\n<li class='\"mb-2\"'><strong>Equipment Reliability</strong>: 15-year design lifespan</li>\n<li class='\"mb-2\"'><strong>Coping Strategies</strong>: Continuous R&D, technology cooperation, patent protection</li>\n</ul><h3 id='\"_23\"'>Policy Risk (Low)</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Subsidy Changes</strong>: Subsidy policies may be adjusted</li>\n<li class='\"mb-2\"'><strong>Regulatory Strengthening</strong>: Industry regulation may be strengthened</li>\n<li class='\"mb-2\"'><strong>Coping Strategies</strong>: Government relations, policy tracking, compliant operations</li>\n</ul><h3 id='\"_24\"'>Operational Risk (Low)</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Equipment Failure</strong>: Charging equipment failure risk</li>\n<li class='\"mb-2\"'><strong>Safety Issues</strong>: Electrical safety risks</li>\n<li class='\"mb-2\"'><strong>Coping Strategies</strong>: Intelligent operation, insurance protection, safety management</li>\n</ul><h2 id='\"_25\"'>Investment Recommendations</h2><h3 id='\"_26\"'>Rating: ⭐⭐⭐⭐⭐ Strongly Recommended</h3><h3 id='\"_27\"'>Investment Highlights</h3><ol class='\"mb-3\"'>\n<li class='\"mb-2\"'><strong>High Technical Barriers</strong>: Huawei's megawatt ultra-fast charging technology leads the industry, exclusive 3-5 year technology dividend period</li>\n<li class='\"mb-2\"'><strong>Large Market Space</strong>: 2027 effective site locations 504, market investment scale 1.41 Billion CNY, target 1000 stations covering 198.4%</li>\n<li class='\"mb-2\"'><strong>Excellent Financial Returns</strong>: IRR 24.2%, 4.2-year payback, NPV@10% 0.87 Billion CNY, 636 Million CNY annual cash flow</li>\n<li class='\"mb-2\"'><strong>Strong Policy Support</strong>: County-level ultra-fast charging demonstration projects, 100,000 CNY per station subsidy, 6-year continuous support period</li>\n<li class='\"mb-2\"'><strong>Controlled Risk</strong>: Extremely low technical risk, Monte Carlo simulation success rate 84.2%, clear REITs exit path</li>\n</ol><h3 id='\"reits\"'>🏢 REITs Exit Path</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Initial Asset Package</strong>: 20 stations, valuation 210 Million CNY, capitalization rate 6%</li>\n<li class='\"mb-2\"'><strong>Distributable Yield</strong>: 6.0%, meets regulatory ≥4% requirement</li>\n<li class='\"mb-2\"'><strong>Issuance Plan</strong>: Original equity holder subscription 20%, public issuance 80%, capital recovery 170 Million CNY</li>\n<li class='\"mb-2\"'><strong>Rolling Expansion</strong>: Expand to 100 stations within 5 years, valuation grows to 640 Million CNY, 3x valuation multiple</li>\n<li class='\"mb-2\"'><strong>Exit Advantages</strong>: Light asset operation, continuous dividends, professional REITs management</li>\n</ul><h3 id='\"_28\"'>Suitable Investors</h3><ul class='\"list-unstyled' mb-3\"="">\n<li class='\"mb-2\"'><strong>Strategic Investors</strong>: Optimistic about long-term new energy development</li>\n<li class='\"mb-2\"'><strong>Financial Investors</strong>: Professional investment institutions pursuing high returns</li>\n<li class='\"mb-2\"'><strong>Industry Investors</strong>: New energy vehicle industry chain related enterprises</li>\n<li class='\"mb-2\"'><strong>Government Funds</strong>: Government guidance funds supporting new energy development</li>\n</ul><h3 id='\"_29\"'>Investment Advice</h3><ol class='\"mb-3\"'>\n<li class='\"mb-2\"'><strong>Recommended Investment</strong>: Technology-leading, massive market, generous returns project</li>\n<li class='\"mb-2\"'><strong>Investment Timing</strong>: Current is the best investment timing, pre-industry explosion</li>\n<li class='\"mb-2\"'><strong>Investment Scale</strong>: Choose different investment scales based on own capital strength</li>\n<li class='\"mb-2\"'><strong>Exit Methods</strong>: IPO, M&A, REITs multiple exit options available</li>\n</ol><p class='\"mb-3\"'><em>This executive summary is based on the Thousand-Station Liquid-Cooled Ultra-Fast Charging Project business plan. For detailed information, please refer to the complete business plan.</em><br/>\n<em>Updated: October 2025</em><br/>\n<em>Investment involves risks, decisions should be made with caution</em></p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="floating-action">
+</div>
+<script>
         // Executive summary content loading function
         function loadExecutiveSummary() {
             const contentDiv = document.getElementById('executive-summary-content');
 
-            // Show loading status
+            // Display loading status
             contentDiv.innerHTML = `
                 <div class="loading-indicator">
                     <div class="loading-spinner"></div>
@@ -836,15 +907,15 @@
                 </div>
             `;
 
-            // Use preloaded content first
-            if (typeof EXECUTIVE_SUMMARY_CONTENT !== 'undefined') {
-                console.log('Using preloaded executive summary content');
-                const parsedContent = parseMarkdown(EXECUTIVE_SUMMARY_CONTENT);
+            // Prioritize using preloaded content
+            if (typeof EXECUTIVE_SUMMARY_CONTENT_EN !== 'undefined') {
+                console.log('Using preloaded professional English executive summary content');
+                const parsedContent = parseMarkdown(EXECUTIVE_SUMMARY_CONTENT_EN);
                 contentDiv.innerHTML = `<div class="content-area">${parsedContent}</div>`;
                 return;
             }
 
-            // Try to load content from server
+            // Try loading from server
             loadExecutiveSummaryFromServer();
         }
 
@@ -874,46 +945,46 @@
         function loadDefaultExecutiveSummary() {
             const contentDiv = document.getElementById('executive-summary-content');
 
-            const defaultContent = `# Thousand-Station Liquid-Cooled Ultra-Fast Charging Project - Executive Summary
+            const defaultContent = `# Executive Summary
 
 ## Project Overview
 
 **Project Name**: Thousand-Station Liquid-Cooled Ultra-Fast Charging Project
-**Investment Scale**: ¥2.8 Billion RMB
-**Construction Content**: 1000 Huawei 600kW Liquid-Cooled Ultra-Fast Charging Stations
-**Core Technology**: Huawei liquid-cooled ultra-fast charging technology, "1km per second" charging speed
-**Payback Period**: 4.5 years
-**Project IRR**: 42.8%
-**10-Year ROI**: 435%
+**Investment Scale**: 2.8 Billion Chinese Yuan
+**Construction Content**: 1000 Huawei 600kW liquid-cooled ultra-fast charging stations
+**Technical Core**: Huawei's complete liquid-cooled ultra-fast charging technology, "1km per second" charging speed
+**Payback Period**: 4.2 years
+**Project IRR**: 24.2%
+**10-Year Investment Return Rate**: 310%
 
-## Key Investment Highlights
+## Core Investment Highlights
 
-### 🚀 Technology Leadership
-- **Power Advantage**: 600kW single-gun maximum power, industry highest level
+### 🚀 Technology Leadership Advantages
+- **Power Advantage**: 600kW maximum power per gun, industry highest level
 - **Charging Speed**: "1km per second", 60x faster than traditional charging
 - **Conversion Efficiency**: >96%, industry-leading energy utilization efficiency
 - **Cooling Technology**: Full liquid cooling, 300% improvement in cooling efficiency
 - **Service Life**: 15+ years design life, 2x industry average
 
 ### 📈 Massive Market Opportunities
-- **Market Growth**: 35% CAGR in charging pile market
-- **Market Size**: Projected to reach $125.39B by 2030
-- **Policy Support**: Strong national new energy policy support, subsidies up to 30%
-- **Demand Explosion**: EV penetration exceeds 35%, rapid growth in charging demand
+- **Market Growth**: Charging pile market CAGR 35%
+- **Market Size**: Projected to reach $125.39 billion by 2030
+- **Policy Support**: Strong national new energy policy support, up to 30% subsidies
+- **Demand Explosion**: Electric vehicle penetration rate exceeds 35%, rapid growth in charging demand
 
-### 💰 Excellent Financial Returns
-- **Return on Investment**: 435% (10-year cumulative)
-- **Annual Return**: 42.8%
-- **Net Present Value**: NPV@12% = ¥1.24B
-- **Payback Period**: 4.5 years
+### 💰 Generous Financial Returns
+- **Investment Return Rate**: 310% (10-year cumulative)
+- **Annualized Return Rate**: 24.2%
+- **Net Present Value**: NPV@10% = 0.87 Billion CNY
+- **Payback Period**: 4.2 years
 
-*Note: Currently showing default content. For complete content, please start local server or refresh page to retry.*`;
+*Note: Currently displaying default content. To view complete content, please start local server or refresh page to retry.*`;
 
             const parsedContent = parseMarkdown(defaultContent);
             contentDiv.innerHTML = `<div class="content-area">${parsedContent}</div>`;
         }
 
-        // Markdown parsing function (supports PDF export optimization and paragraph styles)
+        // Markdown parsing function (supports PDF export optimization and paragraph styling)
         function parseMarkdown(markdown) {
             if (!markdown) return '';
 
@@ -986,10 +1057,10 @@
             html = html.replace(/(>)<\/p>/g, '$1');
 
             // Add no-indent class to special paragraphs
-            html = html.replace(/<p>(\*\*.*?\*\*)<\/p>/g, '<p class="no-indent">$1</p>'); // Bold heading paragraphs
-            html = html.replace(/<p>(Rating:.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Rating paragraphs
-            html = html.replace(/<p>(\*Note:.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Note paragraphs
-            html = html.replace(/<p>(Contact.*?:.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Contact information paragraphs
+            html = html.replace(/<p>(\*\*.*?\*\*)<\/p>/g, '<p class="no-indent">$1</p>'); // Bold title paragraphs
+            html = html.replace(/<p>(推荐评级：.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Rating paragraphs
+            html = html.replace(/<p>(\*注：.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Note paragraphs
+            html = html.replace(/<p>(联系.*?：.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Contact info paragraphs
 
             return html;
         }
@@ -1004,16 +1075,25 @@
                 const step = (timestamp) => {
                     if (!startTimestamp) startTimestamp = timestamp;
                     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    const value = Math.floor(progress * (end - start) + start);
+                    let value;
+
+                    // Check if this is a decimal value animation
+                    if (end < 1 && end > 0) {
+                        // For decimal values like 0.87, use precise calculation
+                        value = parseFloat((progress * (end - start) + start).toFixed(2));
+                    } else {
+                        // For integer values, use floor
+                        value = Math.floor(progress * (end - start) + start);
+                    }
 
                     if (element.textContent.includes('%')) {
                         element.textContent = value + '%';
-                    } else if (element.textContent.includes('B')) {
-                        element.textContent = value + 'B';
+                    } else if (element.textContent.includes('Billion')) {
+                        element.textContent = value + ' Billion CNY';
                     } else if (element.textContent.includes('Years')) {
-                        element.textContent = value + 'Years';
+                        element.textContent = value + ' Years';
                     } else {
-                        element.textContent = value + '%';
+                        element.textContent = value;
                     }
 
                     if (progress < 1) {
@@ -1023,21 +1103,21 @@
                 window.requestAnimationFrame(step);
             };
 
-            // Trigger animation when element enters viewport
+            // Trigger animation when elements enter viewport
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const element = entry.target;
                         const text = element.textContent;
 
-                        if (text.includes('42.8')) {
-                            animateValue(element, 0, 42.8, 2000);
-                        } else if (text.includes('4.5')) {
-                            animateValue(element, 0, 4.5, 2000);
-                        } else if (text.includes('12.4')) {
-                            animateValue(element, 0, 12.4, 2000);
-                        } else if (text.includes('435')) {
-                            animateValue(element, 0, 435, 2000);
+                        if (text.includes('24.2')) {
+                            animateValue(element, 0, 24.2, 2000);
+                        } else if (text.includes('4.2')) {
+                            animateValue(element, 0, 4.2, 2000);
+                        } else if (text.includes('0.87')) {
+                            animateValue(element, 0, 0.87, 2000);
+                        } else if (text.includes('310')) {
+                            animateValue(element, 0, 310, 2000);
                         }
 
                         observer.unobserve(element);
@@ -1062,7 +1142,14 @@
 
             // Automatically load executive summary content after page load
             loadExecutiveSummary();
+
+            // Apply professional translation when translation engine is available
+            if (typeof translateProfessionalPage === 'function') {
+                setTimeout(() => {
+                    translateProfessionalPage();
+                }, 1000);
+            }
         });
     </script>
-</body>
+<div id="refresh-marker" style="display:none;">Content refreshed at 2025-10-18 20:53:55</div><div id="refresh-marker" style="display:none;">Content refreshed at 2025-10-18 21:03:24</div></body>
 </html>

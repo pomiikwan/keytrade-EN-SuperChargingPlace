@@ -1,15 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="库里蓝暗夜主题.css">
-    <script src="js/terminology_translations.js"></script>
-    <script src="js/content_translations.js"></script>
-    <script src="js/language_switch.js"></script>
+    <script src="js/market_analysis_content_en.js"></script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market Analysis Charts</title>
+    <title>Market Analysis</title>
     <style>
         * {
             margin: 0;
@@ -18,8 +15,8 @@
         }
 
         body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
-            /* 移除自定义背景，使用库里蓝暗夜主题背景 */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            /* Remove custom background, use theme background */
             min-height: 100vh;
             padding: 20px;
         }
@@ -31,20 +28,20 @@
 
         .header {
             text-align: center;
-            /* 使用主题卡片样式 */
+            /* Use theme card styles */
             margin-bottom: 30px;
         }
 
         .title {
             font-size: 36px;
             font-weight: bold;
-            /* 使用主题标题样式 */
+            /* Use theme title styles */
             margin-bottom: 10px;
         }
 
         .subtitle {
             font-size: 18px;
-            /* 使用主题副标题样式 */
+            /* Use theme subtitle styles */
         }
 
         .charts-grid {
@@ -55,7 +52,7 @@
         }
 
         .chart-container {
-            /* 使用主题卡片样式，覆盖默认样式 */
+            /* Use theme card styles, override default styles */
             background: rgba(26, 35, 71, 0.9);
             padding: 30px;
             border-radius: 15px;
@@ -269,7 +266,7 @@
             border-radius: 3px;
         }
 
-        /* 市场分析内容区域样式 */
+        /* Market Analysis Content Area Styles */
         .market-content-section {
             margin-top: 40px;
             background: rgba(26, 35, 71, 0.9);
@@ -298,6 +295,7 @@
         .market-content {
             color: #B8C5D6;
             line-height: 1.6;
+            text-align: left;
         }
 
         .market-content h1 {
@@ -325,7 +323,6 @@
 
         .market-content p {
             margin-bottom: 15px;
-            text-align: justify;
         }
 
         .market-content ul, .market-content ol {
@@ -384,44 +381,107 @@
             box-shadow: 0 8px 25px rgba(255, 199, 44, 0.4);
             background: linear-gradient(135deg, #0077C0 0%, #1D428A 100%);
         }
+
+        /* Navigation buttons */
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1D428A 0%, #0077C0 100%);
+            color: white;
+            box-shadow: 0 10px 25px rgba(29, 66, 138, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(29, 66, 138, 0.4);
+            background: linear-gradient(135deg, #0077C0 0%, #1D428A 100%);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #FFC72C;
+            border: 2px solid #FFC72C;
+        }
+
+        .btn-secondary:hover {
+            background: #FFC72C;
+            color: #1D428A;
+            transform: translateY(-3px);
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="title">Market Analysis Charts</h1>
-            <p class="subtitle">EV Market Growth and Charging Infrastructure Demand Forecast</p>
+            <h1 class="title">Market Analysis</h1>
+            <p class="subtitle">EV Market Growth & Charging Infrastructure Demand Forecast</p>
+            <div class="action-buttons">
+                <a class="btn btn-primary" href="index_en.html">
+                    🏠 Back to Home
+                </a>
+                <a class="btn btn-secondary" href="项目摘要_en.html">
+                    📋 View Summary
+                </a>
+                <a class="btn btn-secondary" href="财务图表_en.html">
+                    📊 Financial Analysis
+                </a>
+                <a class="btn btn-secondary" href="系统架构图_en.html">
+                    🔧 System Architecture
+                </a>
+            </div>
         </div>
 
         <div class="charts-grid">
             <!-- EV Growth Trend -->
             <div class="chart-container">
-                <h3 class="chart-title">🚗 China EV Ownership Growth Forecast (10,000 units)</h3>
+                <h3 class="chart-title">🚗 China Pure Electric Vehicle Ownership Growth Forecast (10,000 units)</h3>
                 <div class="growth-chart">
-                    <div class="growth-area" style="height: 20%"></div>
+                    <div class="growth-area" style="height: 18%"></div>
                     <div class="growth-line"></div>
 
                     <div class="year-marker" style="left: 10%;">2023</div>
-                    <div class="value-marker" style="left: 10%; bottom: 20%;">1500</div>
+                    <div class="value-marker" style="left: 10%; bottom: 18%;">1260</div>
 
                     <div class="year-marker" style="left: 28%;">2024</div>
-                    <div class="value-marker" style="left: 28%; bottom: 35%;">2000</div>
+                    <div class="value-marker" style="left: 28%; bottom: 30%;">1575</div>
 
                     <div class="year-marker" style="left: 46%;">2025</div>
-                    <div class="value-marker" style="left: 46%; bottom: 50%;">2800</div>
+                    <div class="value-marker" style="left: 46%; bottom: 42%;">1969</div>
 
                     <div class="year-marker" style="left: 64%;">2026</div>
-                    <div class="value-marker" style="left: 64%; bottom: 65%;">3800</div>
+                    <div class="value-marker" style="left: 64%; bottom: 58%;">2461</div>
 
                     <div class="year-marker" style="left: 82%;">2027</div>
-                    <div class="value-marker" style="left: 82%; bottom: 80%;">5200</div>
+                    <div class="value-marker" style="left: 82%; bottom: 75%;">3076</div>
 
                     <div class="year-marker" style="left: 100%;">2028</div>
-                    <div class="value-marker" style="left: 100%; bottom: 95%;">7000</div>
+                    <div class="value-marker" style="left: 100%; bottom: 95%;">3845</div>
                 </div>
                 <div class="legend">
                     <div class="legend-item">
-                        <div class="trend-indicator trend-up">CAGR 35%</div>
+                        <div class="trend-indicator trend-up">CAGR 25%</div>
                     </div>
                 </div>
             </div>
@@ -461,66 +521,70 @@
 
         <!-- Market Share Distribution -->
         <div class="chart-container">
-            <h3 class="chart-title">📊 Charging Operator Market Share Distribution</h3>
+            <h3 class="chart-title">📊 Charging Operator Market Share Distribution (2024 Latest)</h3>
             <div class="pie-chart">
                 <div class="pie-center">Market Share</div>
             </div>
             <div class="legend">
                 <div class="legend-item">
-                    <div class="legend-color" style="background: #FFC72C;"></div>
-                    <span>Teld 35%</span>
-                </div>
-                <div class="legend-item">
                     <div class="legend-color" style="background: #0077C0;"></div>
-                    <span>Star Charge 30%</span>
+                    <span>Star Charge 28.5%</span>
                 </div>
                 <div class="legend-item">
                     <div class="legend-color" style="background: #1D428A;"></div>
-                    <span>State Grid 15%</span>
+                    <span>State Grid 22.3%</span>
                 </div>
                 <div class="legend-item">
-                    <div class="legend-color" style="background: #FF6B6B;"></div>
-                    <span>Others 10%</span>
+                    <div class="legend-color" style="background: #FFC72C;"></div>
+                    <span>TELD 16.8%</span>
                 </div>
                 <div class="legend-item">
                     <div class="legend-color" style="background: #10b981;"></div>
-                    <span>Our Project 10%</span>
+                    <span>BYD 8.2%</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #FF6B6B;"></div>
+                    <span>Others 16.2%</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #8b5cf6;"></div>
+                    <span>Our Target 10%</span>
                 </div>
             </div>
         </div>
 
         <!-- Competitor Analysis -->
         <div class="chart-container">
-            <h3 class="chart-title">🏆 Major Competitor Technology Comparison</h3>
+            <h3 class="chart-title">🏆 Main Competitor Technical Comparison (Rated Power)</h3>
             <div class="competitor-chart">
                 <div class="competitor">
-                    <div class="competitor-name">Huawei Liquid-Cooled Ultra-Fast</div>
+                    <div class="competitor-name">Our Project</div>
                     <div class="competitor-bar">
-                        <div class="competitor-fill" style="width: 100%; background: #10b981;">600kW</div>
-                    </div>
-                </div>
-                <div class="competitor">
-                    <div class="competitor-name">Tesla V3</div>
-                    <div class="competitor-bar">
-                        <div class="competitor-fill" style="width: 42%; background: #ef4444;">250kW</div>
-                    </div>
-                </div>
-                <div class="competitor">
-                    <div class="competitor-name">ABB Terra 360</div>
-                    <div class="competitor-bar">
-                        <div class="competitor-fill" style="width: 60%; background: #f59e0b;">360kW</div>
-                    </div>
-                </div>
-                <div class="competitor">
-                    <div class="competitor-name">Teld</div>
-                    <div class="competitor-bar">
-                        <div class="competitor-fill" style="width: 30%; background: #FFC72C;">180kW</div>
+                        <div class="competitor-fill" style="width: 100%; background: #10b981;">600-1000kW+</div>
                     </div>
                 </div>
                 <div class="competitor">
                     <div class="competitor-name">Star Charge</div>
                     <div class="competitor-bar">
-                        <div class="competitor-fill" style="width: 27%; background: #0077C0;">160kW</div>
+                        <div class="competitor-fill" style="width: 72%; background: #0077C0;">480-720kW</div>
+                    </div>
+                </div>
+                <div class="competitor">
+                    <div class="competitor-name">BYD</div>
+                    <div class="competitor-bar">
+                        <div class="competitor-fill" style="width: 60%; background: #ef4444;">480-600kW</div>
+                    </div>
+                </div>
+                <div class="competitor">
+                    <div class="competitor-name">TELD</div>
+                    <div class="competitor-bar">
+                        <div class="competitor-fill" style="width: 48%; background: #FFC72C;">360-480kW</div>
+                    </div>
+                </div>
+                <div class="competitor">
+                    <div class="competitor-name">State Grid</div>
+                    <div class="competitor-bar">
+                        <div class="competitor-fill" style="width: 36%; background: #1D428A;">240-360kW</div>
                     </div>
                 </div>
             </div>
@@ -579,14 +643,14 @@
             </table>
         </div>
 
-        <!-- Market Analysis Content Section -->
+        <!-- Market Analysis Content Area -->
         <div class="market-content-section">
             <div style="text-align: center; margin-bottom: 20px;">
                 <h3 class="market-content-title">📋 Detailed Market Analysis Report</h3>
-                <button class="refresh-btn" onclick="startServerAndRefresh()">🔄 Refresh Content</button>
+                <button class="refresh-btn" onclick="loadMarketAnalysis()">🔄 Refresh Content</button>
             </div>
 
-            <div id="marketContentArea">
+            <div class="market-content" id="marketContentArea">
                 <div class="loading-indicator">
                     <div class="loading-spinner"></div>
                     <p>Loading market analysis content...</p>
@@ -596,341 +660,96 @@
     </div>
 
     <script>
-        // Enhanced MD content rendering function
-        function parseMarkdown(text) {
-            return text
-                // Headers
-                .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-                .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
-                .replace(/^##### (.*$)/gim, '<h5>$1</h5>')
-                .replace(/^###### (.*$)/gim, '<h6>$1</h6>')
-                // Bold and italic
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                .replace(/__(.*?)__/g, '<strong>$1</strong>')
-                .replace(/_(.*?)_/g, '<em>$1</em>')
-                // Lists
-                .replace(/^\d+\. (.*$)/gim, '<li>$1</li>')
-                .replace(/^- (.*$)/gim, '<li>$1</li>')
-                .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
-                // Links
-                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
-                // Paragraphs
-                .replace(/\n\n/g, '</p><p>')
-                .replace(/^(?!<[h|u|l])(.*$)/gim, '<p>$1</p>');
-        }
-
-        // Direct content refresh (read local MD file)
-        function startServerAndRefresh() {
-            console.log('🔄 Manual content refresh...');
-            loadMarketContent();
-        }
-
-        // Load market analysis content
-        function loadMarketContent() {
+        // Load Market Analysis Content Function
+        function loadMarketAnalysis() {
             const contentArea = document.getElementById('marketContentArea');
 
             console.log('🔍 Starting to load market analysis content...');
-            console.log('📋 Checking MARKET_ANALYSIS_CONTENT variable:', typeof MARKET_ANALYSIS_CONTENT);
+            console.log('📋 Checking MARKET_ANALYSIS_CONTENT_EN variable:', typeof MARKET_ANALYSIS_CONTENT_EN);
 
             // Check if preloaded content is available
-            if (typeof MARKET_ANALYSIS_CONTENT !== 'undefined') {
+            if (typeof MARKET_ANALYSIS_CONTENT_EN !== 'undefined') {
                 console.log('✅ Using preloaded market analysis content');
-                console.log('📄 MD content length:', MARKET_ANALYSIS_CONTENT.length);
+                console.log('📄 MD content length:', MARKET_ANALYSIS_CONTENT_EN.length);
 
                 try {
-                    const htmlContent = parseMarkdown(MARKET_ANALYSIS_CONTENT);
-                    console.log('🔄 Parsed HTML content length:', htmlContent.length);
-
-                    contentArea.innerHTML = `
-                        <div class="market-content">
-                            ${htmlContent}
-                        </div>
-                    `;
-
-                    // Display content update time
-                    if (typeof MARKET_ANALYSIS_MODIFIED !== 'undefined') {
-                        const updateTime = new Date(MARKET_ANALYSIS_MODIFIED * 1000).toLocaleString();
-                        contentArea.innerHTML += `
-                            <div style="text-align: center; margin-top: 20px; color: #B8C5D6; font-size: 12px;">
-                                📄 Content updated: ${updateTime}
-                            </div>
-                        `;
-                    }
-
+                    contentArea.innerHTML = MARKET_ANALYSIS_CONTENT_EN;
                     console.log('✅ Preloaded content display completed');
                     return;
                 } catch (error) {
-                    console.error('❌ Failed to parse MD content:', error);
+                    console.error('❌ Failed to display preloaded content:', error);
                 }
             }
 
-            console.log('⚠️ MARKET_ANALYSIS_CONTENT undefined or parsing failed, using default content');
+            console.log('⚠️ MARKET_ANALYSIS_CONTENT_EN not defined, using default content');
             // Use default content
             loadDefaultContent();
         }
 
-        // Load default content
+        // Load Default Content
         function loadDefaultContent() {
             const contentArea = document.getElementById('marketContentArea');
 
             const defaultContent = `
-                <div class="market-content">
-                    <h1>Market Analysis</h1>
-                    <h2>Industry Background</h2>
-                    <p>China's New Energy Vehicle (NEV) industry is experiencing explosive growth. In 2023, NEV sales in China reached 9.5 million units, with a penetration rate exceeding 35%. It is projected that by 2028, China's EV ownership will reach 70 million units, with charging pile demand exceeding 38 million.</p>
+                <h1>Market Analysis</h1>
+                <h2>Industry Background</h2>
+                <p>China's new energy vehicle industry is experiencing explosive growth. In 2023, China's new energy vehicle sales reached 9.5 million units, with a penetration rate exceeding 35%. It is projected that by 2028, China's electric vehicle ownership will reach 70 million units, and the demand for charging piles will exceed 3.8 million.</p>
 
-                    <h2>Market Size and Growth Trends</h2>
-                    <h3>📊 Market Data</h3>
-                    <ul>
-                        <li><strong>Current Ownership</strong>: 21 million units (2023)</li>
-                        <li><strong>Projected Ownership</strong>: 70 million units (2028)</li>
-                        <li><strong>Annual Growth Rate</strong>: 35%</li>
-                        <li><strong>Market Space</strong>: $125.39 billion (2030 forecast)</li>
-                    </ul>
+                <h2>Market Size and Growth Trends</h2>
+                <h3>📊 Market Data</h3>
+                <ul>
+                    <li><strong>Current Ownership</strong>: 21 million units (2023)</li>
+                    <li><strong>Projected Ownership</strong>: 70 million units (2028)</li>
+                    <li><strong>Compound Annual Growth Rate</strong>: 35%</li>
+                    <li><strong>Market Space</strong>: 125.39 Billion CNY (2030 forecast)</li>
+                </ul>
 
-                    <h3>📈 Growth Drivers</h3>
-                    <ol>
-                        <li><strong>Policy Promotion</strong>: Strong policy support under carbon neutrality goals</li>
-                        <li><strong>Technological Progress</strong>: Continuous breakthroughs in battery technology, improving driving range</li>
-                        <li><strong>Infrastructure</strong>: Increasingly complete charging network</li>
-                        <li><strong>Consumption Upgrade</strong>: Enhanced environmental awareness, shifting consumer preferences</li>
-                    </ol>
+                <h3>📈 Growth Drivers</h3>
+                <ol>
+                    <li><strong>Policy Promotion</strong>: Strong policy support under dual carbon goals</li>
+                    <li><strong>Technological Progress</strong>: Continuous breakthroughs in battery technology, improved range</li>
+                    <li><strong>Infrastructure</strong>: Increasingly complete charging networks</li>
+                    <li><strong>Consumption Upgrade</strong>: Enhanced environmental awareness, shifting consumer preferences</li>
+                </ol>
 
-                    <h2>Competitive Landscape Analysis</h2>
-                    <h3>🏆 Major Players</h3>
-                    <ul>
-                        <li><strong>Teld</strong>: Market share approximately 28%</li>
-                        <li><strong>Star Charge</strong>: Market share approximately 22%</li>
-                        <li><strong>State Grid</strong>: Market share approximately 18%</li>
-                        <li><strong>Other Brands</strong>: Combined 32%</li>
-                    </ul>
+                <h2>Competitive Landscape Analysis</h2>
+                <h3>🏆 Key Players</h3>
+                <ul>
+                    <li><strong>TELD</strong>: Market share approximately 28%</li>
+                    <li><strong>Star Charge</strong>: Market share approximately 22%</li>
+                    <li><strong>State Grid</strong>: Market share approximately 18%</li>
+                    <li><strong>Other Brands</strong>: Total 32%</li>
+                </ul>
 
-                    <h3>💡 Our Competitive Advantages</h3>
-                    <ul>
-                        <li><strong>Technology Leadership</strong>: 600kW liquid-cooled ultra-fast charging technology</li>
-                        <li><strong>Charging Speed</strong>: Industry's fastest "one second, one kilometer" charging speed</li>
-                        <li><strong>Layout Strategy</strong>: Focus on highways and urban core areas</li>
-                        <li><strong>Service Quality</strong>: Intelligent operations, 24-hour customer service</li>
-                    </ul>
+                <h3>💡 Our Competitive Advantages</h3>
+                <ul>
+                    <li><strong>Technology Leadership</strong>: 600kW liquid-cooling ultra-fast charging technology</li>
+                    <li><strong>Charging Speed</strong>: "1km per second" industry fastest</li>
+                    <li><strong>Layout Strategy</strong>: Focus on highways and urban core areas</li>
+                    <li><strong>Service Quality</strong>: Intelligent O&M, 24-hour customer service</li>
+                </ul>
 
-                    <h2>Target Market Segmentation</h2>
-                    <h3>🎯 Core Target Customers</h3>
-                    <ul>
-                        <li><strong>Long-distance Transportation</strong>: Highway service areas</li>
-                        <li><strong>Urban Operations</strong>: Taxis, ride-hailing services</li>
-                        <li><strong>Logistics Parks</strong>: Electric logistics vehicles</li>
-                        <li><strong>Commercial Centers</strong>: Shopping malls, office buildings</li>
-                    </ul>
+                <h2>Target Market Segmentation</h2>
+                <h3>🎯 Core Target Customers</h3>
+                <ul>
+                    <li><strong>Long-distance Transportation</strong>: Highway service areas</li>
+                    <li><strong>Urban Operations</strong>: Taxis, ride-hailing vehicles</li>
+                    <li><strong>Logistics Parks</strong>: Electric logistics vehicles</li>
+                    <li><strong>Commercial Centers</strong>: Shopping malls, office buildings</li>
+                </ul>
 
-                    <p><em>Note: This is default content. If you don't see the latest content, please regenerate the market_analysis_content.js file.</em></p>
-                </div>
+                <p><em>Note: This is default content. For the latest content, please regenerate the market_analysis_content_en.js file.</em></p>
             `;
 
             contentArea.innerHTML = defaultContent;
             console.log('✅ Default content display completed');
         }
 
-        // Load content from server (backup method)
-        async function loadFromServer() {
-            const contentArea = document.getElementById('marketContentArea');
-
-            try {
-                // Try loading from multiple possible server ports
-                const ports = [8080, 8081, 8082, 8083, 8084];
-                let mdContent = null;
-                let serverFound = false;
-
-                for (const port of ports) {
-                    try {
-                        const response = await fetch(`Generative Business Plan Content/Market Analysis.md?t=${Date.now()}`);
-                        if (response.ok) {
-                            mdContent = await response.text();
-                            serverFound = true;
-                            console.log(`✅ Content loaded successfully from port ${port}`);
-                            break;
-                        }
-                    } catch (e) {
-                        continue;
-                    }
-                }
-
-                if (mdContent && serverFound) {
-                    const htmlContent = parseMarkdown(mdContent);
-                    contentArea.innerHTML = `
-                        <div class="market-content">
-                            ${htmlContent}
-                        </div>
-                    `;
-                    console.log('✅ Market analysis content loaded successfully');
-                } else {
-                    // Final backup method: file selection
-                    await loadFromFileSystem();
-                }
-
-            } catch (error) {
-                console.log('⚠️ Server loading failed, using file selection');
-                await loadFromFileSystem();
-            }
-        }
-
-        // Load MD content from file system
-        async function loadFromFileSystem() {
-            const contentArea = document.getElementById('marketContentArea');
-
-            contentArea.innerHTML = `
-                <div class="market-content">
-                    <h3>📁 Select Market Analysis File</h3>
-                    <p><strong>Please select the market analysis MD file to view the latest content:</strong></p>
-                    <div style="margin: 20px 0;">
-                        <input type="file" id="mdFileInput" accept=".md" style="display: none;">
-                        <button onclick="document.getElementById('mdFileInput').click()"
-                                style="background: #FFC72C; color: #1D428A; border: none; padding: 10px 20px;
-                                       border-radius: 5px; cursor: pointer; font-weight: bold;">
-                            📂 Select Market Analysis.md File
-                        </button>
-                    </div>
-                    <p style="color: #B8C5D6; font-size: 14px;">
-                        File path: <code>Generative Business Plan Content/Market Analysis.md</code>
-                    </p>
-                    <hr>
-                    <div id="fileContentPreview">
-                        <h4>📋 Default Market Analysis Content</h4>
-                        <p>After selecting a file, the latest market analysis content will be displayed here</p>
-                    </div>
-                </div>
-            `;
-
-            // Set up file selection event listener
-            const fileInput = document.getElementById('mdFileInput');
-            fileInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file && file.name.endsWith('.md')) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const mdContent = e.target.result;
-                        const htmlContent = parseMarkdown(mdContent);
-                        document.getElementById('fileContentPreview').innerHTML = `
-                            <div class="market-content" style="margin-top: 20px;">
-                                ${htmlContent}
-                            </div>
-                        `;
-                        console.log('✅ File content loaded successfully');
-                    };
-                    reader.readAsText(file, 'UTF-8');
-                } else {
-                    document.getElementById('fileContentPreview').innerHTML = `
-                        <p style="color: #ff6b6b;">❌ Please select a valid .md file</p>
-                    `;
-                }
-            });
-        }
-
-  
-        // Global variable to store last modification time
-        let lastModifiedTime = null;
-
-        // Check if file has been updated (via simple HEAD request check)
-        async function checkFileUpdate() {
-            try {
-                const response = await fetch('Generative Business Plan Content/Market Analysis.md?' + Date.now(), {
-                    method: 'HEAD'
-                });
-
-                if (response.ok) {
-                    const lastModified = response.headers.get('Last-Modified');
-
-                    if (lastModifiedTime === null || lastModified !== lastModifiedTime) {
-                        console.log('📝 File update detected, reloading content...');
-                        lastModifiedTime = lastModified;
-                        return true; // Update needed
-                    }
-                } else {
-                    // If HEAD request fails, file might be updated, need to reload
-                    return true;
-                }
-                return false; // No update needed
-            } catch (error) {
-                console.log('⚠️ Unable to check file status, attempting reload:', error);
-                return true; // Reload on error
-            }
-        }
-
-        // Smart refresh function for file updates
-        async function smartRefresh() {
-            const shouldUpdate = await checkFileUpdate();
-            if (shouldUpdate) {
-                await loadMarketContent();
-            }
-        }
-
-        // Check if JavaScript file has been updated
-        async function checkContentUpdate() {
-            try {
-                // Reload JavaScript file to get latest content
-                const script = document.createElement('script');
-                script.src = `market_analysis_content.js?t=${Date.now()}`;
-                script.onload = async function() {
-                    // Check if there is new content
-                    if (typeof MARKET_ANALYSIS_CONTENT !== 'undefined') {
-                        const currentContent = document.getElementById('marketContentArea').querySelector('.market-content');
-                        const newHtmlContent = parseMarkdown(MARKET_ANALYSIS_CONTENT);
-
-                        // If content has changed, update display
-                        if (!currentContent || !currentContent.innerHTML.includes(newHtmlContent.substring(0, 100))) {
-                            console.log('🔄 Content update detected, refreshing display...');
-                            await loadMarketContent();
-                        }
-                    }
-                };
-                document.head.appendChild(script);
-            } catch (error) {
-                console.log('⚠️ Update check failed:', error);
-            }
-        }
-
-        // Smart refresh function for preloaded content
-        async function smartRefreshPreloaded() {
-            await checkContentUpdate();
-        }
-
-        // Automatically load content after page fully loads
+        // Page Load Complete Auto-load Content
         window.addEventListener('load', function() {
-            console.log('📱 Page fully loaded, starting content loading...');
-            loadMarketContent();
-
-            // Check every 30 seconds if content has been updated
-            setInterval(async function() {
-                await smartRefreshPreloaded();
-            }, 30000); // Check every 30 seconds
-
-            // Add page visibility change listener, check for updates when page regains focus
-            document.addEventListener('visibilitychange', async function() {
-                if (!document.hidden) {
-                    console.log('📱 Page regained focus, checking for updates...');
-                    await smartRefreshPreloaded();
-                }
-            });
-
-            // Add window focus listener
-            window.addEventListener('focus', async function() {
-                console.log('🖥️ Window gained focus, checking for updates...');
-                await smartRefreshPreloaded();
-            });
-
-            // Add keyboard shortcut support
-            document.addEventListener('keydown', function(e) {
-                // Ctrl+R or F5 to refresh content
-                if ((e.ctrlKey && e.key === 'r') || e.key === 'F5') {
-                    e.preventDefault();
-                    console.log('⌨️ Manual content refresh...');
-                    loadMarketContent();
-                }
-            });
+            console.log('📱 Page load complete, starting content loading...');
+            loadMarketAnalysis();
         });
     </script>
-    <script src="market_analysis_content.js"></script>
 </body>
 </html>

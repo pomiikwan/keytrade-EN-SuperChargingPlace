@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="库里蓝暗夜主题.css">
-    <script src="implementation_content.js"></script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Implementation Plan</title>
-    <style>
+<link href="../09_部署中文网站/库里蓝暗夜主题.css" rel="stylesheet"/>
+<script src="js/implementation_content_en.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Implementation Plan </title>
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -15,7 +14,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
             background: #0A0E27;
             min-height: 100vh;
             color: #FFFFFF;
@@ -233,6 +232,7 @@
         .content-area {
             color: #FFFFFF;
             line-height: 1.8;
+            text-align: left;
         }
 
         .content-area h1 {
@@ -279,24 +279,11 @@
             margin-bottom: 15px;
             color: #B8C5E0;
             text-align: left;
-            text-indent: 2em;
             line-height: 1.8;
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
 
-        /* Special paragraph styles - no first-line indentation */
-        .content-area p.no-indent {
-            text-indent: 0;
-        }
-
-        /* Fix potential content area overflow issues */
-        .content-area {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-
-        /* Fix list item alignment issues */
         .content-area ul, .content-area ol {
             margin: 15px 0;
             padding-left: 2em;
@@ -310,7 +297,6 @@
             line-height: 1.6;
         }
 
-        /* Fix table responsive issues */
         .content-area table {
             width: 100%;
             max-width: 100%;
@@ -395,134 +381,7 @@
             border: 1px solid rgba(255, 107, 107, 0.3);
         }
 
-        .floating-action {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-        }
-
-        .floating-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(16,185,129,0.3);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .floating-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(16,185,129,0.4);
-        }
-
-        @media (max-width: 768px) {
-            .hero-content {
-                padding: 40px 20px;
-            }
-
-            .title {
-                font-size: 36px;
-            }
-
-            .subtitle {
-                font-size: 20px;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            /* Implementation plan area mobile adaptation */
-            .implementation-plan-section {
-                padding: 20px;
-                margin-top: 40px;
-            }
-
-            .section-header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-
-            .section-title {
-                font-size: 24px;
-            }
-
-            .refresh-btn {
-                font-size: 12px;
-                padding: 8px 16px;
-            }
-
-            .content-area h1 {
-                font-size: 22px;
-                margin: 20px 0 15px 0;
-            }
-
-            .content-area h2 {
-                font-size: 20px;
-                margin: 18px 0 12px 0;
-            }
-
-            .content-area h3 {
-                font-size: 18px;
-                margin: 15px 0 8px 0;
-            }
-
-            .content-area h4 {
-                font-size: 16px;
-                margin: 12px 0 6px 0;
-            }
-
-            .content-area h5 {
-                font-size: 14px;
-                margin: 10px 0 5px 0;
-            }
-
-            .content-area h6 {
-                font-size: 13px;
-                margin: 8px 0 4px 0;
-            }
-
-            .content-area table {
-                font-size: 12px;
-            }
-
-            .content-area th, .content-area td {
-                padding: 8px 10px;
-            }
-
-            .content-area pre {
-                padding: 15px;
-                font-size: 12px;
-                overflow-x: auto;
-            }
-
-            .content-area p {
-                text-indent: 1.5em; /* Slightly reduce indentation on mobile */
-                font-size: 14px;
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-        }
-
-        /* Image display area styles */
+        /* Image showcase section styles */
         .image-showcase-section {
             margin-top: 60px;
             background: rgba(255, 255, 255, 0.05);
@@ -630,55 +489,100 @@
             margin: 0;
         }
 
-        /* Extra small screen adaptation */
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
             .hero-content {
-                padding: 30px 15px;
+                padding: 40px 20px;
             }
 
             .title {
-                font-size: 28px;
+                font-size: 36px;
             }
 
             .subtitle {
-                font-size: 18px;
-            }
-
-            .section-title {
                 font-size: 20px;
             }
 
-            .stats {
-                grid-template-columns: 1fr;
-                gap: 10px;
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
             }
 
-            .stat-value {
-                font-size: 24px;
+            .btn {
+                width: 100%;
+                max-width: 300px;
             }
 
             .implementation-plan-section {
-                padding: 15px;
-            }
-
-            .content-area p {
-                text-indent: 1em; /* Further reduce indentation on extra small screens */
-                font-size: 13px;
-            }
-
-            /* Image display area mobile adaptation */
-            .image-showcase-section {
                 padding: 20px;
                 margin-top: 40px;
             }
 
-            .category-tabs {
-                gap: 8px;
+            .section-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
 
-            .tab {
-                padding: 8px 16px;
+            .section-title {
+                font-size: 24px;
+            }
+
+            .refresh-btn {
                 font-size: 12px;
+                padding: 8px 16px;
+            }
+
+            .content-area h1 {
+                font-size: 22px;
+                margin: 20px 0 15px 0;
+            }
+
+            .content-area h2 {
+                font-size: 20px;
+                margin: 18px 0 12px 0;
+            }
+
+            .content-area h3 {
+                font-size: 18px;
+                margin: 15px 0 8px 0;
+            }
+
+            .content-area h4 {
+                font-size: 16px;
+                margin: 12px 0 6px 0;
+            }
+
+            .content-area h5 {
+                font-size: 14px;
+                margin: 10px 0 5px 0;
+            }
+
+            .content-area h6 {
+                font-size: 13px;
+                margin: 8px 0 4px 0;
+            }
+
+            .content-area table {
+                font-size: 12px;
+            }
+
+            .content-area th, .content-area td {
+                padding: 8px 10px;
+            }
+
+            .content-area pre {
+                padding: 15px;
+                font-size: 12px;
+                overflow-x: auto;
+            }
+
+            .content-area p {
+                font-size: 14px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
             }
 
             .image-gallery {
@@ -703,152 +607,216 @@
             }
         }
 
-        /* Tablet adaptation */
-        @media (max-width: 768px) and (min-width: 481px) {
-            .image-gallery {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 20px;
+        /* Auto-generated content styles */
+        .refreshed-content {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .refreshed-content h1,
+        .refreshed-content h2,
+        .refreshed-content h3,
+        .refreshed-content h4,
+        .refreshed-content h5,
+        .refreshed-content h6 {
+            color: #2c3e50;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .refreshed-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .refreshed-content th,
+        .refreshed-content td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .refreshed-content th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .refreshed-content pre {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            border-left: 4px solid #007bff;
+        }
+
+        .refreshed-content code {
+            background-color: #e9ecef;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        .refreshed-content ul,
+        .refreshed-content ol {
+            padding-left: 2rem;
+            margin: 1rem 0;
+        }
+
+        .refreshed-content li {
+            margin: 0.5rem 0;
+        }
+
+        .refreshed-content blockquote {
+            border-left: 4px solid #007bff;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .refreshed-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .refreshed-content {
+                font-size: 14px;
             }
 
-            .image-placeholder {
-                height: 220px;
+            .refreshed-content th,
+            .refreshed-content td {
+                padding: 8px 10px;
             }
         }
-    </style>
+</style>
 </head>
 <body>
-    <div class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="logo">🚀</div>
-                <h1 class="title">Implementation Plan </h1>
-                <p class="subtitle"> Five-Year Construction Plan • Ten-Year Operations Work Plan • 1000 Ultra-Fast Charging Stations Construction Plan</p>
-
-                <div class="stats">
-                    <div class="stat-card">
-                        <div class="stat-value">5 Years</div>
-                        <div class="stat-label">Project Period</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">1000 Stations</div>
-                        <div class="stat-label">Construction Target</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">¥2.8B</div>
-                        <div class="stat-label">Total Investment</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">4 Phases</div>
-                        <div class="stat-label">Implementation Strategy</div>
-                    </div>
-                </div>
-
-                <div class="action-buttons">
-                    <a href="index.html" class="btn btn-primary">
+<div class="hero">
+<div class="container">
+<div class="hero-content">
+<div class="logo">🚀</div>
+<h1 class="title">Project Implementation Plan</h1>
+<p class="subtitle">Five-Year Construction • Ten-Year Operation • 1000 Ultra-Fast Charging Stations Development Plan</p>
+<div class="stats">
+<div class="stat-card">
+<div class="stat-value">5 Years</div>
+<div class="stat-label">Project Period</div>
+</div>
+<div class="stat-card">
+<div class="stat-value">1000 Stations</div>
+<div class="stat-label">Construction Target</div>
+</div>
+<div class="stat-card">
+<div class="stat-value">2.8 Billion</div>
+<div class="stat-label">Total Investment</div>
+</div>
+<div class="stat-card">
+<div class="stat-value">4 Phases</div>
+<div class="stat-label">Implementation Strategy</div>
+</div>
+</div>
+<div class="action-buttons">
+<a class="btn btn-primary" href="index_en.html">
                         🏠 Back to Home
                     </a>
-                    <a href="项目摘要_en.html" class="btn btn-secondary">
+<a class="btn btn-secondary" href="项目摘要_en.html">
                         📋 View Summary
                     </a>
-                    <a href="交互式计算器_en.html" class="btn btn-secondary">
-                        🧮 Financial Calculator
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="container">
+<!-- Image showcase section -->
+<div class="image-showcase-section">
+<div class="section-header">
+<h2 class="section-title">🖼️ Project Gallery</h2>
+</div>
+<div class="image-categories">
+<div class="category-tabs">
+<button class="tab active" onclick="switchImageCategory('all')">All Images</button>
+<button class="tab" onclick="switchImageCategory('design')">Design Renderings</button>
+<button class="tab" onclick="switchImageCategory('planning')">Site Planning</button>
+<button class="tab" onclick="switchImageCategory('progress')">Project Progress</button>
+</div>
+</div>
+<div class="image-gallery" id="image-gallery">
+<!-- Ultra-fast charging station design rendering -->
+<div class="image-item" data-category="design">
+<div class="image-placeholder">
+<img alt="Ultra-fast Charging Station Design Rendering" onerror="this.src='https://via.placeholder.com/800x600/1D428A/FFFFFF?text=Ultra-fast+Charging+Station+Design'" src="images/design/超充站设计效果图.jpg"/>
+</div>
+<div class="image-info">
+<h3>Ultra-fast Charging Station Design</h3>
+<p>Complete design rendering of Huawei 600kW liquid-cooled ultra-fast charging station, including charger layout, rest areas, and service facilities</p>
+</div>
+</div>
+<!-- Site planning map -->
+<div class="image-item" data-category="planning">
+<div class="image-placeholder">
+<img alt="Site Planning Map" onerror="this.src='https://via.placeholder.com/800x600/0077C0/FFFFFF?text=Site+Planning+Map'" src="images/planning/场地规划图.jpg"/>
+</div>
+<div class="image-info">
+<h3>Site Planning Layout</h3>
+<p>Detailed site planning for ultra-fast charging stations, including parking space planning, charger layout, power facility configuration, and safety corridors</p>
+</div>
+</div>
+<!-- Project progress chart -->
+<div class="image-item" data-category="progress">
+<div class="image-placeholder">
+<img alt="Project Progress Chart" onerror="this.src='https://via.placeholder.com/800x600/FFC72C/1D428A?text=Project+Progress+Chart'" src="images/progress/项目进展图表.jpg"/>
+</div>
+<div class="image-info">
+<h3>Project Progress Timeline</h3>
+<p>Phased implementation progress chart for the thousand-station ultra-fast charging project, showing annual construction targets, completion status, and investment progress</p>
+</div>
+</div>
+<!-- Liquid cooling system design -->
+<div class="image-item" data-category="design">
+<div class="image-placeholder">
+<img alt="Liquid Cooling System Design" onerror="this.src='https://via.placeholder.com/800x600/10b981/FFFFFF?text=Liquid+Cooling+System+Design'" src="images/design/液冷系统设计图.jpg"/>
+</div>
+<div class="image-info">
+<h3>Liquid Cooling System Design</h3>
+<p>Technical system design of Huawei's liquid-cooled ultra-fast charging core technology, showing cooling systems, power distribution, and safety monitoring details</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Implementation plan content section -->
+<div class="implementation-plan-section">
+<div class="section-header">
+<h2 class="section-title">📋 Implementation Execution Plan</h2>
+<button class="refresh-btn" onclick="loadImplementationPlan()">
+<span>🔄</span>
+<span>Refresh Content</span>
+</button>
+</div>
+<div class="content-area" id="implementation-plan-content">
+<div class="loading-indicator">
+<div class="loading-spinner"></div>
+<div>Loading implementation plan content...</div>
+</div>
+</div>
+</div>
+</div>
 
-    <div class="container">
-        <!-- Image display area -->
-        <div class="image-showcase-section">
-            <div class="section-header">
-                <h2 class="section-title">🖼️ Project Showcase</h2>
-            </div>
-
-            <div class="image-categories">
-                <div class="category-tabs">
-                    <button class="tab active" onclick="switchImageCategory('all')">All Images</button>
-                    <button class="tab" onclick="switchImageCategory('design')">Design Renderings</button>
-                    <button class="tab" onclick="switchImageCategory('planning')">Site Planning</button>
-                    <button class="tab" onclick="switchImageCategory('progress')">Project Progress</button>
-                </div>
-            </div>
-
-            <div id="image-gallery" class="image-gallery">
-                <!-- Ultra-Fast Charging Station Design Rendering -->
-                <div class="image-item" data-category="design">
-                    <div class="image-placeholder">
-                        <img src="images/design/超充站设计效果图.jpg" alt="Ultra-Fast Charging Station Design Rendering" onerror="this.src='https://via.placeholder.com/800x600/1D428A/FFFFFF?text=Ultra-Fast Charging Station Design'">
-                    </div>
-                    <div class="image-info">
-                        <h3>Ultra-Fast Charging Station Design Rendering</h3>
-                        <p>Overall design rendering of Huawei 600kW liquid-cooled ultra-fast charging station, including complete supporting facilities such as charging pile layout, rest area, and service area</p>
-                    </div>
-                </div>
-
-                <!-- Site Planning Diagram -->
-                <div class="image-item" data-category="planning">
-                    <div class="image-placeholder">
-                        <img src="images/planning/场地规划图.jpg" alt="Site Planning Diagram" onerror="this.src='https://via.placeholder.com/800x600/0077C0/FFFFFF?text=Site Planning'">
-                    </div>
-                    <div class="image-info">
-                        <h3>Site Planning Diagram</h3>
-                        <p>Detailed site planning diagram for ultra-fast charging station, including parking space planning, charging pile layout, power facility configuration, safety passages, etc.</p>
-                    </div>
-                </div>
-
-                <!-- Project Progress Chart -->
-                <div class="image-item" data-category="progress">
-                    <div class="image-placeholder">
-                        <img src="images/progress/项目进展图表.jpg" alt="Project Progress Chart" onerror="this.src='https://via.placeholder.com/800x600/FFC72C/1D428A?text=Project Progress'">
-                    </div>
-                    <div class="image-info">
-                        <h3>Project Progress Chart</h3>
-                        <p>Phased implementation progress chart for the thousand-station ultra-fast charging project, showing annual construction targets, completion status, and investment progress</p>
-                    </div>
-                </div>
-
-                <!-- Liquid Cooling System Design Diagram -->
-                <div class="image-item" data-category="design">
-                    <div class="image-placeholder">
-                        <img src="images/design/液冷系统设计图.jpg" alt="Liquid Cooling System Design Diagram" onerror="this.src='https://via.placeholder.com/800x600/10b981/FFFFFF?text=Liquid Cooling System'">
-                    </div>
-                    <div class="image-info">
-                        <h3>Liquid Cooling System Design Diagram</h3>
-                        <p>Huawei liquid-cooled ultra-fast charging core technology system design diagram, showing technical details such as cooling system, power distribution, and safety monitoring</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Implementation plan content area -->
-        <div class="implementation-plan-section">
-            <div class="section-header">
-                <h2 class="section-title">📋 Implementation Plan</h2>
-                <button class="refresh-btn" onclick="loadImplementationPlan()">
-                    <span>🔄</span>
-                    <span>Refresh Content</span>
-                </button>
-            </div>
-
-            <div id="implementation-plan-content">
-                <div class="loading-indicator">
-                    <div class="loading-spinner"></div>
-                    <div>Loading implementation plan content...</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="floating-action">
-    </div>
-
-    <script>
+<script>
         // Implementation plan content loading function
         function loadImplementationPlan() {
             const contentDiv = document.getElementById('implementation-plan-content');
 
-            // Show loading status
+            // Show loading state
             contentDiv.innerHTML = `
                 <div class="loading-indicator">
                     <div class="loading-spinner"></div>
@@ -856,15 +824,14 @@
                 </div>
             `;
 
-            // Use preloaded content first
-            if (typeof IMPLEMENTATION_CONTENT !== 'undefined') {
-                console.log('Using preloaded implementation plan content');
-                const parsedContent = parseMarkdown(IMPLEMENTATION_CONTENT);
-                contentDiv.innerHTML = `<div class="content-area">${parsedContent}</div>`;
+            // Priority: Use preloaded English content
+            if (typeof IMPLEMENTATION_CONTENT_EN !== 'undefined') {
+                console.log('Using preloaded English implementation content');
+                contentDiv.innerHTML = `<div style="text-align: left;">${IMPLEMENTATION_CONTENT_EN}</div>`;
                 return;
             }
 
-            // Try to load content from server
+            // Fallback: Try to load from server (unlikely to work in English context)
             loadImplementationPlanFromServer();
         }
 
@@ -885,44 +852,36 @@
                     contentDiv.innerHTML = `<div class="content-area">${parsedContent}</div>`;
                 })
                 .catch(error => {
-                    console.warn('Server loading failed, using default content:', error);
+                    console.warn('Server loading failed, using default English content:', error);
                     loadDefaultImplementationPlan();
                 });
         }
 
-        // Load default implementation plan content
+        // Load default implementation plan content (English)
         function loadDefaultImplementationPlan() {
             const contentDiv = document.getElementById('implementation-plan-content');
 
-            const defaultContent = `# Implementation & Execution
-
-## Project Implementation Plan
-
-### 📅 Overall Timeline
-**Project Period**: 5 years (2025-2029)
-**Construction Target**: 1000 liquid-cooled ultra-fast charging stations
-**Total Investment**: ¥2.8 Billion RMB
-**Quality Standards**: National Grid Standards + Huawei Technical Specifications
-
-### 🎯 Phased Implementation Strategy
-
-#### Phase 1: Pilot Validation (2025)
-**Timeline**: January-December 2025
-**Target**: Build 100 ultra-fast charging stations, complete technical validation
-
-#### Phase 2: Scale Expansion (2026-2027)
-**Timeline**: January 2026-December 2027
-**Target**: Add 400 ultra-fast charging stations, establish network effect
-
-#### Phase 3: National Layout (2028)
-**Timeline**: January-December 2028
-**Target**: Add 300 ultra-fast charging stations, achieve national coverage
-
-#### Phase 4: Optimization (2029)
-**Timeline**: January-December 2029
-**Target**: Add 200 ultra-fast charging stations, optimize network layout
-
-*Note: Currently showing default content. For complete content, please start local server or refresh page to retry.*`;
+            const defaultContent = `<h1>Implementation & Execution</h1>
+<h2>Project Implementation Planning</h2>
+<h3>📅 Overall Timeline</h3>
+<p><strong>Project Period</strong>: 5 years (2025-2029)<br>
+<strong>Construction Target</strong>: 1000 liquid-cooled ultra-fast charging stations<br>
+<strong>Total Investment</strong>: 2.8 Billion CNY<br>
+<strong>Quality Standards</strong>: State Grid standards + Huawei technical specifications</p>
+<h3>🎯 Phased Implementation Strategy</h3>
+<h4>Phase 1: Pilot Validation (2025)</h4>
+<p><strong>Time</strong>: January-December 2025<br>
+<strong>Target</strong>: Build 100 ultra-fast charging stations, complete technology validation</p>
+<h4>Phase 2: Scale Expansion (2026-2027)</h4>
+<p><strong>Time</strong>: January 2026 - December 2027<br>
+<strong>Target</strong>: Add 400 ultra-fast charging stations, form network effects</p>
+<h4>Phase 3: National Layout (2028)</h4>
+<p><strong>Time</strong>: January-December 2028<br>
+<strong>Target</strong>: Add 300 ultra-fast charging stations, achieve national coverage</p>
+<h4>Phase 4: Optimization & Enhancement (2029)</h4>
+<p><strong>Time</strong>: January-December 2029<br>
+<strong>Target</strong>: Add 200 ultra-fast charging stations, perfect network layout</p>
+<p><em>Note: Currently showing default content. For complete content, please start local server or refresh the page.</em></p>`;
 
             const parsedContent = parseMarkdown(defaultContent);
             contentDiv.innerHTML = `<div class="content-area">${parsedContent}</div>`;
@@ -935,7 +894,7 @@
             tabs.forEach(tab => tab.classList.remove('active'));
             event.target.classList.add('active');
 
-            // Filter displayed images
+            // Filter display images
             const imageItems = document.querySelectorAll('.image-item');
             imageItems.forEach(item => {
                 if (category === 'all' || item.dataset.category === category) {
@@ -946,13 +905,13 @@
             });
         }
 
-        // Markdown parsing function (supports PDF export optimization and paragraph styles)
+        // Markdown parsing function (enhanced for professional content)
         function parseMarkdown(markdown) {
             if (!markdown) return '';
 
             let html = markdown;
 
-            // Process headings (supports h1-h6)
+            // Process headers (h1-h6)
             html = html.replace(/^###### (.+)$/gm, '<h6>$1</h6>');
             html = html.replace(/^##### (.+)$/gm, '<h5>$1</h5>');
             html = html.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
@@ -1003,7 +962,7 @@
             html = html.replace(/\n\n/g, '</p><p>');
             html = '<p>' + html + '</p>';
 
-            // Clean up excess paragraph tags
+            // Clean up redundant paragraph tags
             html = html.replace(/<p><\/p>/g, '');
             html = html.replace(/<p>(<h[1-6]>)/g, '$1');
             html = html.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
@@ -1018,24 +977,10 @@
             html = html.replace(/<p>(<hr)/g, '$1');
             html = html.replace(/(>)<\/p>/g, '$1');
 
-            // Add no-indent class to special paragraphs - enhanced recognition
-            html = html.replace(/<p>(\*\*[^*]*\*\*)<\/p>/g, '<p class="no-indent">$1</p>'); // Bold heading paragraphs
-            html = html.replace(/<p>(Phase.*?:.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Phase paragraphs
-            html = html.replace(/<p>(\*\*Timeline\*\*.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Timeline heading paragraphs
-            html = html.replace(/<p>(\*\*Target\*\*.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Target heading paragraphs
-            html = html.replace(/<p>(\*\*Key Areas\*\*.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Key area paragraphs
-            html = html.replace(/<p>(\*\*Key Tasks\*\*.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Key task paragraphs
-            html = html.replace(/<p>(\*\*Expansion Strategy\*\*.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Expansion strategy paragraphs
-            html = html.replace(/<p>(\*\*Layout Focus\*\*.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Layout focus paragraphs
-            html = html.replace(/<p>(\*\*Optimization Focus\*\*.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Optimization focus paragraphs
-            html = html.replace(/<p>(\*Note:.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Note paragraphs
-            html = html.replace(/<p>\(.*?\)<\/p>/g, '<p class="no-indent">$1</p>'); // Parenthetical explanation paragraphs
-            html = html.replace(/<p>\d+\..*?<\/p>/g, '<p class="no-indent">$1</p>'); // Number-started paragraphs
-
             return html;
         }
 
-        // Initialization after page load
+        // Page initialization after loading
         document.addEventListener('DOMContentLoaded', function() {
             // Add number animation effects
             const statValues = document.querySelectorAll('.stat-value');
@@ -1047,14 +992,14 @@
                     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
                     const value = Math.floor(progress * (end - start) + start);
 
-                    if (element.textContent.includes('年')) {
-                        element.textContent = value + '年';
-                    } else if (element.textContent.includes('座')) {
-                        element.textContent = value + '座';
-                    } else if (element.textContent.includes('亿')) {
-                        element.textContent = value + '亿';
-                    } else if (element.textContent.includes('阶段')) {
-                        element.textContent = value + '阶段';
+                    if (element.textContent.includes('Years')) {
+                        element.textContent = value + ' Years';
+                    } else if (element.textContent.includes('Stations')) {
+                        element.textContent = value + ' Stations';
+                    } else if (element.textContent.includes('CNY')) {
+                        element.textContent = value + ' Billion CNY';
+                    } else if (element.textContent.includes('Phases')) {
+                        element.textContent = value + ' Phases';
                     }
 
                     if (progress < 1) {
@@ -1071,13 +1016,13 @@
                         const element = entry.target;
                         const text = element.textContent;
 
-                        if (text.includes('5年')) {
+                        if (text.includes('5 Years')) {
                             animateValue(element, 0, 5, 2000);
-                        } else if (text.includes('1000座')) {
+                        } else if (text.includes('1000 Stations')) {
                             animateValue(element, 0, 1000, 2000);
-                        } else if (text.includes('28亿')) {
-                            animateValue(element, 0, 28, 2000);
-                        } else if (text.includes('4阶段')) {
+                        } else if (text.includes('2.8 Billion CNY')) {
+                            animateValue(element, 0, 2.8, 2000);
+                        } else if (text.includes('4 Phases')) {
                             animateValue(element, 0, 4, 2000);
                         }
 
@@ -1101,9 +1046,9 @@
                 });
             });
 
-            // Automatically load implementation plan content after page load
+            // Automatically load implementation plan content after page loads
             loadImplementationPlan();
         });
     </script>
-</body>
+<div id="refresh-marker" style="display:none;">Content refreshed at 2025-10-19 17:40:00</div></body>
 </html>

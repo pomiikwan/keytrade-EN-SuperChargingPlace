@@ -1,14 +1,13 @@
-
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="库里蓝暗夜主题.css">
-    <script src="technical_solution_content.js"></script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Architecture</title>
-    <style>
+<link href="../09_部署中文网站/库里蓝暗夜主题.css" rel="stylesheet"/>
+<script src="js/technical_solution_content_en.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Architecture</title>
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -16,7 +15,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
             background: #0A0E27;
             min-height: 100vh;
             color: #FFFFFF;
@@ -200,7 +199,7 @@
             margin: 10px 0;
         }
 
-        /* Technical solution content area styles */
+        /* Technical solution content area styling */
         .technical-solution-section {
             margin-top: 60px;
             background: rgba(255, 255, 255, 0.05);
@@ -267,6 +266,7 @@
         .content-area {
             color: #FFFFFF;
             line-height: 1.8;
+            text-align: left;
         }
 
         .content-area h1 {
@@ -313,13 +313,12 @@
             margin-bottom: 15px;
             color: #B8C5E0;
             text-align: left;
-            text-indent: 2em;
             line-height: 1.8;
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
 
-        /* Special paragraph styles - no first-line indentation */
+        /* Special paragraph styling - no indentation needed */
         .content-area p.no-indent {
             text-indent: 0;
         }
@@ -517,7 +516,6 @@
             }
 
             .content-area p {
-                text-indent: 1.5em;
                 font-size: 14px;
             }
 
@@ -545,7 +543,7 @@
             }
         }
 
-        /* Extra small screen adaptation */
+        /* Ultra-small screen adaptation */
         @media (max-width: 480px) {
             .title {
                 font-size: 24px;
@@ -556,7 +554,6 @@
             }
 
             .content-area p {
-                text-indent: 1em;
                 font-size: 13px;
             }
 
@@ -572,120 +569,197 @@
                 gap: 15px;
             }
         }
-    </style>
+
+/* Auto-generated content styling */
+.refreshed-content {
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.refreshed-content h1,
+.refreshed-content h2,
+.refreshed-content h3,
+.refreshed-content h4,
+.refreshed-content h5,
+.refreshed-content h6 {
+    color: #2c3e50;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.refreshed-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.refreshed-content th,
+.refreshed-content td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.refreshed-content th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+}
+
+.refreshed-content pre {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    border-left: 4px solid #007bff;
+}
+
+.refreshed-content code {
+    background-color: #e9ecef;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.refreshed-content ul,
+.refreshed-content ol {
+    padding-left: 2rem;
+    margin: 1rem 0;
+}
+
+.refreshed-content li {
+    margin: 0.5rem 0;
+}
+
+.refreshed-content blockquote {
+    border-left: 4px solid #007bff;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.refreshed-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 1rem 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    .refreshed-content {
+        font-size: 14px;
+    }
+
+    .refreshed-content th,
+    .refreshed-content td {
+        padding: 8px 10px;
+    }
+}
+</style>
 </head>
 <body>
-    <div class="main-container">
-        <div class="hero">
-            <div class="container">
-                <h1 class="title">Thousand-Station Charging System Architecture</h1>
-
-                <div class="architecture">
-                    <!-- Cloud Management Platform -->
-                    <div class="layer cloud-layer">
-                        <div class="layer-title">☁️ Cloud Management Platform</div>
-                        <div class="components">
-                            <div class="component">📊 Operations Management System</div>
-                            <div class="component">📈 Data Analytics System</div>
-                            <div class="component">🎧 Customer Service System</div>
-                        </div>
-                    </div>
-
-                    <div class="connection">⬇️ 5G Network</div>
-
-                    <!-- Station Management System -->
-                    <div class="layer station-layer">
-                        <div class="layer-title">🏢 Station Management System</div>
-                        <div class="components">
-                            <div class="component">⚡ Power Distribution System</div>
-                            <div class="component">🌡️ Environmental Monitoring System</div>
-                            <div class="component">🛡️ Security Protection System</div>
-                        </div>
-                    </div>
-
-                    <div class="connection">⬇️ Industrial Bus</div>
-
-                    <!-- Charging Device Layer -->
-                    <div class="layer device-layer">
-                        <div class="layer-title">🔋 Charging Device Layer</div>
-                        <div class="components">
-                            <div class="component">🚗 Liquid-Cooled Ultra-Fast Charging Pile</div>
-                            <div class="component">🔋 Energy Storage System</div>
-                            <div class="component">☀️ Photovoltaic System</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="network-labels">
-                    <div class="network-label">📶 5G Network</div>
-                    <div class="network-label">🌐 Fiber Optic Communication</div>
-                    <div class="network-label">🔌 Industrial Bus</div>
-                </div>
-
-                <div class="metrics">
-                    <div class="metric">
-                        <div class="metric-label">Charging Power</div>
-                        <div class="metric-value">600kW</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Charging Speed</div>
-                        <div class="metric-value">1km per second</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Conversion Efficiency</div>
-                        <div class="metric-value">>96%</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Service Life</div>
-                        <div class="metric-value">15 years</div>
-                    </div>
-                </div>
-
-                <div class="action-buttons">
-                    <a href="index.html" class="btn btn-primary">
+<div class="main-container">
+<div class="hero">
+<div class="container">
+<h1 class="title">System Architecture</h1>
+<div class="architecture">
+<!-- Cloud Management Platform -->
+<div class="layer cloud-layer">
+<div class="layer-title">☁️ Cloud Management Platform</div>
+<div class="components">
+<div class="component">📊 Operations Management System</div>
+<div class="component">📈 Data Analytics System</div>
+<div class="component">🎧 Customer Service System</div>
+</div>
+</div>
+<div class="connection">⬇️ 5G Network</div>
+<!-- Station Management System -->
+<div class="layer station-layer">
+<div class="layer-title">🏢 Station Management System</div>
+<div class="components">
+<div class="component">⚡ Power Distribution System</div>
+<div class="component">🌡️ Environmental Monitoring System</div>
+<div class="component">🛡️ Security Protection System</div>
+</div>
+</div>
+<div class="connection">⬇️ Industrial Bus</div>
+<!-- Charging Equipment Layer -->
+<div class="layer device-layer">
+<div class="layer-title">🔋 Charging Equipment Layer</div>
+<div class="components">
+<div class="component">🚗 Liquid-Cooled Ultra-Fast Chargers</div>
+<div class="component">🔋 Energy Storage System</div>
+<div class="component">☀️ Photovoltaic System</div>
+</div>
+</div>
+</div>
+<div class="network-labels">
+<div class="network-label">📶 5G Network</div>
+<div class="network-label">🌐 Fiber Optic Communication</div>
+<div class="network-label">🔌 Industrial Bus</div>
+</div>
+<div class="metrics">
+<div class="metric">
+<div class="metric-label">Charging Power</div>
+<div class="metric-value">600kW</div>
+</div>
+<div class="metric">
+<div class="metric-label">Charging Speed</div>
+<div class="metric-value">1km per second</div>
+</div>
+<div class="metric">
+<div class="metric-label">Conversion Efficiency</div>
+<div class="metric-value">&gt;96%</div>
+</div>
+<div class="metric">
+<div class="metric-label">Service Life</div>
+<div class="metric-value">15 years</div>
+</div>
+</div>
+<div class="action-buttons">
+<a class="btn btn-primary" href="index_en.html">
                         🏠 Back to Home
                     </a>
-                    <a href="项目摘要_en.html" class="btn btn-secondary">
+<a class="btn btn-secondary" href="项目摘要_en.html">
                         📋 View Summary
                     </a>
-                    <a href="项目实施计划_en.html" class="btn btn-secondary">
+<a class="btn btn-secondary" href="自动商业计划书生成器_增强版.html">
                         📋 Implementation Plan
                     </a>
-                    <a href="交互式计算器_en.html" class="btn btn-secondary">
-                        🧮 Financial Calculator
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Technical Solution Content Area -->
-        <div class="technical-solution-section">
-            <div class="section-header">
-                <h2 class="section-title">🔧 Technical Solution Details</h2>
-                <button class="refresh-btn" onclick="loadTechnicalSolution()">
-                    <span>🔄</span>
-                    <span>Refresh Content</span>
-                </button>
-            </div>
-
-            <div id="technical-solution-content">
-                <div class="loading-indicator">
-                    <div class="loading-spinner"></div>
-                    <div>Loading technical solution content...</div>
-                </div>
-            </div>
-        </div>
+</div>
+</div>
+</div>
+<!-- Technical Solution Content Area -->
+<div class="technical-solution-section">
+<div class="section-header">
+<h2 class="section-title">🔧 Technical Solution Details</h2>
+<button class="refresh-btn" onclick="loadTechnicalSolution()">
+<span>🔄</span>
+<span>Refresh Content</span>
+</button>
+</div>
+<div class="refreshed-content" id="technical-solution-content">
+    <div class="loading-indicator">
+        <div class="loading-spinner"></div>
+        <div>Loading technical solution content...</div>
     </div>
-
-    <div class="floating-action">
-    </div>
-
-    <script>
-        // 技术方案内容加载函数
+</div>
+</div>
+</div>
+<div class="floating-action">
+</div>
+<script>
+        // Technical solution content loading function
         function loadTechnicalSolution() {
             const contentDiv = document.getElementById('technical-solution-content');
 
-            // Display loading status
+            // Show loading status
             contentDiv.innerHTML = `
                 <div class="loading-indicator">
                     <div class="loading-spinner"></div>
@@ -693,11 +767,10 @@
                 </div>
             `;
 
-            // Use preloaded content preferentially
-            if (typeof TECHNICAL_SOLUTION_CONTENT !== 'undefined') {
+            // Priority to preloaded content
+            if (typeof TECHNICAL_SOLUTION_CONTENT_EN !== 'undefined') {
                 console.log('Using preloaded technical solution content');
-                const parsedContent = parseMarkdown(TECHNICAL_SOLUTION_CONTENT);
-                contentDiv.innerHTML = `<div class="content-area">${parsedContent}</div>`;
+                contentDiv.innerHTML = `<div class="content-area">${TECHNICAL_SOLUTION_CONTENT_EN}</div>`;
                 return;
             }
 
@@ -731,58 +804,58 @@
         function loadDefaultTechnicalSolution() {
             const contentDiv = document.getElementById('technical-solution-content');
 
-            const defaultContent = `# 技术方案
+            const defaultContent = `# Technical Solution
 
-## 核心技术优势
+## Core Technical Advantages
 
-### ⚡ 超充技术
-- **充电功率**：600kW液冷超充技术
-- **充电速度**："一秒一公里"，60倍于传统充电
-- **转换效率**：>96%，行业领先水平
-- **兼容性**：支持各种车型充电需求
+### ⚡ Ultra-Fast Charging Technology
+- **Charging Power**: 600kW liquid-cooled ultra-fast charging technology
+- **Charging Speed**: "1km per second", 60 times faster than traditional charging
+- **Conversion Efficiency**: >96%, industry-leading level
+- **Compatibility**: Supports various vehicle charging requirements
 
-### 🌡️ 液冷散热系统
-- **散热效率**：提升300%，确保稳定运行
-- **温度控制**：智能温控系统，±1°C精度
-- **噪音控制**：<60dB，静音运行
-- **可靠性**：24/7连续运行能力
+### 🌡️ Liquid-Cooling System
+- **Cooling Efficiency**: 300% improvement, ensuring stable operation
+- **Temperature Control**: Intelligent temperature control system, ±1°C precision
+- **Noise Control**: <60dB, silent operation
+- **Reliability**: 24/7 continuous operation capability
 
-## 系统架构设计
+## System Architecture Design
 
-### 🏗️ 三层架构
-1. **云管理平台**
-   - 运营管理系统
-   - 数据分析系统
-   - 客户服务系统
+### 🏗️ Three-Layer Architecture
+1. **Cloud Management Platform**
+   - Operations Management System
+   - Data Analytics System
+   - Customer Service System
 
-2. **场站管理系统**
-   - 功率分配系统
-   - 环境监控系统
-   - 安全防护系统
+2. **Station Management System**
+   - Power Distribution System
+   - Environmental Monitoring System
+   - Security Protection System
 
-3. **充电设备层**
-   - 液冷超充桩
-   - 储能系统
-   - 光伏系统
+3. **Charging Equipment Layer**
+   - Liquid-Cooled Ultra-Fast Chargers
+   - Energy Storage System
+   - Photovoltaic System
 
-### 📡 通信网络
-- **5G网络**：高速数据传输
-- **光纤通信**：稳定可靠连接
-- **工业总线**：设备间通信
+### 📡 Communication Network
+- **5G Network**: High-speed data transmission
+- **Fiber Optic Communication**: Stable and reliable connection
+- **Industrial Bus**: Inter-device communication
 
-*Note: Currently displaying default content. To view full content, please start local server or refresh page to retry.*`;
+*Note: Currently displaying default content. To view complete content, please start local server or refresh page to retry.*`;
 
             const parsedContent = parseMarkdown(defaultContent);
             contentDiv.innerHTML = `<div class="content-area">${parsedContent}</div>`;
         }
 
-        // Markdown parsing function (with paragraph style support)
+        // Markdown parsing function (supports paragraph styling)
         function parseMarkdown(markdown) {
             if (!markdown) return '';
 
             let html = markdown;
 
-            // 处理标题（支持h1-h6）
+            // Process headings (supports h1-h6)
             html = html.replace(/^###### (.+)$/gm, '<h6>$1</h6>');
             html = html.replace(/^##### (.+)$/gm, '<h5>$1</h5>');
             html = html.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
@@ -790,42 +863,42 @@
             html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
             html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
 
-            // 处理粗体文本
+            // Process bold text
             html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 
-            // 处理斜体文本
+            // Process italic text
             html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
 
-            // 处理行内代码
+            // Process inline code
             html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
 
-            // 处理链接
+            // Process links
             html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
 
-            // 处理图片
+            // Process images
             html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="max-width: 100%; height: auto; border-radius: 8px; margin: 15px 0;">');
 
-            // 处理代码块
+            // Process code blocks
             html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
 
-            // 处理引用块
+            // Process blockquotes
             html = html.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
 
-            // 处理无序列表
+            // Process unordered lists
             html = html.replace(/^[\*\-\+] (.+)$/gm, '<li>$1</li>');
             html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
 
-            // 处理有序列表
+            // Process ordered lists
             html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
 
-            // 处理分隔线
+            // Process horizontal rules
             html = html.replace(/^---+$/gm, '<hr style="border: none; border-top: 2px solid rgba(255, 255, 255, 0.2); margin: 20px 0;">');
 
-            // 处理换行 - 智能段落处理
+            // Process line breaks - intelligent paragraph processing
             html = html.replace(/\n\n/g, '</p><p>');
             html = '<p>' + html + '</p>';
 
-            // 清理多余的段落标签
+            // Clean up redundant paragraph tags
             html = html.replace(/<p><\/p>/g, '');
             html = html.replace(/<p>(<h[1-6]>)/g, '$1');
             html = html.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
@@ -840,21 +913,21 @@
             html = html.replace(/<p>(<hr)/g, '$1');
             html = html.replace(/(>)<\/p>/g, '$1');
 
-            // 为特殊段落添加no-indent类
-            html = html.replace(/<p>(\*\*[^*]*\*\*)<\/p>/g, '<p class="no-indent">$1</p>'); // 粗体标题段落
-            html = html.replace(/<p>(\*\*.*?\*\*：.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // 粗体标题段落
-            html = html.replace(/<p>(\*注：.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // 注释段落
-            html = html.replace(/<p>（.*?）<\/p>/g, '<p class="no-indent">$1</p>'); // 括号说明段落
-            html = html.replace(/<p>\d+\..*?<\/p>/g, '<p class="no-indent">$1</p>'); // 数字开头的段落
+            // Add no-indent class to special paragraphs
+            html = html.replace(/<p>(\*\*[^*]*\*\*)<\/p>/g, '<p class="no-indent">$1</p>'); // Bold title paragraphs
+            html = html.replace(/<p>(\*\*.*?\*\*：.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Bold title paragraphs
+            html = html.replace(/<p>(\*Note:.*?)<\/p>/g, '<p class="no-indent">$1</p>'); // Note paragraphs
+            html = html.replace(/<p>\(.*?\)<\/p>/g, '<p class="no-indent">$1</p>'); // Parenthetical explanation paragraphs
+            html = html.replace(/<p>\d+..*?<\/p>/g, '<p class="no-indent">$1</p>'); // Number-starting paragraphs
 
             return html;
         }
 
-        // Initialization after page load completes
+        // Page initialization after loading
         document.addEventListener('DOMContentLoaded', function() {
-            // Automatically load technical solution content after page load completes
+            // Automatically load technical solution content after page loads
             loadTechnicalSolution();
         });
     </script>
-</body>
+<div id="refresh-marker" style="display:none;">Content refreshed at 2025-10-19 12:00:00</div></body>
 </html>

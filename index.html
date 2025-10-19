@@ -2,13 +2,17 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="库里蓝暗夜主题.css">
-    <script src="js/terminology_translations.js"></script>
-    <script src="js/content_translations.js"></script>
-    <script src="js/language_switch.js"></script>
+    <!-- Load Translation Engine -->
+    <script src="translate_js/terminology_translations.js"></script>
+    <script src="translate_js/currency_conversion.js"></script>
+    <script src="translate_js/content_translations.js"></script>
+    <script src="translate_js/professional_translation_engine.js"></script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thousand-Station Liquid-Cooled Ultra-Fast Charging Project</title>
+    <title>Thousand-Station Liquid-Cooled Ultra-Fast Charging Project - Investment Platform</title>
+    <meta name="description" content="Professional investment platform for Thousand-Station Liquid-Cooled Ultra-Fast Charging infrastructure project. CFA-level financial analysis, ROI calculations, and investment opportunities for global institutional investors.">
+    <meta name="keywords" content="EV charging, ultra-fast charging, liquid cooling, infrastructure investment, CNY investment, renewable energy, clean energy investment, ROI, IRR, financial modeling">
     <style>
         * {
             margin: 0;
@@ -17,7 +21,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
             background: #0A0E27;
             background-image:
                 radial-gradient(circle at 20% 50%, rgba(29, 66, 138, 0.3) 0%, transparent 50%),
@@ -199,9 +203,17 @@
         }
 
         .stat-label {
-            font-size: 14px;
-            color: #B8C5D6;
-            font-weight: 500;
+            font-size: 14px !important;
+            color: #B8C5D6 !important;
+            font-weight: 500 !important;
+            font-family: 'Roboto', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            text-shadow: none !important;
+            -webkit-background-clip: initial !important;
+            -webkit-text-fill-color: initial !important;
+            line-height: 1.4 !important;
         }
 
         .navigation-grid {
@@ -440,7 +452,7 @@
             transform: rotate(90deg);
         }
 
-        /* 模态框内容样式 */
+        /* Modal content styling */
         .modal-content h3 {
             color: #FFFFFF;
             font-size: 22px;
@@ -469,7 +481,7 @@
             margin-bottom: 8px;
         }
 
-        /* 滚动条样式 */
+        /* Scrollbar styling */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -529,7 +541,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* 页面加载动画 */
+        /* Page loading animation */
         .fade-in {
             animation: fadeIn 0.8s ease-in;
         }
@@ -539,7 +551,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 脉冲动画效果 */
+        /* Pulse animation effect */
         .pulse {
             animation: pulse 2s infinite;
         }
@@ -553,21 +565,19 @@
 </head>
 <body>
     <header class="header fade-in">
-    <link rel="stylesheet" href="库里蓝暗夜主题.css">
-
         <div class="header-content">
             <div class="logo">
                 <div class="logo-icon">⚡</div>
                 <div class="logo-text">
                     <h1>Keytrade</h1>
-                    <p>Investment Project</p>
+                    <p>Investment Management Platform</p>
                 </div>
             </div>
             <div class="nav-buttons">
                 <button class="nav-btn active" onclick="scrollToSection('navigation')">Site Navigation</button>
                 <button class="nav-btn" onclick="scrollToSection('quick-actions')">Quick Actions</button>
                 <button class="nav-btn" onclick="showHelp()">User Guide</button>
-                <button class="nav-btn" onclick="window.open('https://pomiikwan.github.io/keytrade-SuperChargingPlace/', '_blank')">中文版</button>
+                <button class="nav-btn" onclick="window.open('../index.html', '_blank')">中文版</button>
             </div>
         </div>
     </header>
@@ -575,7 +585,7 @@
     <main class="main-container">
         <section class="hero-section fade-in">
             <h2>Thousand-Station Liquid-Cooled Ultra-Fast Charging Project</h2>
-            <p><p>
+            <p>Professional Investment Platform for Global Institutional Investors</p>
 
             <div class="stats-bar">
                 <div class="stat-item">
@@ -583,42 +593,42 @@
                     <div class="stat-label">Ultra-Fast Charging Stations</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">2.8 Billion</div>
+                    <div class="stat-number">2.8 Billion CNY</div>
                     <div class="stat-label">Total Investment</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">42.8%</div>
+                    <div class="stat-number">24.2%</div>
                     <div class="stat-label">Annualized Return Rate</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">4.5 Years</div>
+                    <div class="stat-number">4.2 Years</div>
                     <div class="stat-label">Payback Period</div>
                 </div>
             </div>
         </section>
 
         <section id="navigation" class="navigation-grid">
-            <div class="nav-card" onclick="openTool('行业动态新闻_en.html')">
+            <div class="nav-card" onclick="openTool('行业动态新闻.html')">
                 <div class="card-icon">📰</div>
                 <h3 class="card-title">Industry News & Updates</h3>
-                <p class="card-description">Real-time tracking of NEV industry policies, technologies, markets, and competitor activities</p>
+                <p class="card-description">Real-time monitoring of NEV industry policies, technologies, markets, and competitor activities</p>
                 <ul class="card-features">
-                    <li>Real-time policy & regulation updates</li>
-                    <li>Technology trend tracking</li>
-                    <li>Market competition analysis</li>
-                    <li>Competitor dynamics monitoring</li>
+                    <li>Real-time policy and regulatory updates</li>
+                    <li>Technology development trend tracking</li>
+                    <li>Market competitive landscape analysis</li>
+                    <li>Competitor activity monitoring</li>
                 </ul>
                 <a href="#" class="card-action">
-                    View News <span>→</span>
+                    View Updates <span>→</span>
                 </a>
             </div>
 
-            <div class="nav-card" onclick="openTool('市场图表_en.html')">
+            <div class="nav-card" onclick="openTool('市场图表.html')">
                 <div class="card-icon">🌍</div>
                 <h3 class="card-title">Market Analysis</h3>
                 <p class="card-description">EV market trends and charging infrastructure development analysis</p>
                 <ul class="card-features">
-                    <li>EV growth trends</li>
+                    <li>Electric vehicle growth trends</li>
                     <li>Charging infrastructure demand</li>
                     <li>Competitive landscape analysis</li>
                     <li>Policy support assessment</li>
@@ -628,25 +638,25 @@
                 </a>
             </div>
 
-            <div class="nav-card" onclick="openTool('项目摘要_en.html')">
+            <div class="nav-card" onclick="openTool('项目摘要.html')">
                 <div class="card-icon">📖</div>
-                <h3 class="card-title">Project Summary</h3>
+                <h3 class="card-title">Project Executive Summary</h3>
                 <p class="card-description">Project overview, user guide, and development documentation</p>
                 <ul class="card-features">
-                    <li>Project background</li>
+                    <li>Project background introduction</li>
                     <li>Feature usage guide</li>
-                    <li>Technical implementation</li>
-                    <li>FAQ & support</li>
+                    <li>Technical implementation documentation</li>
+                    <li>FAQ and support</li>
                 </ul>
                 <a href="#" class="card-action">
                     Project Details <span>→</span>
                 </a>
             </div>
 
-            <div class="nav-card" onclick="openTool('项目实施计划_en.html')">
+            <div class="nav-card" onclick="openTool('项目实施计划.html')">
                 <div class="card-icon">🖼️</div>
                 <h3 class="card-title">Project Implementation Roadmap</h3>
-                <p class="card-description">Ultra-fast charging station renderings, technical images, and project implementation planning</p>
+                <p class="card-description">Charging station renderings, technical equipment images, and project implementation planning</p>
                 <ul class="card-features">
                     <li>Charging station design renderings</li>
                     <li>Technical equipment images</li>
@@ -658,22 +668,22 @@
                 </a>
             </div>
 
-            <div class="nav-card" onclick="openTool('系统架构图_en.html')">
+            <div class="nav-card" onclick="openTool('系统架构图.html')">
                 <div class="card-icon">🏗️</div>
                 <h3 class="card-title">Core Competitive Positioning</h3>
-                <p class="card-description">Technical architecture and core competitive advantages</p>
+                <p class="card-description">System architecture and core competitive advantages demonstration</p>
                 <ul class="card-features">
                     <li>Three-tier system architecture</li>
-                    <li>Liquid-cooling technology solution</li>
-                    <li>Intelligent operation & maintenance system</li>
-                    <li>Technical advantages explanation</li>
+                    <li>Liquid-cooling technology solutions</li>
+                    <li>Intelligent operations & maintenance system</li>
+                    <li>Technical advantages documentation</li>
                 </ul>
                 <a href="#" class="card-action">
-                    Core Competitive Positioning <span>→</span>
+                    Technical Architecture <span>→</span>
                 </a>
             </div>
 
-            <div class="nav-card" onclick="openTool('财务图表_en.html')">
+            <div class="nav-card" onclick="openTool('财务图表.html')">
                 <div class="card-icon">💰</div>
                 <h3 class="card-title">Financial Analysis</h3>
                 <p class="card-description">Professional financial analysis, cash flow and return on investment analysis</p>
@@ -688,48 +698,18 @@
                 </a>
             </div>
 
-            <div class="nav-card" onclick="openTool('商业计划书投资者版_en.html')">
+            <div class="nav-card" onclick="openTool('商业计划书投资者版.html')">
                 <div class="card-icon">📊</div>
                 <h3 class="card-title">Official Business Plan</h3>
-                <p class="card-description">Complete project presentation including market analysis, technical solutions, and financial forecasts</p>
+                <p class="card-description">Complete project presentation including market analysis, technical solutions, and financial projections</p>
                 <ul class="card-features">
                     <li>Market opportunity and competitive analysis</li>
                     <li>Technical architecture and advantages</li>
                     <li>Detailed financial models</li>
-                    <li>Risk analysis and response strategies</li>
+                    <li>Risk analysis and mitigation strategies</li>
                 </ul>
                 <a href="#" class="card-action">
                     View Details <span>→</span>
-                </a>
-            </div>
-
-            <div class="nav-card" onclick="openTool('增强交互式计算器_en.html')">
-                <div class="card-icon">🧮</div>
-                <h3 class="card-title">Scenario Analysis</h3>
-                <p class="card-description">Real-time parameter adjustment and financial analysis, supporting multiple investment scenarios</p>
-                <ul class="card-features">
-                    <li>Real-time calculation of key indicators (IRR, NPV)</li>
-                    <li>Three scenarios: Conservative/Baseline/Optimistic</li>
-                    <li>Dynamic cash flow forecast charts</li>
-                    <li>Parameter validation and reasonableness checks</li>
-                </ul>
-                <a href="#" class="card-action">
-                    Use Now <span>→</span>
-                </a>
-            </div>
-
-            <div class="nav-card" onclick="openTool('自动商业计划书生成器_增强版_en.html')">
-                <div class="card-icon">📄</div>
-                <h3 class="card-title">Partnership Models</h3>
-                <p class="card-description">Intelligent generation of personalized business plans with multiple templates and export formats</p>
-                <ul class="card-features">
-                    <li>Parameter-driven content generation</li>
-                    <li>Multiple professional templates</li>
-                    <li>Real-time preview functionality</li>
-                    <li>PDF/Word/Excel export</li>
-                </ul>
-                <a href="#" class="card-action">
-                    Partnership Models <span>→</span>
                 </a>
             </div>
         </section>
@@ -737,9 +717,6 @@
         <section id="quick-actions" class="quick-actions">
             <h3>Quick Actions</h3>
             <div class="action-buttons">
-                <button class="action-btn primary" onclick="openTool('交互式计算器_en.html')">
-                    <span>🧮</span> Open Financial Calculator
-                </button>
                 <button class="action-btn secondary" onclick="showContact()">
                     <span>📞</span> Contact Investment Manager
                 </button>
@@ -751,15 +728,15 @@
     <div class="modal" id="helpModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal('helpModal')">×</button>
-            <h3>Help Guide</h3>
-            <p><strong>Welcome to Thousand-Station Liquid-Cooled Ultra-Fast Charging Project Navigation System!</strong></p>
+            <h3>User Guide</h3>
+            <p><strong>Welcome to the Thousand-Station Liquid-Cooled Ultra-Fast Charging Project Investment Platform!</strong></p>
             <br>
             <p><strong>Key Features:</strong></p>
             <ul>
-                <li>• <strong>Interactive Calculator:</strong>Real-time parameter adjustment with financial analysis results</li>
-                <li>• <strong>Business Plan:</strong>Complete project introduction and investment analysis</li>
-                <li>• <strong>Chart Analysis:</strong>Data visualization for intuitive understanding of project potential</li>
-                <li>• <strong>PDF Export:</strong>One-click generation of professional business plan documents</li>
+                <li>• <strong>Interactive Calculator:</strong> Real-time parameter adjustment with instant financial analysis results</li>
+                <li>• <strong>Business Plan:</strong> Complete project introduction and investment analysis</li>
+                <li>• <strong>Chart Analysis:</strong> Data visualization for intuitive project potential understanding</li>
+                <li>• <strong>PDF Export:</strong> One-click generation of professional business plan documents</li>
             </ul>
             <br>
             <p><strong>Usage Recommendations:</strong></p>
@@ -767,7 +744,7 @@
                 <li>• Review the complete business plan first to understand the project</li>
                 <li>• Use the interactive calculator for personalized analysis</li>
                 <li>• View charts to understand data trends</li>
-                <li>• Export PDF for in-depth study and sharing</li>
+                <li>• Export PDF for in-depth research and sharing</li>
             </ul>
         </div>
     </div>
@@ -776,12 +753,11 @@
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal('contactModal')">×</button>
             <h3>Contact Information</h3>
-            <p><strong>Project Company:</strong> Shenzhen Super Computing Power Technology Co., Ltd.</p>
-            <p><strong>Contact Email:</strong> invest@supercharging.com</p>
-            <p><strong>Project Address:</strong> Nanshan District, Shenzhen</p>
+            <p><strong>Project Company:</strong> Guangzhou Hetuo Business Consulting Co., Ltd.</p>
+            <p><strong>Contact Email:</strong> 438703899@qq.com</p>
             <br>
             <p><strong>Investment Inquiry:</strong></p>
-            <p>For more investment details, please email our investment consultation address, and we will respond promptly.</p>
+            <p>For more investment details, please send an email to our investment consultation address. We will respond as soon as possible.</p>
             <br>
             <p><strong>Technical Support:</strong></p>
             <p>If you encounter technical issues during use, please describe the problem in detail, and we will provide technical support.</p>
@@ -795,7 +771,7 @@
                 section.scrollIntoView({ behavior: 'smooth' });
             }
 
-            // 更新导航按钮状态
+            // Update navigation button status
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
@@ -805,7 +781,9 @@
         function openTool(filename) {
             showLoading();
             setTimeout(() => {
-                window.open(filename, '_blank');
+                // Try to open English version first, fallback to Chinese
+                const englishFilename = filename.replace('.html', '_en.html');
+                window.open(englishFilename, '_blank') || window.open(filename, '_blank');
                 hideLoading();
             }, 500);
         }
@@ -832,18 +810,18 @@
 
         function exportPDF() {
             showLoading();
-            // 这里将调用PDF生成功能
+            // This will call PDF generation functionality
             setTimeout(() => {
                 hideLoading();
-                alert('PDF Export Demo: In actual project, a complete business plan PDF document will be generated, including all analysis results and charts.');
+                alert('PDF Export Feature Demo: In the actual project, a complete business plan PDF document will be generated, including all analysis results and charts.');
             }, 2000);
         }
 
         function downloadData() {
             showLoading();
             setTimeout(() => {
-                // 创建CSV下载
-                const csvContent = "Financial Indicators,Value\nIRR,42.8%\nNPV@12%,¥1.24 Billion\nPayback Period,4.5 Years\n10-Year Cumulative Profit,¥12.19 Billion";
+                // Create CSV download with professional financial terminology
+                const csvContent = "Financial Indicator,Value\nIRR,24.2%\nNPV@10%,8.68 Billion CNY\nPayback Period,4.2 Years\n10-Year Cumulative Profit,86.8 Billion CNY";
                 const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
                 const link = document.createElement("a");
                 const url = URL.createObjectURL(blob);
@@ -857,7 +835,7 @@
             }, 1000);
         }
 
-        // 点击模态框外部关闭
+        // Close modal when clicking outside
         window.onclick = function(event) {
             const modals = document.querySelectorAll('.modal');
             modals.forEach(modal => {
@@ -867,7 +845,7 @@
             });
         }
 
-        // 页面加载动画
+        // Page loading animation
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.nav-card');
             cards.forEach((card, index) => {
@@ -879,6 +857,13 @@
                     card.style.transform = 'translateY(0)';
                 }, index * 100);
             });
+
+            // Apply professional translation when translation engine is available
+            if (typeof translateProfessionalPage === 'function') {
+                setTimeout(() => {
+                    translateProfessionalPage();
+                }, 1000);
+            }
         });
     </script>
 </body>
