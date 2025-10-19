@@ -12,13 +12,13 @@
 const MARKET_ANALYSIS_CONTENT_EN = `<div style="text-align: left;">
 <h1 id="_1">Market Analysis</h1>
 <h2 id="_2">Industry Background</h2>
-<p class="mb-3">China's new energy vehicle industry is experiencing explosive growth. Based on the latest market data, China's pure electric vehicle ownership reached 12.6 million units in 2023, with a compound annual growth rate of 25%. It is projected that by 2027, pure electric vehicle ownership will exceed 15 million units, creating huge demand for charging infrastructure.</p>
+<p class="mb-3">China's new energy vehicle industry is experiencing explosive growth. Based on the latest market data, China's NEV ownership reached 20.41 million units in 2023, maintaining 50%+ growth for four consecutive years, with a compound annual growth rate of 45%. It is projected that by 2027, NEV ownership will reach 40-45 million units, creating huge demand for charging infrastructure.</p>
 <h2 id="_3">Market Size and Growth Trends</h2>
 <h3 id="_4">📊 Precise Market Data</h3>
 <ul class="list-unstyled mb-3">
-<li class="mb-2"><strong>2023 Pure Electric Vehicle Ownership</strong>: 12.6 million units (Ministry of Public Security data)</li>
-<li class="mb-2"><strong>Compound Annual Growth Rate</strong>: 25% (Warning threshold 20%)</li>
-<li class="mb-2"><strong>2027 Projected Ownership</strong>: Over 15 million units</li>
+<li class="mb-2"><strong>2023 NEV Ownership</strong>: 20.41 million units (Actual statistical data)</li>
+<li class="mb-2"><strong>Compound Annual Growth Rate</strong>: 45% (Maintaining 50%+ growth for four consecutive years)</li>
+<li class="mb-2"><strong>2027 Projected Ownership</strong>: 40-45 million units</li>
 <li class="mb-2"><strong>2027 Market Capacity Analysis</strong>:</li>
 <li class="mb-2">New highway exits: 240</li>
 <li class="mb-2">County-level population 200k+ shopping malls: 1,200</li>

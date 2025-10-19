@@ -40,8 +40,7 @@ const EXECUTIVE_SUMMARY_CONTENT_EN = `<div style="text-align: left;">
 </ul>
 <h3 id="_5">📈 Massive Market Opportunities</h3>
 <ul class="list-unstyled mb-3">
-<li class="mb-2"><strong>Market Growth</strong>: 2023 pure electric vehicle ownership 12.6 million units, CAGR 25%</li>
-<li class="mb-2"><strong>Market Capacity</strong>: 2027 effective site locations 504, market investment scale 1.41 Billion CNY</li>
+<li class="mb-2"><strong>Market Growth</strong>: 2023 NEV ownership reached 20.41 million units, maintaining 50%+ growth for four consecutive years, CAGR 45%</li>
 <li class="mb-2"><strong>Policy Support</strong>: County-level ultra-fast charging demonstration projects, construction subsidy 100,000 CNY per station</li>
 <li class="mb-2"><strong>Demand Explosion</strong>: New energy vehicle penetration rate continues to increase, rigid growth in charging demand</li>
 <li class="mb-2"><strong>Competitive Advantage</strong>: Huawei 600kW technology leads, exclusive megawatt technology dividend period</li>
@@ -131,7 +130,7 @@ const EXECUTIVE_SUMMARY_CONTENT_EN = `<div style="text-align: left;">
 <h3 id="_11">Electric Vehicle Market Explosion</h3>
 <ul class="list-unstyled mb-3">
 <li class="mb-2"><strong>Penetration Rate Increase</strong>: From 5% in 2020 to 35% in 2025</li>
-<li class="mb-2"><strong>Ownership Forecast</strong>: China's electric vehicle ownership will reach 80 million units by 2030</li>
+<li class="mb-2"><strong>Ownership Forecast</strong>: Based on 2023 baseline of 20.41 million units, projected to reach 40-45 million units by 2027, potentially exceeding 80 million units by 2030</li>
 <li class="mb-2"><strong>Charging Demand</strong>: Corresponding need for 10 million+ charging piles, huge market space</li>
 </ul>
 <h3 id="_12">Strong Policy Drivers</h3>
