@@ -50,7 +50,7 @@ const EXECUTIVE_SUMMARY_CONTENT_EN = `<div style="text-align: left;">
 <li class="mb-2"><strong>Internal Rate of Return</strong>: 24.2% (Project IRR), significantly higher than infrastructure average</li>
 <li class="mb-2"><strong>Net Present Value</strong>: NPV@10% = 0.87 Billion CNY, clear value creation</li>
 <li class="mb-2"><strong>Payback Period</strong>: 4.2 years (based on EBITDA calculation), high capital turnover efficiency</li>
-<li class="mb-2"><strong>Annual Revenue per Station</strong>: 22.27 Million CNY, stable and diversified revenue structure</li>
+<li class="mb-2"><strong>Annual Revenue per Station</strong>: 20.5 Million CNY, stable and diversified revenue structure</li>
 <li class="mb-2"><strong>Annual Profit per Station</strong>: 3.79 Million CNY, strong profitability</li>
 <li class="mb-2"><strong>EBITDA Margin</strong>: 28.6%, excellent operational efficiency</li>
 <li class="mb-2"><strong>Annual Project Cash Flow</strong>: 636 Million CNY, sufficient cash flow</li>
