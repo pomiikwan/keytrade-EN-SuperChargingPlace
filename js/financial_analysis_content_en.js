@@ -67,14 +67,15 @@ const FINANCIAL_ANALYSIS_CONTENT_EN = `<div style="text-align: left;">
 <h3 id="_7">💵 Revenue Forecast (Single Station/Year)</h3>
 <p class="mb-3">Stable annual revenue model based on actual operational parameters:<br />
 - <strong>Annual Charging Volume</strong>: 3.154 million kWh (12 guns × 12% utilization × 10 hours × 600kW × 365 days)<br />
+- <strong>Electricity Revenue</strong>: 1.104 Million CNY (3.154 million kWh × 0.35 CNY/kWh)<br />
 - <strong>Charging Service Fee Revenue</strong>: 946,000 CNY (3.154 million kWh × 0.30 CNY/kWh)<br />
-- <strong>Auxiliary Service Premium</strong>: 57,000 CNY (6% premium)<br />
-- <strong>Shopping Mall Customer Flow Sharing</strong>: 300,000 CNY (Business model innovation)<br />
-- <strong>Solar-Storage Arbitrage Revenue</strong>: 223,000 CNY (Peak-valley price spread gains)<br />
-- <strong>Total Annual Revenue per Station</strong>: 2.227 Million CNY</p>
+- <strong>（Excluded for now）Auxiliary Service Premium</strong>: 57,000 CNY (6% premium)<br />
+- <strong>（Excluded for now）Shopping Mall Customer Flow Sharing</strong>: 300,000 CNY (Business model innovation)<br />
+- <strong>（Excluded for now）Solar-Storage Arbitrage Revenue</strong>: 223,000 CNY (Peak-valley price spread gains)<br />
+- <strong>Total Annual Revenue per Station</strong>: 2.05 Million CNY</p>
 <h3 id="1000">📊 1000-Station Project Overall Revenue</h3>
 <ul class="list-unstyled mb-3">
-<li class="mb-2"><strong>Project Annual Total Revenue</strong>: 2.227 Billion CNY</li>
+<li class="mb-2"><strong>Project Annual Total Revenue</strong>: 2.05 Billion CNY</li>
 <li class="mb-2"><strong>Project Annual Cash Flow</strong>: 636 Million CNY (EBITDA)</li>
 <li class="mb-2"><strong>Project Annual Net Profit</strong>: 379 Million CNY</li>
 <li class="mb-2"><strong>10-Year Cumulative Cash Flow</strong>: 6.36 Billion CNY</li>
@@ -86,27 +87,27 @@ const FINANCIAL_ANALYSIS_CONTENT_EN = `<div style="text-align: left;">
 - <strong>Equipment Maintenance</strong>: 3,000 CNY (Huawei liquid-cooled equipment - near-zero maintenance)<br />
 - <strong>Personnel Cost</strong>: 120,000 CNY (1 operations staff)<br />
 - <strong>Site Rent</strong>: 334,000 CNY (15% of revenue sharing model)<br />
-- <strong>Other Operating Costs</strong>: 50,000 CNY (Insurance, management fees)<br />
-- <strong>Total Annual Cost per Station</strong>: 1.967 Million CNY</p>
+- <strong>Other Operating Costs</strong>: 110,000 CNY (Insurance, management fees)<br />
+- <strong>Total Annual Cost per Station</strong>: 1.671 Million CNY</p>
 <h3 id="_10">📉 Cost Structure Analysis</h3>
 <ul class="list-unstyled mb-3">
-<li class="mb-2"><strong>Variable Costs</strong>: 1.107 Million CNY (Electricity + Maintenance)</li>
-<li class="mb-2"><strong>Fixed Costs</strong>: 860,000 CNY (Personnel + Rent + Others)</li>
-<li class="mb-2"><strong>Cost Composition</strong>: Electricity 56.1%, Rent 17.0%, Personnel 6.1%, Others 20.8%</li>
+<li class="mb-2"><strong>Variable Costs</strong>: 1.438 Million CNY (Electricity + Rent)</li>
+<li class="mb-2"><strong>Fixed Costs</strong>: 233,000 CNY (Personnel + Maintenance + Others)</li>
+<li class="mb-2"><strong>Cost Composition</strong>: Electricity 66%, Rent 19.9%, Personnel 7.1%, Others 7%</li>
 </ul>
 <h2 id="_11">Profitability Analysis</h2>
 <h3 id="_12">💹 Profit Analysis (Single Station/Year)</h3>
 <p class="mb-3">Stable profit model based on actual operational parameters:<br />
-- <strong>Annual Operating Revenue</strong>: 2.227 Million CNY<br />
-- <strong>Annual Total Cost</strong>: 1.967 Million CNY<br />
+- <strong>Annual Operating Revenue</strong>: 2.05 Million CNY<br />
+- <strong>Annual Total Cost</strong>: 1.671 Million CNY<br />
 - <strong>Annual Net Profit</strong>: 379,000 CNY<br />
 - <strong>Net Margin</strong>: 17.0%<br />
 - <strong>EBITDA</strong>: 636,000 CNY (Add back depreciation of 270,000 CNY)<br />
 - <strong>EBITDA Margin</strong>: 28.6%</p>
 <h3 id="1000_1">📊 1000-Station Project Overall Profitability</h3>
 <ul class="list-unstyled mb-3">
-<li class="mb-2"><strong>Project Annual Total Revenue</strong>: 2.227 Billion CNY</li>
-<li class="mb-2"><strong>Project Annual Total Cost</strong>: 1.967 Billion CNY</li>
+<li class="mb-2"><strong>Project Annual Total Revenue</strong>: 2.05 Billion CNY</li>
+<li class="mb-2"><strong>Project Annual Total Cost</strong>: 1.671 Billion CNY</li>
 <li class="mb-2"><strong>Project Annual Net Profit</strong>: 379 Million CNY</li>
 <li class="mb-2"><strong>Project Annual EBITDA</strong>: 636 Million CNY</li>
 <li class="mb-2"><strong>Single Station IRR</strong>: 23.5%</li>
