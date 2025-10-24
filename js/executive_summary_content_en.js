@@ -169,7 +169,7 @@ const EXECUTIVE_SUMMARY_CONTENT_EN = `<div style="text-align: left;">
 <li class="mb-2"><strong>Cost Control</strong>: Refined cost management system</li>
 <li class="mb-2"><strong>User Experience</strong>: High-quality charging service experience</li>
 </ul>
-<h2 id="_18">Financial Forecast Summary</h2>
+<h2 id="_18">Investment Summary</h2>
 <h3 id="28">Investment Composition (2.8 Billion CNY)</h3>
 <ul class="list-unstyled mb-3">
 <li class="mb-2"><strong>Equipment Investment</strong>: 1.8 Billion CNY (64%)</li>
@@ -177,20 +177,6 @@ const EXECUTIVE_SUMMARY_CONTENT_EN = `<div style="text-align: left;">
 <li class="mb-2"><strong>Working Capital</strong>: 300 Million CNY (11%)</li>
 <li class="mb-2"><strong>Technology R&D</strong>: 200 Million CNY (7%)</li>
 <li class="mb-2"><strong>Other Expenses</strong>: 100 Million CNY (4%)</li>
-</ul>
-<h3 id="10">Revenue Forecast (10 Years)</h3>
-<ul class="list-unstyled mb-3">
-<li class="mb-2"><strong>Charging Revenue</strong>: 28 Billion CNY (85%)</li>
-<li class="mb-2"><strong>Value-added Services</strong>: 3.5 Billion CNY (11%)</li>
-<li class="mb-2"><strong>Advertising Revenue</strong>: 1.4 Billion CNY (4%)</li>
-<li class="mb-2"><strong>Total Revenue</strong>: 32.9 Billion CNY</li>
-</ul>
-<h3 id="_19">Profit Forecast</h3>
-<ul class="list-unstyled mb-3">
-<li class="mb-2"><strong>Cumulative Gross Profit</strong>: 18.96 Billion CNY</li>
-<li class="mb-2"><strong>Cumulative Net Profit</strong>: 12.19 Billion CNY</li>
-<li class="mb-2"><strong>Average Annual Net Profit</strong>: 1.22 Billion CNY</li>
-<li class="mb-2"><strong>Average Net Margin</strong>: 37%</li>
 </ul>
 <h2 id="_20">Risk Assessment</h2>
 <h3 id="_21">Market Risk (Medium)</h3>
